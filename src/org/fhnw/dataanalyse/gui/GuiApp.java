@@ -80,7 +80,7 @@ public class GuiApp  extends JFrame{
         contraints.gridy = 2;
         contraints.gridwidth = width;
         contraints.fill = GridBagConstraints.BOTH;
-        contraints.gridwidth = GridBagConstraints.REMAINDER;
+        contraints.gridheight = GridBagConstraints.REMAINDER;
         distributor.setConstraints(plotingArea, contraints);
         surface.add(plotingArea);
         plotingArea.setBackground(Color.orange);
