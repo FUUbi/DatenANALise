@@ -56,7 +56,7 @@ public class GuiApp  extends JFrame{
         contraints.gridx = 0;
         contraints.gridy = 0;
         contraints.gridwidth = width;
-        contraints.gridheight = 10;
+        contraints.gridheight = 1;
         contraints.fill = GridBagConstraints.HORIZONTAL;
         contraints.anchor = GridBagConstraints.FIRST_LINE_START;
         contraints.weightx =1;
