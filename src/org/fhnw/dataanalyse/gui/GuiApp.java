@@ -42,6 +42,10 @@ public class GuiApp  extends JFrame{
         setSize(width, height);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        JPanel toolbar1 = new JPanel();
+        JPanel toolbar2 = new JPanel();
+        JPanel plotingArea = new JPanel();
+
     /*Layout*/
         GridBagLayout distributor = new GridBagLayout();
         GridBagConstraints contraints;
@@ -50,13 +54,12 @@ public class GuiApp  extends JFrame{
         surface.setLayout(distributor);
         /*toolbar1 layout */
         contraints = new GridBagConstraints();
-        contraints.gridx = 0;
         contraints.gridy = 0;
-        contraints.gridwidth = width;
+        //contraints.gridwidth = width;
         contraints.gridheight = 1;
         contraints.fill = GridBagConstraints.HORIZONTAL;
         contraints.anchor = GridBagConstraints.FIRST_LINE_START;
-        contraints.weightx =1;
+        //contraints.weightx =1;
         contraints.weighty =1;
         distributor.setConstraints(toolbar1, contraints);
         surface.add(toolbar1);
@@ -64,10 +67,9 @@ public class GuiApp  extends JFrame{
 
         /*toolbar2 layout*/
         contraints = new GridBagConstraints();
-        contraints.gridx = 0;
         contraints.gridy = 1;
-        contraints.gridwidth = width;
-        contraints.gridheight = 10;
+        //contraints.gridwidth = width;
+        contraints.gridheight = 2;
         contraints.fill = GridBagConstraints.HORIZONTAL;
         contraints.anchor = GridBagConstraints.NORTH;
         distributor.setConstraints(toolbar2, contraints);
@@ -76,9 +78,8 @@ public class GuiApp  extends JFrame{
 
         /*PlotingArea layout*/
         contraints = new GridBagConstraints();
-        contraints.gridx = 0;
         contraints.gridy = 2;
-        contraints.gridwidth = width;
+        //contraints.gridwidth = width;
         contraints.fill = GridBagConstraints.BOTH;
         contraints.gridheight = GridBagConstraints.REMAINDER;
         distributor.setConstraints(plotingArea, contraints);
@@ -87,6 +88,7 @@ public class GuiApp  extends JFrame{
 
 
         setVisible(true);
+
     }
 
 }
