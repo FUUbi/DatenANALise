@@ -5,8 +5,6 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.util.concurrent.atomic.AtomicReference;
-import static javax.swing.JPanel.*;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -17,20 +15,18 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.awt.BorderLayout;
 
 /**
  * Created by Vallat on 14.05.2015.
  *
  */
-public class GuiApp  extends JFrame{
+public class GuiApp extends JFrame{
 
     /*Get Dimension of the Desktop*/
     Toolkit toolkit =  Toolkit.getDefaultToolkit ();
     Dimension dim = toolkit.getScreenSize();
 
-    JPanel toolbar1 = new JPanel();
-    JPanel toolbar2 = new JPanel();
-    JPanel plotingArea = new JPanel();
 
 
     public GuiApp() {
@@ -42,6 +38,11 @@ public class GuiApp  extends JFrame{
         setSize(width, height);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+
+        JPanel toolbar1 = new JPanel();
+        JPanel toolbar2 = new JPanel();
+        JPanel plotingArea = new JPanel();
+
     /*Layout*/
         GridBagLayout distributor = new GridBagLayout();
         GridBagConstraints contraints;
@@ -49,13 +50,14 @@ public class GuiApp  extends JFrame{
 
         surface.setLayout(distributor);
         /*toolbar1 layout */
+
         contraints = new GridBagConstraints();
         contraints.gridx = 0;
         contraints.gridy = 0;
-        contraints.gridwidth = width;
+        contraints.gridwidth = 1;
         contraints.gridheight = 1;
-        contraints.fill = GridBagConstraints.HORIZONTAL;
-        contraints.anchor = GridBagConstraints.FIRST_LINE_START;
+        contraints.fill = GridBagConstraints.BOTH;
+        contraints.anchor = GridBagConstraints.NORTH;
         contraints.weightx =1;
         contraints.weighty =1;
         distributor.setConstraints(toolbar1, contraints);
@@ -63,24 +65,30 @@ public class GuiApp  extends JFrame{
         toolbar1.setBackground(Color.blue);
 
         /*toolbar2 layout*/
+
         contraints = new GridBagConstraints();
         contraints.gridx = 0;
         contraints.gridy = 1;
-        contraints.gridwidth = width;
-        contraints.gridheight = 10;
-        contraints.fill = GridBagConstraints.HORIZONTAL;
+        contraints.gridwidth = 1;
+        contraints.gridheight = 1;
+        contraints.fill = GridBagConstraints.BOTH;
         contraints.anchor = GridBagConstraints.NORTH;
+        contraints.weightx = 1;
+        contraints.weighty = 1;
         distributor.setConstraints(toolbar2, contraints);
         surface.add(toolbar2);
         toolbar2.setBackground(Color.darkGray);
+
 
         /*PlotingArea layout*/
         contraints = new GridBagConstraints();
         contraints.gridx = 0;
         contraints.gridy = 2;
-        contraints.gridwidth = width;
+        contraints.gridwidth = 1;
         contraints.fill = GridBagConstraints.BOTH;
-        contraints.gridheight = GridBagConstraints.REMAINDER;
+        contraints.anchor = GridBagConstraints.SOUTH;
+        contraints.weightx = 1;
+        contraints.weighty = 10;
         distributor.setConstraints(plotingArea, contraints);
         surface.add(plotingArea);
         plotingArea.setBackground(Color.orange);
