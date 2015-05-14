@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 
 /**
  * Created by Vallat on 14.05.2015.
+ *
  */
 public class GuiApp  extends JFrame{
 
@@ -87,15 +88,5 @@ public class GuiApp  extends JFrame{
 
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GuiApp().setVisible(true);
-            }
-        });
-    }
-
 
 }
