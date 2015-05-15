@@ -17,10 +17,15 @@ public class ColumnVariableLoader implements IVariableLoader {
         }
 
         ArrayList<Variable> variables = new ArrayList<Variable>();
+
+        // Creates an object Variable with each varaible name
+        // The first line contains the variable names
         for (String str : in.nextLine().split("\t")){
             variables.add(new Variable(str));
         }
 
+        // for every line of the document the values in  collumn 0 are added to the
+        // data of the variable 0, and so on.
         while (in.hasNextLine()){
 
             for (int i = 0 ; i < variables.size(); i++){
@@ -29,10 +34,8 @@ public class ColumnVariableLoader implements IVariableLoader {
 
                 }catch (Exception e){}
             }
-
-
-
         }
+
         in.close();
         return variables;
     }

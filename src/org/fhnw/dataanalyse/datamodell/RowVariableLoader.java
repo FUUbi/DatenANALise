@@ -4,31 +4,46 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class RowVariableLoader implements IVariableLoader {
     @Override
-    public ArrayList<Variable> loadVariable(File lineFormatedFile) {
+    public ArrayList<Variable> loadVariable(File rowFormatedFile) {
 
         Scanner in = null;
         try {
-            in = new Scanner(lineFormatedFile);
+            in = new Scanner(rowFormatedFile);
         } catch (FileNotFoundException e) {
             return null;
         }
 
-         ArrayList<Variable> variables = new ArrayList<Variable>();
-        for (String str : in.nextLine().split("\t")){
-            variables.add(new Variable(str));
+        ArrayList<Variable> variables = new ArrayList<Variable>();
+
+        //First line of the file contains the information of the amount of variables
+        int nVariable = Integer.parseInt(in.nextLine());
+
+        // Creates an object Variable with each varaible name
+        for (int n = nVariable; n > 0; n--){
+            variables.add(new Variable(in.nextLine()));
         }
 
+        // The next line contains the character who separates the values
+        String separator = in.nextLine();
+
+        // Import all the values and add them to the variable created before
+        // in the Array data
         while (in.hasNextLine()){
-            for (int i = variables.size(); i == 0; i--){
-                System.out.println(i);
-            }
-            String lineN = in.nextLine();
-            for (Variable v: variables){
+            for (int n = 0; n < nVariable; n++){
+                String variableValues = in.nextLine();
+
+                String[] values = variableValues.split(separator);
+
+                for (String v: values){
+                  variables.get(n).getData().add(Float.parseFloat(v));
+                }
 
             }
+
         }
         return variables;
     }

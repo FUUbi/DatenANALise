@@ -7,6 +7,11 @@ import java.util.ArrayList;
  *
  */
 public class Variable {
+    /**
+     * Variable:
+     *  contains the name of the imported Variable
+     *  and the values are stored in the Array data
+     */
     private String name;
     private ArrayList<Float> data;
 
