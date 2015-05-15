@@ -1,21 +1,13 @@
 package org.fhnw.dataanalyse.gui;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import java.awt.BorderLayout;
 
 /**
  * Created by Vallat on 14.05.2015.
@@ -27,8 +19,6 @@ public class GuiApp extends JFrame{
     Toolkit toolkit =  Toolkit.getDefaultToolkit ();
     Dimension dim = toolkit.getScreenSize();
 
-
-
     public GuiApp() {
 
     /* Frame Initialisaton*/
@@ -38,7 +28,7 @@ public class GuiApp extends JFrame{
         setSize(width, height);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-
+    /*Panels initialisation*/
         JPanel toolbar1 = new JPanel();
         JPanel toolbar2_plot = new JPanel();
         JPanel toolbar2_histo = new JPanel();
@@ -51,8 +41,8 @@ public class GuiApp extends JFrame{
         Container surface = getContentPane();
 
         surface.setLayout(distributor);
-        /*toolbar1 layout */
 
+        /*toolbar1 layout */
         c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
@@ -67,7 +57,6 @@ public class GuiApp extends JFrame{
         toolbar1.setBackground(Color.blue);
 
         /*toolbar2 layout*/
-
         c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 1;
@@ -93,8 +82,6 @@ public class GuiApp extends JFrame{
         distributor.setConstraints(toolbar2_histo, c);
         surface.add(toolbar2_histo);
         toolbar2_histo.setBackground(Color.GRAY);
-
-
 
 
         /*PlotingArea layout*/
