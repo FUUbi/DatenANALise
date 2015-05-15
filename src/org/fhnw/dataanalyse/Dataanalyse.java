@@ -30,7 +30,7 @@ public class Dataanalyse {
 
         // mann kann auch direkt darauf zugreiffen
         System.out.println( VariablenConainer.getVariables().get(1).getName());
-
+/*
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -38,6 +38,6 @@ public class Dataanalyse {
                 new GuiApp().setVisible(true);
             }
         });
-
+*/
     }
 }
