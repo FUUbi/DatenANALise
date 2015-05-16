@@ -1,5 +1,7 @@
 package org.fhnw.dataanalyse.gui;
 
+import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
@@ -19,7 +21,8 @@ public class GuiApp extends JFrame{
     Toolkit toolkit =  Toolkit.getDefaultToolkit ();
     Dimension dim = toolkit.getScreenSize();
 
-    public GuiApp() {
+    //public JPanel GuiApp(String panelName) {
+    public GuiApp(){
 
     /* Frame Initialisaton*/
         setTitle("Dataanalyse");
@@ -55,6 +58,7 @@ public class GuiApp extends JFrame{
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
+
 
         /*toolbar2 layout*/
         c = new GridBagConstraints();
@@ -111,6 +115,23 @@ public class GuiApp extends JFrame{
 
 
         setVisible(true);
+
+        /*Damit das gewünschte Panel im Main return sei
+        if (panelName.equals("toolbar1"))
+        {
+            return toolbar1;
+        }
+        else if(panelName.equals("toolbar2_plot"))
+        {
+            return toolbar2_plot;
+        }
+        else if(panelName.equals("toolbar2_histo"))
+        {
+            return toolbar2_histo;
+        }
+        */
     }
+
+
 
 }
