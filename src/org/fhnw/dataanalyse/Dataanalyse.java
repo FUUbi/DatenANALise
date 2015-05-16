@@ -24,9 +24,13 @@ public class Dataanalyse {
         //hier wird das Array das sich im container befindet der dem array zugewiesen
         ArrayList<Variable> actuelleVariablen = VariablenConainer.getVariables();
 
-        System.out.println(actuelleVariablen.size()); // anzahl Variablen
-        System.out.println(actuelleVariablen.get(0).getName());
-        System.out.println(actuelleVariablen.get(0).getData());
+        for (Variable v : actuelleVariablen) {
+
+            System.out.println(v.getName());
+            System.out.println(v.getData());
+            System.out.println("");
+        }
+
 
         System.out.println(actuelleVariablen.get(1).getName());
         System.out.println(actuelleVariablen.get(1).getData());
