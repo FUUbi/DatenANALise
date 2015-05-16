@@ -14,8 +14,12 @@ import java.util.ArrayList;
 
 public class Dataanalyse {
     public static void main(String[] args){
+
         VariableContainer VariablenConainer = new VariableContainer();
+        VariablenConainer.chooseFile();
+
         VariablenConainer.loadVariables();
+
 
         //hier wird das Array das sich im container befindet der dem array zugewiesen
         ArrayList<Variable> actuelleVariablen = VariablenConainer.getVariables();
