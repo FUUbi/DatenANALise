@@ -21,6 +21,17 @@ public class GuiApp extends JFrame{
     Toolkit toolkit =  Toolkit.getDefaultToolkit ();
     Dimension dim = toolkit.getScreenSize();
 
+    // Comment for lise die müend public si damit du zuegriff hesch vom main
+
+    /*Panels initialisation*/
+    /// das BorderLayout macht das des das frame womer ine füend usgfüllt wird
+    public JPanel toolbar1 = new JPanel(new BorderLayout());
+    public JPanel toolbar2_plot = new JPanel();
+    public JPanel toolbar2_histo = new JPanel();
+    public JPanel plot = new JPanel();
+    public JPanel histo = new JPanel();
+
+
     //public JPanel GuiApp(String panelName) {
     public GuiApp(){
 
@@ -31,12 +42,6 @@ public class GuiApp extends JFrame{
         setSize(width, height);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-    /*Panels initialisation*/
-        JPanel toolbar1 = new JPanel();
-        JPanel toolbar2_plot = new JPanel();
-        JPanel toolbar2_histo = new JPanel();
-        JPanel plot = new JPanel();
-        JPanel histo = new JPanel();
 
     /*Layout*/
         GridBagLayout distributor = new GridBagLayout();

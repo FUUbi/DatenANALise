@@ -6,6 +6,7 @@ import org.fhnw.dataanalyse.gui.GuiApp;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +18,8 @@ public class Dataanalyse {
     public static void main(String[] args){
 
         VariableContainer VariablenConainer = new VariableContainer();
+
+
         VariablenConainer.chooseFile();
 
         VariablenConainer.loadVariables();
@@ -41,7 +44,12 @@ public class Dataanalyse {
         T1_Configuration t = new T1_Configuration();
         GuiApp gA = new GuiApp();
         //gA.GuiApp(panelwoniwett).add(t.T1Config());
-        gA.add(t.T1Config());//funktioniert so nur in dem, dass dem PanelConfiguration iwo im Frame plaziert sein wird....
+
+        /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
+        /// darum hets au ade sitte ane do
+        // mitem borderlayout seisch was söll aschloh
+        gA.toolbar1.add(t.T1Config(), BorderLayout.WEST);
+
 
 
         // mann kann auch direkt darauf zugreiffen
