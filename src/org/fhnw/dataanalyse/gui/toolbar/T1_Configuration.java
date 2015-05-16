@@ -13,7 +13,7 @@ public class T1_Configuration extends JPanel {
     public JPanel T1Config()
 
     {
-        JPanel toolbar1Content = new JPanel(new BorderLayout());
+        JPanel toolbar1Content = new JPanel();
         JButton loadFileButton = new JButton("Load File");
         toolbar1Content.add(loadFileButton);
 
