@@ -1,6 +1,7 @@
 package org.fhnw.dataanalyse.gui.toolbar;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import javafx.scene.control.ComboBox;
 import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
 
@@ -25,11 +26,15 @@ public class T1_Configuration extends JPanel {
         JPanel toolbar1Content = new JPanel(new GridLayout(1,column,hgap,1));
         JButton loadFile = new JButton("Load File");
         JButton deleteFile = new JButton("Delete File");
-        //Choice choice = new Choice();
 
+        String[] dropDownBox = {"Fabri", "g", "Lise"};
+
+        JComboBox choiceList = new JComboBox(dropDownBox);
+        choiceList.setEditable(true);
 
         toolbar1Content.add(loadFile);
         toolbar1Content.add(deleteFile);
+        toolbar1Content.add(choiceList);
 
 
         loadFile.addActionListener(new ActionListener() {
@@ -49,10 +54,6 @@ public class T1_Configuration extends JPanel {
                 System.out.println("ActionListenerDeleteFile");
             }
         });
-
-
-
-
 
 
 
