@@ -41,14 +41,9 @@ public class Dataanalyse {
 
 
         // add panelConfiguration to GuiApp
-        T1_Configuration t = new T1_Configuration();
+        T1_Configuration t = new T1_Configuration(actuelleVariablen);
         GuiApp gA = new GuiApp();
-        //gA.GuiApp(panelwoniwett).add(t.T1Config());
-
-        /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
-        /// darum hets au ade sitte ane do
-        // mitem borderlayout seisch was söll aschloh
-        gA.toolbar1.add(t.T1Config(), BorderLayout.WEST);
+        gA.toolbar1.add(t.T1_Configuration(actuelleVariablen), BorderLayout.WEST);
 
 
 
