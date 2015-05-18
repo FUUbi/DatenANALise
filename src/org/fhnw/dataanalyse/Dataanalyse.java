@@ -4,6 +4,7 @@ import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
 import org.fhnw.dataanalyse.gui.GuiApp;
 import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 
 
@@ -48,8 +49,11 @@ public class Dataanalyse {
 
 
         // add panelConfiguration to GuiApp
-        T1_Configuration t = new T1_Configuration();
+        T1_Configuration t = new T1_Configuration(/*VariablenConainer*/);
         GuiApp gA = new GuiApp();
+        gA.toolbar1.add(t.T1_Configuration(/*VariablenConainer*/), BorderLayout.WEST);
+        ScatterPlotPanel splot = new ScatterPlotPanel();
+        gA.plot.add(splot, BorderLayout.CENTER);
         //gA.GuiApp(panelwoniwett).add(t.T1Config());
 
         /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
