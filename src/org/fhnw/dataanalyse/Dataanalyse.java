@@ -41,19 +41,10 @@ public class Dataanalyse {
 
 
         // add panelConfiguration to GuiApp
-        T1_Configuration t = new T1_Configuration(actuelleVariablen);
+        T1_Configuration t = new T1_Configuration(/*VariablenConainer*/);
         GuiApp gA = new GuiApp();
-        gA.toolbar1.add(t.T1_Configuration(actuelleVariablen), BorderLayout.WEST);
+        gA.toolbar1.add(t.T1_Configuration(/*VariablenConainer*/), BorderLayout.WEST);
         ScatterPlotPanel splot = new ScatterPlotPanel();
-        //gA.GuiApp(panelwoniwett).add(t.T1Config());
-
-        /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
-        /// darum hets au ade sitte ane do
-        // mitem borderlayout seisch was söll aschloh
-        gA.toolbar1.add(t.T1Config(), BorderLayout.WEST);
-        gA.plot.add(splot, BorderLayout.CENTER);
-
-
 
 
         // mann kann auch direkt darauf zugreiffen
