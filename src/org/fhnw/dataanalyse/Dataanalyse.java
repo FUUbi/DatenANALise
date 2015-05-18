@@ -41,9 +41,9 @@ public class Dataanalyse {
 
 
         // add panelConfiguration to GuiApp
-        T1_Configuration t = new T1_Configuration(actuelleVariablen);
+        T1_Configuration t = new T1_Configuration(/*VariablenConainer*/);
         GuiApp gA = new GuiApp();
-        gA.toolbar1.add(t.T1_Configuration(actuelleVariablen), BorderLayout.WEST);
+        gA.toolbar1.add(t.T1_Configuration(/*VariablenConainer*/), BorderLayout.WEST);
 
 
 
