@@ -29,7 +29,7 @@ public class GuiApp extends JFrame{
     public JPanel toolbar2_plot = new JPanel();
     public JPanel toolbar2_histo = new JPanel();
     public JPanel plot = new JPanel();
-    public JPanel histo = new JPanel();
+    public JPanel histo = new JPanel(new BorderLayout());
 
 
     //public JPanel GuiApp(String panelName) {

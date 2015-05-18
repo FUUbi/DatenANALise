@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse;
 import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
 import org.fhnw.dataanalyse.gui.GuiApp;
+import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 
 
@@ -29,6 +30,12 @@ public class Dataanalyse {
         ArrayList<Variable> actuelleVariablen = VariablenConainer.getVariables();
 
         for (Variable v : actuelleVariablen) {
+            for (Float aFloat : v.getData()) {
+                if (aFloat == null){
+                    System.out.printf("ksdfjl");
+                }
+            }
+
 
             System.out.println(v.getName());
             System.out.println(v.getData());
@@ -50,11 +57,15 @@ public class Dataanalyse {
         // mitem borderlayout seisch was söll aschloh
         gA.toolbar1.add(t.T1Config(), BorderLayout.WEST);
 
+        HistoPlot hitog = new HistoPlot(actuelleVariablen);
+        gA.histo.add(hitog);
+
 
 
         // mann kann auch direkt darauf zugreiffen
         System.out.println(VariablenConainer.getVariables().get(1).getName());
 /*
+
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
