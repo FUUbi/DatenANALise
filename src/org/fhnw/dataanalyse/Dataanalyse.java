@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse;
 import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
 import org.fhnw.dataanalyse.gui.GuiApp;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 
 
@@ -44,7 +45,8 @@ public class Dataanalyse {
         T1_Configuration t = new T1_Configuration(/*VariablenConainer*/);
         GuiApp gA = new GuiApp();
         gA.toolbar1.add(t.T1_Configuration(/*VariablenConainer*/), BorderLayout.WEST);
-
+        ScatterPlotPanel splot = new ScatterPlotPanel();
+        gA.plot.add(splot, BorderLayout.CENTER);
 
 
         // mann kann auch direkt darauf zugreiffen

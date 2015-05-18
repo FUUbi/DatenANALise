@@ -1,5 +1,7 @@
 package org.fhnw.dataanalyse.gui;
 
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
+import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 import com.sun.deploy.security.MozillaJSSDSASignature;
 
 import java.awt.*;
