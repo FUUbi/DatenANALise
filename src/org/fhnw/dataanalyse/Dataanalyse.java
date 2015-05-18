@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse;
 import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
 import org.fhnw.dataanalyse.gui.GuiApp;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 
 
@@ -43,12 +44,15 @@ public class Dataanalyse {
         // add panelConfiguration to GuiApp
         T1_Configuration t = new T1_Configuration();
         GuiApp gA = new GuiApp();
+        ScatterPlotPanel splot = new ScatterPlotPanel();
         //gA.GuiApp(panelwoniwett).add(t.T1Config());
 
         /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
         /// darum hets au ade sitte ane do
         // mitem borderlayout seisch was söll aschloh
         gA.toolbar1.add(t.T1Config(), BorderLayout.WEST);
+        gA.plot.add(splot, BorderLayout.CENTER);
+
 
 
 

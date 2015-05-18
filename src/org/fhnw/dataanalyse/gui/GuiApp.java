@@ -1,5 +1,6 @@
 package org.fhnw.dataanalyse.gui;
 
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 
 import javax.swing.*;
@@ -28,7 +29,7 @@ public class GuiApp extends JFrame{
     public JPanel toolbar1 = new JPanel(new BorderLayout());
     public JPanel toolbar2_plot = new JPanel();
     public JPanel toolbar2_histo = new JPanel();
-    public JPanel plot = new JPanel();
+    public JPanel plot = new JPanel(new BorderLayout());
     public JPanel histo = new JPanel();
 
 
