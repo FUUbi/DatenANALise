@@ -59,7 +59,7 @@ public class Dataanalyse {
         /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
         /// darum hets au ade sitte ane do
         // mitem borderlayout seisch was söll aschloh
-        gA.toolbar1.add(t.T1Config(), BorderLayout.WEST);
+        gA.toolbar1.add(t.T1_Configuration(), BorderLayout.WEST);
 
         HistoPlot hitog = new HistoPlot(actuelleVariablen);
         gA.histo.add(hitog);
