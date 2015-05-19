@@ -56,7 +56,7 @@ public class GuiApp extends JFrame{
 
 
         /*toolbar2 layout*/
-        c = setConstraintParameters(0,1,1,1,"NORTH",1,1);
+        c = setConstraintParameters(0,1,1,1,"NORTH",1,0);
         distributor.setConstraints(toolbar2_plot, c);
         surface.add(toolbar2_plot);
         toolbar2_plot.setBackground(Color.darkGray);
