@@ -40,9 +40,9 @@ import java.util.Scanner;
        public void loadVariables(){
         // java.lang.NullPointerException muss noch hinzugefügt werden
 
-        loader = getLoader();
-        variables  = loader.loadVariable(document);
-    }
+           loader = getLoader();
+           variables  = loader.loadVariable(document);
+       }
 
 
 

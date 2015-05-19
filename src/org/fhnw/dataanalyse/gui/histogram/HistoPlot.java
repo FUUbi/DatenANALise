@@ -11,10 +11,10 @@ import java.util.ArrayList;
  */
 public class HistoPlot extends JPanel{
     /* Number of Bins k */
-    Integer k;
+    public Integer k;
 
     ArrayList<Float> intervals = new ArrayList<Float>();
-    ArrayList<Float> relInterval = new ArrayList<Float>();
+    public   ArrayList<Float> relInterval = new ArrayList<Float>();
     ArrayList<Integer> absQuantaty = new ArrayList<Integer>();
     ArrayList<Float> relQuantity = new ArrayList<Float>();
 
@@ -43,7 +43,24 @@ public class HistoPlot extends JPanel{
         System.out.println(absQuantaty);
         System.out.println(relQuantity);
 
+    }
 
+    public void updateHistoData(ArrayList<Variable> v){
+        value = v.get(indexX).getData();
+        intervals.clear();
+        relInterval.clear();
+        absQuantaty.clear();
+        relQuantity.clear();
+        n = value.size();
+
+        k = (int) Math.sqrt(n);
+        setIntervals();
+        setQuantityPerInterval();
+
+        System.out.println(intervals);
+        System.out.println(relInterval);
+        System.out.println(absQuantaty);
+        System.out.println(relQuantity);
     }
 
     @Override
@@ -88,5 +105,18 @@ public class HistoPlot extends JPanel{
         }
 
         for (Integer i : absQuantaty)   relQuantity.add((float)i / (float)n);
+    }
+
+
+    /* Diese Methoden nur falls mit DrawHisto
+
+     */
+
+    public int getNumbersOfBin(){
+        return k;
+    }
+
+    public ArrayList<Float> getRelQuantity(){
+        return relQuantity;
     }
 }

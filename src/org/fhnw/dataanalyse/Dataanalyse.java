@@ -1,5 +1,6 @@
 package org.fhnw.dataanalyse;
 
+import org.DrawHisto;
 import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
 import org.fhnw.dataanalyse.gui.GuiApp;
@@ -62,21 +63,28 @@ public class Dataanalyse {
         gA.toolbar1.add(t.T1_Configuration(), BorderLayout.WEST);
 
         HistoPlot hitog = new HistoPlot(actuelleVariablen);
+        /* ohne klasse DrawHisto
         gA.histo.add(hitog);
+        VariablenConainer.chooseFile();
+        VariablenConainer.loadVariables();
+        actuelleVariablen = VariablenConainer.getVariables();
+        hitog.updateHistoData(actuelleVariablen);
 
+        */
 
+        /* mit klasse DrawHisto*/
+        DrawHisto dhisto = new DrawHisto(hitog);
+        gA.histo.add(dhisto);
 
-        // mann kann auch direkt darauf zugreiffen
-        System.out.println(VariablenConainer.getVariables().get(1).getName());
-/*
+        VariablenConainer.chooseFile();
+        VariablenConainer.loadVariables();
+        actuelleVariablen = VariablenConainer.getVariables();
+        hitog.updateHistoData(actuelleVariablen);
+        dhisto.updatehist(hitog);
 
+        System.out.println(actuelleVariablen.get(1).getData());
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GuiApp().setVisible(true);
-            }
-        });
-*/
+        System.out.println(hitog.getNumbersOfBin());
+
     }
 }
