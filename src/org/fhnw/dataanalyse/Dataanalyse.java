@@ -45,7 +45,7 @@ public class Dataanalyse {
         T1_Configuration t = new T1_Configuration(/*VariablenConainer*/);
         GuiApp gA = new GuiApp();
         gA.toolbar1.add(t.T1_Configuration(/*VariablenConainer*/), BorderLayout.WEST);
-        ScatterPlotPanel splot = new ScatterPlotPanel();
+        ScatterPlotPanel splot = new ScatterPlotPanel(actuelleVariablen);
         gA.plot.add(splot, BorderLayout.CENTER);
 
 
