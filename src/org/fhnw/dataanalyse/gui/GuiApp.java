@@ -49,20 +49,20 @@ public class GuiApp extends JFrame{
         surface.setLayout(distributor);
 
         /*toolbar1 layout */
-        c = setConstraintParameters(0,0,2,1,"NORTH",0,1);
+        c = setConstraintParameters(0,0,2,1,"NORTH",1,0);
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
 
 
         /*toolbar2 layout*/
-        c = setConstraintParameters(0,1,1,1,"NORTH",0,1);
+        c = setConstraintParameters(0,1,1,1,"NORTH",1,1);
         distributor.setConstraints(toolbar2_plot, c);
         surface.add(toolbar2_plot);
         toolbar2_plot.setBackground(Color.darkGray);
 
         /*toolbar2_histo Layout*/
-        c = setConstraintParameters(1,1,1,1,"NORTH",0,1);
+        c = setConstraintParameters(1,1,1,1,"NORTH",1,0);
         distributor.setConstraints(toolbar2_histo, c);
         surface.add(toolbar2_histo);
         toolbar2_histo.setBackground(Color.GRAY);

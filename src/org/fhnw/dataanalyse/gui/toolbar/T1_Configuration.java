@@ -4,6 +4,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 import javafx.scene.control.ComboBox;
 import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
+import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
  */
 public class T1_Configuration extends JPanel {
 
-    public JPanel T1_Configuration( /*ArrayList<Variable> container*/)
+    public JPanel T1_Configuration(final VariableContainer variableContainer, final HistoPlot histoPlot)
 
     {
         int column = 15;
@@ -37,11 +38,14 @@ public class T1_Configuration extends JPanel {
         toolbar1Content.add(choiceList);
 
 
+
         loadFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //container.chooseFile();
-                //container.loadVariables();
+                variableContainer.chooseFile();
+                variableContainer.loadVariables();
+                variableContainer.getVariables();
+                histoPlot.updateHistoData(variableContainer.getVariables());
                 System.out.println("ActionListenerLoadFile");
             }
         });

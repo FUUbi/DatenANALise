@@ -49,30 +49,25 @@ public class Dataanalyse {
         System.out.println(actuelleVariablen.get(1).getData());
 
 
+        HistoPlot hitog = new HistoPlot(actuelleVariablen);
+        /* ohne klasse DrawHisto */
+
+
+
+
         // add panelConfiguration to GuiApp
         T1_Configuration t = new T1_Configuration(/*VariablenConainer*/);
         GuiApp gA = new GuiApp();
-        gA.toolbar1.add(t.T1_Configuration(/*VariablenConainer*/), BorderLayout.WEST);
+        gA.toolbar1.add(t.T1_Configuration(VariablenConainer, hitog), BorderLayout.WEST);
         ScatterPlotPanel splot = new ScatterPlotPanel(actuelleVariablen);
         gA.plot.add(splot, BorderLayout.CENTER);
-        //gA.GuiApp(panelwoniwett).add(t.T1Config());
 
-        /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
-        /// darum hets au ade sitte ane do
-        // mitem borderlayout seisch was söll aschloh
-        gA.toolbar1.add(t.T1_Configuration(), BorderLayout.WEST);
-
-        HistoPlot hitog = new HistoPlot(actuelleVariablen);
-        /* ohne klasse DrawHisto
         gA.histo.add(hitog);
-        VariablenConainer.chooseFile();
-        VariablenConainer.loadVariables();
-        actuelleVariablen = VariablenConainer.getVariables();
-        hitog.updateHistoData(actuelleVariablen);
 
-        */
 
-        /* mit klasse DrawHisto*/
+
+
+        /* mit klasse DrawHisto
         DrawHisto dhisto = new DrawHisto(hitog);
         gA.histo.add(dhisto);
 
@@ -86,5 +81,6 @@ public class Dataanalyse {
 
         System.out.println(hitog.getNumbersOfBin());
 
+*/
     }
 }
