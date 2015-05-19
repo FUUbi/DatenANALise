@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse;
 import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.datamodell.VariableContainer;
 import org.fhnw.dataanalyse.gui.GuiApp;
+import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 
@@ -30,6 +31,12 @@ public class Dataanalyse {
         ArrayList<Variable> actuelleVariablen = VariablenConainer.getVariables();
 
         for (Variable v : actuelleVariablen) {
+            for (Float aFloat : v.getData()) {
+                if (aFloat == null){
+                    System.out.printf("ksdfjl");
+                }
+            }
+
 
             System.out.println(v.getName());
             System.out.println(v.getData());
@@ -47,11 +54,22 @@ public class Dataanalyse {
         gA.toolbar1.add(t.T1_Configuration(/*VariablenConainer*/), BorderLayout.WEST);
         ScatterPlotPanel splot = new ScatterPlotPanel(actuelleVariablen);
         gA.plot.add(splot, BorderLayout.CENTER);
+        //gA.GuiApp(panelwoniwett).add(t.T1Config());
+
+        /// wichtig isch das du ins frame toolbar addisch vorher hesch ins gA
+        /// darum hets au ade sitte ane do
+        // mitem borderlayout seisch was söll aschloh
+        gA.toolbar1.add(t.T1_Configuration(), BorderLayout.WEST);
+
+        HistoPlot hitog = new HistoPlot(actuelleVariablen);
+        gA.histo.add(hitog);
+
 
 
         // mann kann auch direkt darauf zugreiffen
         System.out.println(VariablenConainer.getVariables().get(1).getName());
 /*
+
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
