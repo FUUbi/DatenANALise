@@ -47,33 +47,33 @@ public class GuiApp extends JFrame{
 
 
         /*toolbar1 layout */
-        c = setConstraintParameters(0,0,2,1,"NORTH",1,0);
+        c = setConstraintParameters(0,0,2,2,"NORTH",1,0);
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
 
 
         /*toolbar2_plot layout*/
-        c = setConstraintParameters(0,1,1,1,"NORTH",1,0);
+        c = setConstraintParameters(0,2,1,2,"NORTH",1,0);
         distributor.setConstraints(toolbar2_plot, c);
         surface.add(toolbar2_plot);
         toolbar2_plot.setBackground(Color.darkGray);
 
         /*toolbar2_histo Layout*/
-        c = setConstraintParameters(1,1,1,1,"NORTH",1,0);
+        c = setConstraintParameters(1,2,1,2,"NORTH",1,0);
         distributor.setConstraints(toolbar2_histo, c);
         surface.add(toolbar2_histo);
         toolbar2_histo.setBackground(Color.GRAY);
 
 
         /*ScatterPlot Layout*/
-        c = setConstraintParameters(0,2,1,100,"SOUTH",1,1);
+        c = setConstraintParameters(0,4,1,100,"SOUTH",1,1);
         distributor.setConstraints(plot, c);
         surface.add(plot);
         plot.setBackground(Color.orange);
 
         /*histogramm Layout*/
-        c = setConstraintParameters(1,2,1,100,"SOUTH",1,1);
+        c = setConstraintParameters(1,4,1,100,"SOUTH",1,1);
         distributor.setConstraints(histo, c);
         surface.add(histo);
         histo.setBackground(Color.cyan);

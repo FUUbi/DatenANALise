@@ -22,9 +22,6 @@ public class T2sp_Configuration {
         JButton pipapu = new JButton("pipapu");
         JButton houla = new JButton("Houla");
 
-
-
-
         t2spContent.add(pipapu);
         t2spContent.add(Box.createHorizontalGlue());
         t2spContent.add(houla);
