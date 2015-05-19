@@ -19,7 +19,7 @@ public class T2sp_Configuration {
         JPanel t2spContent = new JPanel();
 
         /*t2spContent.setLayout(new BoxLayout(t2spContent, BoxLayout.LINE_AXIS));
-        JButton loadFile = new JButton("Load File");
+        JButton loadBtn = new JButton("Load File");
         JButton deleteFile = new JButton("Delete File");
 
         String[] dropDownBox = {"Fabri", "g", "Lise"};
@@ -27,7 +27,7 @@ public class T2sp_Configuration {
         JComboBox choiceList = new JComboBox(dropDownBox);
         choiceList.setEditable(true);
 
-        t2spContent.add(loadFile);
+        t2spContent.add(loadBtn);
         t2spContent.add(Box.createHorizontalGlue());
         t2spContent.add(deleteFile);
         t2spContent.add(Box.createHorizontalGlue());
@@ -35,7 +35,7 @@ public class T2sp_Configuration {
 
 
 
-        loadFile.addActionListener(new ActionListener() {
+        loadBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 variableContainer.chooseFile();

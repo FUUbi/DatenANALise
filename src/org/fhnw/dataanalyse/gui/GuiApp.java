@@ -34,7 +34,7 @@ public class GuiApp extends JFrame{
     public GuiApp(){
 
     /* Frame Initialisaton*/
-        setTitle("Dataanalyse");
+        setTitle("DataanalyseApp");
         int height = dim.height;
         int width = dim.width;
         setSize(width, height);
