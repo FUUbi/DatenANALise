@@ -12,50 +12,43 @@ import java.awt.event.ActionListener;
  */
 public class T2sp_Configuration {
 
-    public JPanel T2sp_Configuration()
+    public JPanel T2sp_Configuration(/*chunt no das Scatterplot vo Sven..?)*/)
 
     {
 
         JPanel t2spContent = new JPanel();
 
-        /*t2spContent.setLayout(new BoxLayout(t2spContent, BoxLayout.LINE_AXIS));
-        JButton loadFile = new JButton("Load File");
-        JButton deleteFile = new JButton("Delete File");
+        t2spContent.setLayout(new BoxLayout(t2spContent, BoxLayout.LINE_AXIS));
+        JButton pipapu = new JButton("pipapu");
+        JButton houla = new JButton("Houla");
 
-        String[] dropDownBox = {"Fabri", "g", "Lise"};
 
-        JComboBox choiceList = new JComboBox(dropDownBox);
-        choiceList.setEditable(true);
 
-        t2spContent.add(loadFile);
+
+        t2spContent.add(pipapu);
         t2spContent.add(Box.createHorizontalGlue());
-        t2spContent.add(deleteFile);
-        t2spContent.add(Box.createHorizontalGlue());
-        t2spContent.add(choiceList);
+        t2spContent.add(houla);
 
 
 
-        loadFile.addActionListener(new ActionListener() {
+
+        pipapu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                variableContainer.chooseFile();
-                variableContainer.loadVariables();
-                variableContainer.getVariables();
-                histoPlot.updateHistoData(variableContainer.getVariables());
-                System.out.println("ActionListenerLoadFile");
+
+                System.out.println("PipapuButton");
             }
         });
 
-        deleteFile.addActionListener(new ActionListener() {
+        houla.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //container.chooseFile();
-                //container.loadVariables();
-                System.out.println("ActionListenerDeleteFile");
+
+                System.out.println("houlaButton");
             }
         });
 
-    */
+
         return t2spContent;
 
 

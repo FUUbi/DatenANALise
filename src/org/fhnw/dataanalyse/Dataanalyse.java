@@ -7,6 +7,7 @@ import org.fhnw.dataanalyse.gui.GuiApp;
 import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
+import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 
 import java.awt.*;
@@ -63,6 +64,9 @@ public class Dataanalyse {
         gA.plot.add(splot, BorderLayout.CENTER);
 
         gA.histo.add(hitog);
+
+        T2sp_Configuration t2sp = new T2sp_Configuration();
+        gA.toolbar2_plot.add(t2sp.T2sp_Configuration(),BorderLayout.WEST);
 
 
 
