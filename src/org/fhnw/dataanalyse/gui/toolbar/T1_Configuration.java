@@ -18,6 +18,7 @@ import java.util.ArrayList;
  */
 public class T1_Configuration extends JPanel {
 
+
     public JPanel T1_Configuration(final VariableContainer variableContainer, final HistoPlot histoPlot)
 
     {
@@ -38,7 +39,9 @@ public class T1_Configuration extends JPanel {
         toolbar1Content.add(Box.createHorizontalGlue());
         toolbar1Content.add(choiceList);
 
+        loadFile.addActionListener(new ActionLoadFile());
 
+  /*
 
         loadFile.addActionListener(new ActionListener() {
             @Override
@@ -51,6 +54,7 @@ public class T1_Configuration extends JPanel {
             }
         });
 
+*/
         deleteFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,6 +77,10 @@ public class T1_Configuration extends JPanel {
         String name =  container.get(anzahl).getName();
 */
         return toolbar1Content;
+
+    }
+
+    public void LoadBtnAddActionListner(){
 
     }
 

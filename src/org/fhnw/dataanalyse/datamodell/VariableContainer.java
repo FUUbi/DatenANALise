@@ -1,5 +1,7 @@
 package org.fhnw.dataanalyse.datamodell;
 
+import org.fhnw.dataanalyse.gui.toolbar.ActionLoadFile;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
@@ -12,7 +14,7 @@ import java.util.Scanner;
     *
     */
 
-    public class VariableContainer {
+    public class VariableContainer{
     /**
      * VariableContainer:
      *  document: File chosen by the user
