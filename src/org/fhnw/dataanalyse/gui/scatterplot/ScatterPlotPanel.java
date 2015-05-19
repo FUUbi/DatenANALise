@@ -1,5 +1,7 @@
 package org.fhnw.dataanalyse.gui.scatterplot;
 
+import org.fhnw.dataanalyse.datamodell.Variable;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -9,9 +11,13 @@ import java.util.*;
  */
 public class ScatterPlotPanel extends JPanel {
 
-    public ScatterPlotPanel() {
-        java.util.List<Integer> values = Arrays.asList(20, 33, 60, 10);
-        ScatterPlotContent scatterPanel = new ScatterPlotContent(values);
+    private static int index = 1;
+
+    public ScatterPlotPanel(ArrayList<Variable> v) {
+
+        ArrayList<Float> x = v.get(index).getData();
+
+        ScatterPlotContent scatterPanel = new ScatterPlotContent(x);
         setLayout(new BorderLayout());
         add(scatterPanel);
     }
