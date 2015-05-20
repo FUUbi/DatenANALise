@@ -7,8 +7,10 @@ import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.ActionLoadFile;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
+import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

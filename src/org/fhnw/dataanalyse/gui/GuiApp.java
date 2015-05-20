@@ -22,18 +22,21 @@ public class GuiApp extends JFrame{
     Toolkit toolkit =  Toolkit.getDefaultToolkit();
     Dimension dim = toolkit.getScreenSize();
 
+
     /*Panels initialisation*/
     public JPanel toolbar1 = new JPanel(new BorderLayout());
     public JPanel toolbar2_plot = new JPanel(new BorderLayout());
     public JPanel toolbar2_histo = new JPanel(new BorderLayout());
     public JPanel plot = new JPanel(new BorderLayout());
     public JPanel histo = new JPanel(new BorderLayout());
+    public JPanel platzhalter = new JPanel(new BorderLayout());
+
 
     public GuiApp(){
         //gofp
 
     /* Frame Initialisaton*/
-        setTitle("DataanalyseApp");
+        setTitle("Dataanalyse");
         int height = dim.height;
         int width = dim.width;
         setSize(width, height);
@@ -44,37 +47,41 @@ public class GuiApp extends JFrame{
         GridBagLayout distributor = new GridBagLayout();
         GridBagConstraints c;
         Container surface = getContentPane();
+
         surface.setLayout(distributor);
 
 
+
         /*toolbar1 layout */
-        c = setConstraintParameters(0,0,2,2,"NORTH",1,0);
+        c = setConstraintParameters(0,0,2,1,"NORTH",1,0);
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
 
 
         /*toolbar2_plot layout*/
-        c = setConstraintParameters(0,2,1,2,"NORTH",1,0);
+        c = setConstraintParameters(0,1,1,1,"NORTH",1,0);
         distributor.setConstraints(toolbar2_plot, c);
         surface.add(toolbar2_plot);
         toolbar2_plot.setBackground(Color.darkGray);
 
         /*toolbar2_histo Layout*/
-        c = setConstraintParameters(1,2,1,2,"NORTH",1,0);
+        c = setConstraintParameters(1,1,1,1,"NORTH",1,0);
         distributor.setConstraints(toolbar2_histo, c);
         surface.add(toolbar2_histo);
         toolbar2_histo.setBackground(Color.GRAY);
 
 
+        /*PlotingArea layout*/
+
         /*ScatterPlot Layout*/
-        c = setConstraintParameters(0,4,1,100,"SOUTH",1,1);
+        c = setConstraintParameters(0,2,1,100,"SOUTH",1,1);
         distributor.setConstraints(plot, c);
         surface.add(plot);
         plot.setBackground(Color.orange);
 
         /*histogramm Layout*/
-        c = setConstraintParameters(1,4,1,100,"SOUTH",1,1);
+        c = setConstraintParameters(1,2,1,100,"SOUTH",1,1);
         distributor.setConstraints(histo, c);
         surface.add(histo);
         histo.setBackground(Color.cyan);
@@ -96,7 +103,6 @@ public class GuiApp extends JFrame{
         c.gridx = gridx;
         c.gridy = gridy;
         c.gridwidth = gridwidth;
-
         if (gridheight == 100)
         {
             c.gridheight = GridBagConstraints.REMAINDER;
