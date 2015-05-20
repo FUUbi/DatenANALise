@@ -10,9 +10,6 @@ import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -23,7 +20,7 @@ import java.util.ArrayList;
 
 public class DataanalyseApp {
     ArrayList<Variable> variableArrayList;
-    THEVariableContainer theVariableContainer;
+    DataModel dataModel;
 
     HistoPlot histPlot;
     T1_Configuration tb;
@@ -32,14 +29,15 @@ public class DataanalyseApp {
 
     public DataanalyseApp(){
 
-//        theVariableContainer.setVariableList(new VariableLoader(new FileChooser().getNewFile()).loadVariables());
-        //variableArrayList = theVariableContainer.getVariableList();
+//        dataModel.setVariableList(new VariableLoader(new FileChooser().getNewFile()).loadVariables());
+        //variableArrayList = dataModel.getVariableList();
 
         File file = new FileChooser().getNewFile();
         IVariableLoader loader = new VariableLoader(file).loadVariables();
-        theVariableContainer =  loader.loadVariable(file);
+        dataModel =  loader.loadVariable(file);
 
-        variableArrayList = theVariableContainer.getVariableList();
+        variableArrayList = dataModel.getVariableList();
+
 
 
         // Ausso lise dini Gui Klass und ihri unterkalsse wend irgendwie wüsse was mini so für
@@ -49,9 +47,9 @@ public class DataanalyseApp {
        wemmer obe luge gehmer, das das es Array isch wo alli variable beinhaltet
         ArrayList<Variable> variableArrayList;
 
-        Wie viel variable sind igläse worde?? --> variableArrayList.size()  --> git en int zrung
+        Wie viel variable sind igläse worde?? --> dataModel.getVariableList().size()  --> git en int zrung
 
-        wie heis die erschi variable?? --> variableArrayList.get(0).getName() ---> git en string zrung
+        wie heis die erschi variable?? --> dataModel.getVariableList().get(0).getName() ---> git en string zrung
 
 
         Hans dir scho mol ine do, du gsehsch au im GuiApp und Im T1_Configuration en Pfil denn weisch wonis witter geh
@@ -60,13 +58,13 @@ public class DataanalyseApp {
          */
 
 
-        GuiApp  gA = new GuiApp(variableArrayList);
+        GuiApp  gA = new GuiApp(dataModel);
 
 
 
         JPanel toolbar2Plot = gA.getToolbar2Left();
-        tb2 = new T2sp_Configuration(toolbar2Plot);
-        gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
+  //      tb2 = new T2sp_Configuration(toolbar2Plot);
+//        gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
 
 
         ScatterPlotPanel splot = new ScatterPlotPanel(variableArrayList);
@@ -85,7 +83,7 @@ public class DataanalyseApp {
     public void createActionListner(){
 
 
-        tb.loadBtnAddActionListner(new ActionLoadFile(theVariableContainer, histPlot));
+        tb.loadBtnAddActionListner(new ActionLoadFile(dataModel, histPlot));
 
     }
 

@@ -56,7 +56,7 @@ public class T2sp_Configuration extends JPanel {
         panel2.add(Box.createHorizontalGlue());
         panel2.add(linieCB);
 
-        JColorChooser colorChooser1 = new JColorChooser();
+       final JColorChooser colorChooser1 = new JColorChooser();
         colorChooser1.getColor();
 
         Color color;
