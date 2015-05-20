@@ -8,5 +8,5 @@ import java.util.ArrayList;
  *
  */
 public interface IVariableLoader {
-  ArrayList<Variable> loadVariable(File lineFormatedFile);
+  THEVariableContainer loadVariable(File file);
 }

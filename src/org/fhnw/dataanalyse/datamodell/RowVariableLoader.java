@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class RowVariableLoader implements IVariableLoader {
     @Override
-    public ArrayList<Variable> loadVariable(File rowFormatedFile) {
+    public THEVariableContainer loadVariable(File rowFormatedFile) {
 
         Scanner in = null;
         try {
@@ -45,7 +45,7 @@ public class RowVariableLoader implements IVariableLoader {
             }
 
         }
-        return variables;
+        return new THEVariableContainer(variables);
     }
 }
 

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class ColumnVariableLoader implements IVariableLoader {
     @Override
-    public ArrayList<Variable> loadVariable(File lineFormatedFile) {
+    public THEVariableContainer loadVariable(File lineFormatedFile) {
 
         Scanner in = null;
         try {
@@ -50,15 +50,12 @@ public class ColumnVariableLoader implements IVariableLoader {
                             JOptionPane.WARNING_MESSAGE);
 
                     variables.get(i).getData().add(null);
-
-
-
                 }
             }
         }
 
         in.close();
-        return variables;
+        return new THEVariableContainer(variables);
     }
 
 

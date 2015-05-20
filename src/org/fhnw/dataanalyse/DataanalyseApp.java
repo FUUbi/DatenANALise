@@ -1,7 +1,6 @@
 package org.fhnw.dataanalyse;
 
-import org.fhnw.dataanalyse.datamodell.Variable;
-import org.fhnw.dataanalyse.datamodell.VariableContainer;
+import org.fhnw.dataanalyse.datamodell.*;
 import org.fhnw.dataanalyse.gui.GuiApp;
 import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
@@ -14,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -22,21 +22,27 @@ import java.util.ArrayList;
  */
 
 public class DataanalyseApp {
-    VariableContainer variableContainer;
     ArrayList<Variable> variableArrayList;
+    THEVariableContainer theVariableContainer;
+
     HistoPlot histPlot;
     T1_Configuration tb;
     T2sp_Configuration tb2;
 
+
     public DataanalyseApp(){
-        variableContainer = new VariableContainer();
-        variableContainer.chooseFile();
-        variableContainer.loadVariables();
-        variableArrayList = variableContainer.getVariables();
 
+//        theVariableContainer.setVariableList(new VariableLoader(new FileChooser().getNewFile()).loadVariables());
+        //variableArrayList = theVariableContainer.getVariableList();
 
+        File file = new FileChooser().getNewFile();
+        IVariableLoader loader = new VariableLoader(file).loadVariables();
+        theVariableContainer =  loader.loadVariable(file);
 
-        GuiApp gA = new GuiApp();
+        variableArrayList = theVariableContainer.getVariableList();
+
+        GuiApp  gA = new GuiApp();
+
 
         tb = new T1_Configuration();
         gA.toolbar1.add(tb.getPanel(), BorderLayout.CENTER);
@@ -51,34 +57,32 @@ public class DataanalyseApp {
         histPlot = new HistoPlot(variableArrayList);
         gA.histo.add(histPlot);
 
-
         createActionListner();
 
+
     }
+
 
 
     public void createActionListner(){
-        /*
-        this Method will create all Actionlist
 
-        tb.loadBtnAddActionListner(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                variableContainer.chooseFile();
-                variableContainer.loadVariables();
-                histPlot.updateHistoData(variableContainer.getVariables());
-            }
-        });
 
-        */
-
-        tb.loadBtnAddActionListner(new ActionLoadFile(variableContainer, histPlot));
-
+        tb.loadBtnAddActionListner(new ActionLoadFile(theVariableContainer, histPlot));
 
     }
 
 
+
+
     public static void main(String[] args){
+
         new DataanalyseApp();
+
+
+
+
+
+
+
     }
 }
