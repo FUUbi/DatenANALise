@@ -40,7 +40,7 @@ public class DataanalyseApp {
         gA.toolbar1.add(tb.getPanel(), BorderLayout.CENTER);
 
         ScatterPlotPanel splot = new ScatterPlotPanel(variableArrayList);
-        gA.plot.add(splot, BorderLayout.CENTER);
+        gA.plot.add(splot);
 
         histPlot = new HistoPlot(variableArrayList);
         gA.histo.add(histPlot);

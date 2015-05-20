@@ -18,24 +18,39 @@ public class ScatterPlotContent extends JPanel {
         this.y = y;
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        for (int i = 0; i < x.size(); i++) {
-            double valueX = x.get(i);
-            double valueY = y.get(i);
+    boolean drawLine = true;
 
-            int x = (int) valueX;
-            int y = (int) (getHeight()-valueY);
+    protected void paintComponent(Graphics g) {
+    int distance = getWidth()/x.size();
+        for (int i = 1; i < x.size(); i++) {
+            double valueX1 = x.get(i-1);
+            double valueY1 = y.get(i-1);
+            double valueX2 = x.get(i);
+            double valueY2 = y.get(i);
+
+            /*Initialiserung der Koordinatenwerte*/
+            int a = (int) valueX1;
+            int b = (int) (getHeight()-valueY1);
+            int c = (int) valueX2;
+            int d = (int) (getHeight()-valueY2);
 
             //de wert muess verändert werde, wenn me e slider für d grössi vo de pünkt macht
             int diameter = 10;
 
             g.setColor(Color.ORANGE);
-            g.fillOval(x, y, diameter, diameter);
-            g.setColor(Color.YELLOW);
-            g.drawOval(x, y, diameter, diameter);
+            g.fillOval(a, b, diameter, diameter);
 
+            if(i==x.size()-1)
+            {
+                g.setColor(Color.ORANGE);
+                g.fillOval(c,d,diameter,diameter);
+            }
+
+            if (drawLine)
+            {
+                g.setColor(Color.black);
+                g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
+            }
         }
     }
-
 }

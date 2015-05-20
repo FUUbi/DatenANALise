@@ -16,7 +16,7 @@ public class ScatterPlotPanel extends JPanel {
         for (int index = 1; index < v.size(); index++)
         {
             ArrayList<Float> x = v.get(index-1).getData();
-            ArrayList<Float> y = v.get((index)).getData();
+            ArrayList<Float> y = v.get(index).getData();
 
             ScatterPlotContent scatterPanel = new ScatterPlotContent(x,y);
             setLayout(new BorderLayout());
