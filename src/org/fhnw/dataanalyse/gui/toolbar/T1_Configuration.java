@@ -31,7 +31,7 @@ public class T1_Configuration {
         panel.add(choiceList);
     }
 
-    public void test(ActionListener aL){
+    public void loadBtnAddActionListner(ActionListener aL){
         loadFile.addActionListener(aL);
     }
 
