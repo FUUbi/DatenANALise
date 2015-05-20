@@ -15,6 +15,8 @@ public class T1_Configuration {
 
     public T1_Configuration(){
         panel = new JPanel();
+      // panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
+
 
         loadFile = new JButton("Load File");
         deleteFile = new JButton("Delete File");

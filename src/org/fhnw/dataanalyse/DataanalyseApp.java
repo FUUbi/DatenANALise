@@ -7,8 +7,10 @@ import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.ActionLoadFile;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
+import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +26,7 @@ public class DataanalyseApp {
     ArrayList<Variable> variableArrayList;
     HistoPlot histPlot;
     T1_Configuration tb;
-
+    T2sp_Configuration tb2;
 
     public DataanalyseApp(){
         variableContainer = new VariableContainer();
@@ -39,13 +41,17 @@ public class DataanalyseApp {
         tb = new T1_Configuration();
         gA.toolbar1.add(tb.getPanel(), BorderLayout.CENTER);
 
+        tb2 = new T2sp_Configuration();
+        gA.toolbar2_plot.add(tb2.getPanel2(), BorderLayout.CENTER);
+
+
         ScatterPlotPanel splot = new ScatterPlotPanel(variableArrayList);
         gA.plot.add(splot);
 
         histPlot = new HistoPlot(variableArrayList);
         gA.histo.add(histPlot);
 
-        gA.toolbar2_plot.add(new Button());
+
         createActionListner();
 
     }
