@@ -30,6 +30,7 @@ public class GuiApp extends JFrame{
     public JPanel histo = new JPanel(new BorderLayout());
 
     public GuiApp(){
+        //gofp
 
     /* Frame Initialisaton*/
         setTitle("DataanalyseApp");
