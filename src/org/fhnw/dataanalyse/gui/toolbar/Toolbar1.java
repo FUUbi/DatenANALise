@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 /**
  * Created by Fabrizio on 19.05.2015.
  */
-public class T1_Configuration {
+public class Toolbar1 {
     JPanel  panel;
-    JButton loadFile;
+    JButton loadBtn;
     JButton deleteFile;
     String[] dropDownBox = {"Fabri", "g", "Lise"};
 
 
-    public T1_Configuration(){
+    public Toolbar1(){
         panel = new JPanel();
 
-        loadFile = new JButton("Load File");
+        loadBtn = new JButton("Load File");
         deleteFile = new JButton("Delete File");
 
 
@@ -24,17 +24,19 @@ public class T1_Configuration {
         choiceList.setEditable(true);
 
 
-        panel.add(loadFile);
+        panel.add(loadBtn);
         panel.add(Box.createHorizontalGlue());
         panel.add(deleteFile);
         panel.add(Box.createHorizontalGlue());
         panel.add(choiceList);
     }
 
-    public void test(ActionListener aL){
-        loadFile.addActionListener(aL);
+    
+    public void loadBtnAddActionListner(ActionListener aL){
+        loadBtn.addActionListener(aL);
     }
 
+    
     public JPanel getPanel(){
         return panel;
     }
