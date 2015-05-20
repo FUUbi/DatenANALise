@@ -37,11 +37,11 @@ public class ScatterPlotContent extends JPanel {
             double valueY2 = y.get(i);
 
             /*Initialiserung der Koordinatenwerte*/
-            int a = (int) ((valueX1/maxX)*getWidth()/1.5);
-            int b = (int) ((valueY1/maxY)*getHeight()/1.5);
+            int a = (int) ((valueX1/maxX)*getWidth()/1.25);
+            int b = (int) ((valueY1/maxY)*getHeight()/1.25);
             b = (getHeight() - b);
-            int c = (int) ((valueX2/maxX)*getWidth()/1.5);
-            int d = (int) ((valueY2/maxY)*getHeight()/1.5);
+            int c = (int) ((valueX2/maxX)*getWidth()/1.25);
+            int d = (int) ((valueY2/maxY)*getHeight()/1.25);
             d = (getHeight() - d);
 
             //de wert muess verändert werde, wenn me e slider für d grössi vo de pünkt macht
@@ -61,6 +61,11 @@ public class ScatterPlotContent extends JPanel {
                 g.setColor(Color.black);
                 g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
             }
+            System.out.println(a);
+            System.out.println(b);
+            System.out.println(c);
+            System.out.println(d);
+            System.out.println(getWidth());
         }
     }
 }
