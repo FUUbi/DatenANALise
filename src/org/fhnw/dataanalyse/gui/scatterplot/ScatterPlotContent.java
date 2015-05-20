@@ -11,23 +11,24 @@ import java.util.*;
 public class ScatterPlotContent extends JPanel {
 
     private final ArrayList<Float> x;
+    private final ArrayList<Float> y;
 
-    public ScatterPlotContent(ArrayList<Float> x) {
+    public ScatterPlotContent(ArrayList<Float> x, ArrayList<Float> y) {
         this.x = x;
+        this.y = y;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        int distance = getWidth() / x.size();
         for (int i = 0; i < x.size(); i++) {
-            double value = x.get(i);
-            //int barHeight = (int) (value / 100 * getHeight());
+            double valueX = x.get(i);
+            double valueY = y.get(i);
 
-            int x = i * distance;
-            int y = (int) value;
+            int x = (int) valueX;
+            int y = (int) (getHeight()-valueY);
 
+            //de wert muess verändert werde, wenn me e slider für d grössi vo de pünkt macht
             int diameter = 10;
-
 
             g.setColor(Color.ORANGE);
             g.fillOval(x, y, diameter, diameter);

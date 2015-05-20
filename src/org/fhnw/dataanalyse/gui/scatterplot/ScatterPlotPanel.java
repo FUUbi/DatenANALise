@@ -11,15 +11,16 @@ import java.util.*;
  */
 public class ScatterPlotPanel extends JPanel {
 
-    private static int index = 1;
-
     public ScatterPlotPanel(ArrayList<Variable> v) {
 
-        ArrayList<Float> x = v.get(index).getData();
+        for (int index = 1; index < v.size(); index++)
+        {
+            ArrayList<Float> x = v.get(index-1).getData();
+            ArrayList<Float> y = v.get((index)).getData();
 
-        ScatterPlotContent scatterPanel = new ScatterPlotContent(x);
-        setLayout(new BorderLayout());
-        add(scatterPanel);
+            ScatterPlotContent scatterPanel = new ScatterPlotContent(x,y);
+            setLayout(new BorderLayout());
+            add(scatterPanel);
+        }
     }
-
 }
