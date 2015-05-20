@@ -41,11 +41,29 @@ public class DataanalyseApp {
 
         variableArrayList = theVariableContainer.getVariableList();
 
-        GuiApp  gA = new GuiApp();
+
+        // Ausso lise dini Gui Klass und ihri unterkalsse wend irgendwie wüsse was mini so für
+        // variable iglse hend darum gämmer ihre variableArraylist mit
+
+        /*
+       wemmer obe luge gehmer, das das es Array isch wo alli variable beinhaltet
+        ArrayList<Variable> variableArrayList;
+
+        Wie viel variable sind igläse worde?? --> variableArrayList.size()  --> git en int zrung
+
+        wie heis die erschi variable?? --> variableArrayList.get(0).getName() ---> git en string zrung
 
 
-        tb = new T1_Configuration();
-        gA.toolbar1.add(tb.getPanel(), BorderLayout.CENTER);
+        Hans dir scho mol ine do, du gsehsch au im GuiApp und Im T1_Configuration en Pfil denn weisch wonis witter geh
+        han ;D
+
+         */
+
+
+        GuiApp  gA = new GuiApp(variableArrayList);
+
+
+
         JPanel toolbar2Plot = gA.getToolbar2Left();
         tb2 = new T2sp_Configuration(toolbar2Plot);
         gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
@@ -55,8 +73,6 @@ public class DataanalyseApp {
         gA.getPlot().add(splot);
 
         histPlot = new HistoPlot(variableArrayList);
-        gA.histo.add(histPlot);
-
         gA.getHisto().add(histPlot);
 
         createActionListner();

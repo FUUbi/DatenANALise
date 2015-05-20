@@ -1,5 +1,6 @@
 package org.fhnw.dataanalyse.gui;
 
+import org.fhnw.dataanalyse.datamodell.Variable;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 import com.sun.deploy.security.MozillaJSSDSASignature;
@@ -9,6 +10,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -32,7 +34,7 @@ public class GuiApp extends JFrame{
 
     T1_Configuration tb1content;
 
-    public GuiApp(){
+    public GuiApp(ArrayList<Variable> variableArrayList){
 
         toolbar1 = new JPanel(new BorderLayout());
         toolbar2 = new JPanel(new GridLayout(0,2));
@@ -64,7 +66,7 @@ public class GuiApp extends JFrame{
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
-        tb1content = new T1_Configuration();
+        tb1content = new T1_Configuration(variableArrayList);  //     <--------------------- T1 will das jo au wüsse ;D
         toolbar1.add(tb1content.getPanel());
 
         /*toolbar2 */
