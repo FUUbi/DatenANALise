@@ -22,18 +22,27 @@ public class GuiApp extends JFrame{
     Toolkit toolkit =  Toolkit.getDefaultToolkit();
     Dimension dim = toolkit.getScreenSize();
 
-
     /*Panels initialisation*/
-    public JPanel toolbar1 = new JPanel(new BorderLayout());
-    public JPanel toolbar2_plot = new JPanel(new BorderLayout());
-    public JPanel toolbar2_histo = new JPanel(new BorderLayout());
-    public JPanel plot = new JPanel(new BorderLayout());
-    public JPanel histo = new JPanel(new BorderLayout());
-    public JPanel platzhalter = new JPanel(new BorderLayout());
+    JPanel toolbar1;
+    JPanel toolbar2;
+    JPanel toolbar2_left;
+    JPanel toolbar2_right;
+    JPanel plot;
+    JPanel histo;
 
+    T1_Configuration tb1content;
 
     public GuiApp(){
-        //gofp
+
+        toolbar1 = new JPanel(new BorderLayout());
+        toolbar2 = new JPanel(new GridLayout(0,2));
+
+        toolbar2_left = new JPanel();
+        toolbar2_right = new JPanel();
+
+        plot = new JPanel(new BorderLayout());
+        histo = new JPanel(new BorderLayout());
+
 
     /* Frame Initialisaton*/
         setTitle("Dataanalyse");
@@ -47,9 +56,7 @@ public class GuiApp extends JFrame{
         GridBagLayout distributor = new GridBagLayout();
         GridBagConstraints c;
         Container surface = getContentPane();
-
         surface.setLayout(distributor);
-
 
 
         /*toolbar1 layout */
@@ -57,19 +64,18 @@ public class GuiApp extends JFrame{
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
+        tb1content = new T1_Configuration();
+        toolbar1.add(tb1content.getPanel());
 
+        /*toolbar2 */
+        c = setConstraintParameters(0,1,2,1,"NORTH",1,0);
+        distributor.setConstraints(toolbar2, c);
+        surface.add(toolbar2);
+        toolbar2.setBackground(Color.darkGray);
 
-        /*toolbar2_plot layout*/
-        c = setConstraintParameters(0,1,1,1,"NORTH",1,0);
-        distributor.setConstraints(toolbar2_plot, c);
-        surface.add(toolbar2_plot);
-        toolbar2_plot.setBackground(Color.darkGray);
+        toolbar2.add(toolbar2_left);
+        toolbar2.add(toolbar2_right);
 
-        /*toolbar2_histo Layout*/
-        c = setConstraintParameters(1,1,1,1,"NORTH",1,0);
-        distributor.setConstraints(toolbar2_histo, c);
-        surface.add(toolbar2_histo);
-        toolbar2_histo.setBackground(Color.GRAY);
 
 
         /*PlotingArea layout*/
@@ -124,11 +130,51 @@ public class GuiApp extends JFrame{
         {
             c.anchor = GridBagConstraints.SOUTH;
         }
+        else if (position.equals("WEST") || position.equals("west"))
+        {
+            c.anchor = GridBagConstraints.WEST;
+        }
+        else if (position.equals("EAST") || position.equals("east"))
+        {
+            c.anchor = GridBagConstraints.EAST;
+        }
 
         c.weightx = weigthx;
         c.weighty = weighty;
 
         return c;
     }
+
+    public JPanel getToolbar1 ()
+    {
+        return toolbar1;
+    }
+
+    public JPanel getToolbar2 ()
+    {
+        return toolbar2;
+    }
+
+    public JPanel getToolbar2Left ()
+    {
+        return toolbar2_left;
+    }
+
+    public JPanel getPlot()
+    {
+        return plot;
+    }
+
+    public JPanel getHisto()
+    {
+        return  histo;
+    }
+
+
+    public T1_Configuration gettb1content(){
+        return tb1content;
+    }
+
+
 
 }

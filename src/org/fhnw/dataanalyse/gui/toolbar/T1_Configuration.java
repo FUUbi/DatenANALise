@@ -13,6 +13,7 @@ public class T1_Configuration {
     String[] dropDownBox = {"Fabri", "g", "Lise"};
 
 
+
     public T1_Configuration(){
         panel = new JPanel();
       // panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));

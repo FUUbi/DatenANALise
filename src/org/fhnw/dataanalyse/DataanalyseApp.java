@@ -37,20 +37,18 @@ public class DataanalyseApp {
 
 
         GuiApp gA = new GuiApp();
+        //gA.gettb1content().
 
-        tb = new T1_Configuration();
-        gA.toolbar1.add(tb.getPanel(), BorderLayout.CENTER);
-
-        tb2 = new T2sp_Configuration();
-        gA.toolbar2_plot.add(tb2.getPanel2(), BorderLayout.CENTER);
+        JPanel toolbar2Plot = gA.getToolbar2Left();
+        tb2 = new T2sp_Configuration(toolbar2Plot);
+        gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
 
 
         ScatterPlotPanel splot = new ScatterPlotPanel(variableArrayList);
-        gA.plot.add(splot);
+        gA.getPlot().add(splot);
 
         histPlot = new HistoPlot(variableArrayList);
-        gA.histo.add(histPlot);
-
+        gA.getHisto().add(histPlot);
 
         createActionListner();
 
