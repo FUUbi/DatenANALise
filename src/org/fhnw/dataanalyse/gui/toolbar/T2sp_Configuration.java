@@ -1,6 +1,7 @@
 package org.fhnw.dataanalyse.gui.toolbar;
 
 import javafx.scene.control.ColorPicker;
+import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
 
 import javax.swing.*;
@@ -23,15 +24,12 @@ public class T2sp_Configuration extends JPanel {
     JCheckBox linieCB;
 
 
-
-    public T2sp_Configuration(JPanel toolbar2)
-
-    {
+    public T2sp_Configuration(DataModel dataModel){
         //Dimension dimension =  Frame.getFrames()[0].getSize();
         //dimension.getWidth();
 
-        this.panel2 = toolbar2;
-        panel2.setLayout(new BoxLayout(panel2, BoxLayout.LINE_AXIS));
+
+        setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
         label = new JLabel();
         linieCB = new JCheckBox("Linie");
@@ -48,13 +46,12 @@ public class T2sp_Configuration extends JPanel {
         slider.setPaintLabels(true);
         slider.setValue(0);
 
-
-        panel2.add(selectColor);
-        panel2.add(Box.createHorizontalGlue());
-        panel2.add(slider);
-        panel2.add(label);
-        panel2.add(Box.createHorizontalGlue());
-        panel2.add(linieCB);
+        add(selectColor);
+        add(Box.createHorizontalGlue());
+        add(slider);
+        add(label);
+        add(Box.createHorizontalGlue());
+        add(linieCB);
 
        final JColorChooser colorChooser1 = new JColorChooser();
         colorChooser1.getColor();
@@ -63,10 +60,8 @@ public class T2sp_Configuration extends JPanel {
 
         selectColor.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                Frame frame = new Frame();
-                frame.add(colorChooser1);
-                frame.setVisible(true);
+            public void actionPerformed(ActionEvent
+                                                e) {
 
             }
         });
@@ -76,6 +71,8 @@ public class T2sp_Configuration extends JPanel {
                 label.setText("actual Value : " + ((JSlider) event.getSource()).getValue());
             }
         });
+
+
 
 
     }

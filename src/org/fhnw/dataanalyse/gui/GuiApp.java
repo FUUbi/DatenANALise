@@ -1,7 +1,10 @@
 package org.fhnw.dataanalyse.gui;
 
 import org.fhnw.dataanalyse.datamodell.DataModel;
+import org.fhnw.dataanalyse.gui.histogram.DrawHisto;
+import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
+import org.fhnw.dataanalyse.gui.toolbar.T2h_Configuration;
 import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 import java.awt.*;
@@ -23,7 +26,7 @@ public class GuiApp extends JFrame{
     Dimension dim = toolkit.getScreenSize();
 
     /*Panels initialisation*/
-    JPanel toolbar1 = new JPanel(new BorderLayout());
+
     JPanel toolbar2 = new JPanel(new GridLayout(0,2));
     JPanel toolbar2_left = new JPanel();
     JPanel toolbar2_right = new JPanel();
@@ -33,7 +36,7 @@ public class GuiApp extends JFrame{
     T1_Configuration tb1content;
     T2sp_Configuration tb2LeftContent;
 
-    public GuiApp(DataModel dataModel){
+    public GuiApp(DataModel dataModel, HistogramManager histogramManager){
 
     /* Frame Initialisaton*/
         setTitle("Dataanalyse");
@@ -51,12 +54,11 @@ public class GuiApp extends JFrame{
 
 
         /*toolbar1 layout */
+        JPanel toolbar1 =  new T1_Configuration(dataModel, histogramManager);
         c = setConstraintParameters(0,0,2,1,"NORTH",1,0);
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
-        tb1content = new T1_Configuration(dataModel);
-        toolbar1.add(tb1content.getPanel());
 
         /*toolbar2 */
         c = setConstraintParameters(0,1,2,1,"NORTH",1,0);
@@ -64,10 +66,11 @@ public class GuiApp extends JFrame{
         surface.add(toolbar2);
         toolbar2.setBackground(Color.darkGray);
 
+        toolbar2_left = new T2sp_Configuration(dataModel);
+        toolbar2_right = new T2h_Configuration(histogramManager);
         toolbar2.add(toolbar2_left);
         toolbar2.add(toolbar2_right);
 
-        //tb2LeftContent = new T2sp_Configuration(dataModel);
 
 
         /*PlotingArea layout*/
@@ -79,10 +82,10 @@ public class GuiApp extends JFrame{
         plot.setBackground(Color.orange);
 
         /*histogramm Layout*/
+        histo = histogramManager.getDrawHisto1();
         c = setConstraintParameters(1,2,1,100,"SOUTH",1,1);
         distributor.setConstraints(histo, c);
         surface.add(histo);
-        histo.setBackground(Color.cyan);
 
 
         setVisible(true);
@@ -135,11 +138,6 @@ public class GuiApp extends JFrame{
         c.weighty = weighty;
 
         return c;
-    }
-
-    public JPanel getToolbar1 ()
-    {
-        return toolbar1;
     }
 
     public JPanel getToolbar2 ()

@@ -2,11 +2,14 @@ package org.fhnw.dataanalyse;
 
 import org.fhnw.dataanalyse.datamodell.*;
 import org.fhnw.dataanalyse.gui.GuiApp;
-import org.fhnw.dataanalyse.gui.histogram.HistoPlot;
+import org.fhnw.dataanalyse.gui.histogram.DrawHisto;
+import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.ActionLoadFile;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
+import org.fhnw.dataanalyse.histogramdata.BinRanges;
+import org.fhnw.dataanalyse.histogramdata.Bins;
 
 
 import javax.swing.*;
@@ -21,9 +24,10 @@ import java.util.ArrayList;
 public class DataanalyseApp {
     ArrayList<Variable> variableArrayList;
     DataModel dataModel;
+    GuiApp gA;
 
-    HistoPlot histPlot;
     ScatterPlotPanel splot;
+
     T1_Configuration tb;
     T2sp_Configuration tb2;
 
@@ -33,12 +37,11 @@ public class DataanalyseApp {
 //        dataModel.setVariableList(new VariableLoader(new FileChooser().getNewFile()).loadVariables());
         //variableArrayList = dataModel.getVariableList();
 
-        File file = new FileChooser().getNewFile();
-        IVariableLoader loader = new VariableLoader(file).loadVariables();
-        dataModel =  loader.loadVariable(file);
 
+        loadDataModel();
         variableArrayList = dataModel.getVariableList();
 
+        HistogramManager histogramManager = new HistogramManager(dataModel);
 
 
         // Ausso lise dini Gui Klass und ihri unterkalsse wend irgendwie wüsse was mini so für
@@ -59,32 +62,28 @@ public class DataanalyseApp {
          */
 
 
-        GuiApp  gA = new GuiApp(dataModel);
-
+        gA = new GuiApp(dataModel, histogramManager);
 
 
         JPanel toolbar2Plot = gA.getToolbar2Left();
-  //      tb2 = new T2sp_Configuration(toolbar2Plot);
-  //      gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
 
 
         splot = new ScatterPlotPanel(variableArrayList);
         gA.getPlot().add(splot);
 
-        histPlot = new HistoPlot(variableArrayList);
-        gA.getHisto().add(histPlot);
 
-        createActionListner();
 
+        gA.repaint();
 
     }
 
 
 
-    public void createActionListner(){
+    public void loadDataModel(){
 
-
-        tb.loadBtnAddActionListner(new ActionLoadFile(dataModel, histPlot, splot));
+        File file = new FileChooser().getNewFile();
+        IVariableLoader loader = new VariableLoader(file).loadVariables();
+        dataModel =  loader.loadVariable(file);
 
     }
 
