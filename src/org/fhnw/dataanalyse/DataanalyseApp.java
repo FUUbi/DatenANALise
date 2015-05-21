@@ -23,6 +23,7 @@ public class DataanalyseApp {
     DataModel dataModel;
 
     HistoPlot histPlot;
+    ScatterPlotPanel splot;
     T1_Configuration tb;
     T2sp_Configuration tb2;
 
@@ -67,7 +68,7 @@ public class DataanalyseApp {
 //        gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
 
 
-        ScatterPlotPanel splot = new ScatterPlotPanel(variableArrayList);
+        splot = new ScatterPlotPanel(variableArrayList);
         gA.getPlot().add(splot);
 
         histPlot = new HistoPlot(variableArrayList);
@@ -83,7 +84,7 @@ public class DataanalyseApp {
     public void createActionListner(){
 
 
-        tb.loadBtnAddActionListner(new ActionLoadFile(dataModel, histPlot));
+        tb.loadBtnAddActionListner(new ActionLoadFile(dataModel, histPlot, splot));
 
     }
 

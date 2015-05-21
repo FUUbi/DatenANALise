@@ -61,11 +61,6 @@ public class ScatterPlotContent extends JPanel {
                 g.setColor(Color.black);
                 g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
             }
-            System.out.println(a);
-            System.out.println(b);
-            System.out.println(c);
-            System.out.println(d);
-            System.out.println(getWidth());
         }
     }
 }
