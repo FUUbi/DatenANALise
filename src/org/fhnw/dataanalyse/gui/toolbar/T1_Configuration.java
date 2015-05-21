@@ -1,5 +1,7 @@
 package org.fhnw.dataanalyse.gui.toolbar;
 
+import org.fhnw.dataanalyse.datamodell.DataModel;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -13,10 +15,13 @@ public class T1_Configuration {
     String[] dropDownBox = {"Fabri", "g", "Lise"};
 
 
-    public T1_Configuration(){
+
+    public T1_Configuration(DataModel dataModel){
         panel = new JPanel();
       // panel.setLayout(new BoxLayout(panel, BoxLayout.LINE_AXIS));
 
+        // so do wäre mir jetzt                               <----------------------
+        //dataModel.getVariableList().get(i).getName();
 
         loadFile = new JButton("Load File");
         deleteFile = new JButton("Delete File");

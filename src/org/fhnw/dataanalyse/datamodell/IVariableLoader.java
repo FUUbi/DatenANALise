@@ -1,12 +1,11 @@
 package org.fhnw.dataanalyse.datamodell;
 
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  * Created by Fabrizio on 13.05.2015.
  *
  */
 public interface IVariableLoader {
-  ArrayList<Variable> loadVariable(File lineFormatedFile);
+  DataModel loadVariable(File file);
 }

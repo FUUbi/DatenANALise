@@ -1,18 +1,15 @@
 package org.fhnw.dataanalyse.datamodell;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ColumnVariableLoader implements IVariableLoader {
     @Override
-    public ArrayList<Variable> loadVariable(File lineFormatedFile) {
+    public DataModel loadVariable(File lineFormatedFile) {
 
         Scanner in = null;
         try {
@@ -50,15 +47,12 @@ public class ColumnVariableLoader implements IVariableLoader {
                             JOptionPane.WARNING_MESSAGE);
 
                     variables.get(i).getData().add(null);
-
-
-
                 }
             }
         }
 
         in.close();
-        return variables;
+        return new DataModel(variables);
     }
 
 

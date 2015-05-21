@@ -4,11 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class RowVariableLoader implements IVariableLoader {
     @Override
-    public ArrayList<Variable> loadVariable(File rowFormatedFile) {
+    public DataModel loadVariable(File rowFormatedFile) {
 
         Scanner in = null;
         try {
@@ -45,7 +44,7 @@ public class RowVariableLoader implements IVariableLoader {
             }
 
         }
-        return variables;
+        return new DataModel(variables);
     }
 }
 
