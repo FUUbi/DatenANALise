@@ -40,31 +40,13 @@ public class DataanalyseApp {
 
 
 
-        // Ausso lise dini Gui Klass und ihri unterkalsse wend irgendwie wüsse was mini so für
-        // variable iglse hend darum gämmer ihre variableArraylist mit
-
-        /*
-       wemmer obe luge gehmer, das das es Array isch wo alli variable beinhaltet
-        ArrayList<Variable> variableArrayList;
-
-        Wie viel variable sind igläse worde?? --> dataModel.getVariableList().size()  --> git en int zrung
-
-        wie heis die erschi variable?? --> dataModel.getVariableList().get(0).getName() ---> git en string zrung
-
-
-        Hans dir scho mol ine do, du gsehsch au im GuiApp und Im T1_Configuration en Pfil denn weisch wonis witter geh
-        han ;D
-
-         */
-
-
         GuiApp  gA = new GuiApp(dataModel);
 
 
 
         JPanel toolbar2Plot = gA.getToolbar2Left();
   //      tb2 = new T2sp_Configuration(toolbar2Plot);
-//        gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
+  //      gA.getToolbar2Left().add(tb2.getPanel2(), BorderLayout.WEST);
 
 
         ScatterPlotPanel splot = new ScatterPlotPanel(variableArrayList);
@@ -82,9 +64,7 @@ public class DataanalyseApp {
 
     public void createActionListner(){
 
-
         tb.loadBtnAddActionListner(new ActionLoadFile(dataModel, histPlot));
-
     }
 
 
@@ -93,12 +73,6 @@ public class DataanalyseApp {
     public static void main(String[] args){
 
         new DataanalyseApp();
-
-
-
-
-
-
 
     }
 }

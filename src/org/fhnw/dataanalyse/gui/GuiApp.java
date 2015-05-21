@@ -2,6 +2,7 @@ package org.fhnw.dataanalyse.gui;
 
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
+import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 import java.awt.*;
 import java.awt.Color;
@@ -22,26 +23,17 @@ public class GuiApp extends JFrame{
     Dimension dim = toolkit.getScreenSize();
 
     /*Panels initialisation*/
-    JPanel toolbar1;
-    JPanel toolbar2;
-    JPanel toolbar2_left;
-    JPanel toolbar2_right;
-    JPanel plot;
-    JPanel histo;
+    JPanel toolbar1 = new JPanel(new BorderLayout());
+    JPanel toolbar2 = new JPanel(new GridLayout(0,2));
+    JPanel toolbar2_left = new JPanel();
+    JPanel toolbar2_right = new JPanel();
+    JPanel plot = new JPanel(new BorderLayout());
+    JPanel histo = new JPanel(new BorderLayout());
 
     T1_Configuration tb1content;
+    T2sp_Configuration tb2LeftContent;
 
     public GuiApp(DataModel dataModel){
-
-        toolbar1 = new JPanel(new BorderLayout());
-        toolbar2 = new JPanel(new GridLayout(0,2));
-
-        toolbar2_left = new JPanel();
-        toolbar2_right = new JPanel();
-
-        plot = new JPanel(new BorderLayout());
-        histo = new JPanel(new BorderLayout());
-
 
     /* Frame Initialisaton*/
         setTitle("Dataanalyse");
@@ -63,7 +55,7 @@ public class GuiApp extends JFrame{
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
         toolbar1.setBackground(Color.blue);
-        tb1content = new T1_Configuration(dataModel);  //     <--------------------- T1 will das jo au wüsse ;D
+        tb1content = new T1_Configuration(dataModel);
         toolbar1.add(tb1content.getPanel());
 
         /*toolbar2 */
@@ -75,6 +67,7 @@ public class GuiApp extends JFrame{
         toolbar2.add(toolbar2_left);
         toolbar2.add(toolbar2_right);
 
+        //tb2LeftContent = new T2sp_Configuration(dataModel);
 
 
         /*PlotingArea layout*/
@@ -167,11 +160,6 @@ public class GuiApp extends JFrame{
     public JPanel getHisto()
     {
         return  histo;
-    }
-
-
-    public T1_Configuration gettb1content(){
-        return tb1content;
     }
 
 
