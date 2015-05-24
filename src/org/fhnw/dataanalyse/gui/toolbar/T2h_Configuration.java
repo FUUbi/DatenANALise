@@ -1,6 +1,7 @@
 package org.fhnw.dataanalyse.gui.toolbar;
 
 import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -17,7 +18,7 @@ import java.util.Random;
 
 public class T2h_Configuration extends JPanel{
 
-    public T2h_Configuration(final HistogramManager histogramManager){
+    public T2h_Configuration(final HistogramManager histogramManager, final ScatterPlotPanel scatterPlotPanel){
         Button changeColorBtn = new Button("drück mich");
 
         add(changeColorBtn);
@@ -33,6 +34,7 @@ public class T2h_Configuration extends JPanel{
                 Color randomColor = new Color(r, g, b);
 
                 histogramManager.colorChanged(randomColor);
+                scatterPlotPanel.colorChanged(randomColor);
             }
         });
 

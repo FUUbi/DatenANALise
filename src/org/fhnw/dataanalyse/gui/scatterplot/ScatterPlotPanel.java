@@ -1,6 +1,8 @@
 package org.fhnw.dataanalyse.gui.scatterplot;
 
+import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.datamodell.Variable;
+import org.fhnw.dataanalyse.scatterplotdata.ScatterValues;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,28 +13,30 @@ import java.util.*;
  */
 public class ScatterPlotPanel extends JPanel {
 
-    public ScatterPlotPanel(ArrayList<Variable> v) {
+    DataModel dataModel;
 
-        for (int index = 1; index < v.size(); index++)
-        {
-            ArrayList<Float> x = v.get(index-1).getData();
-            ArrayList<Float> y = v.get(index).getData();
+    int selectedVariableIndex1;
+    int selectedVariableIndex2;
 
-            Float maxX = (float)0.0;
-            for (Float f : x) if (f.compareTo(maxX) == 1) maxX = f;
-            Float maxY = (float)0.0;
-            for (Float f : y) if (f.compareTo(maxY) == 1) maxY = f;
-            Float minY = (float)0.0;
-            for (Float f : y) if (f.compareTo(minY) == 1) minY = f;
+    ScatterValues scatterValuesIndex1 = new ScatterValues();
+    ScatterValues scatterValuesIndex2 = new ScatterValues();
 
 
-            ScatterPlotContent scatterPanel = new ScatterPlotContent(x,y,maxX,maxY,minY);
-            setLayout(new BorderLayout());
-            add(scatterPanel);
-        }
+    ScatterPlotContent scatterPlotContent = new ScatterPlotContent();
+
+    public ScatterPlotPanel(DataModel dataModel){
+        this.dataModel = dataModel;
+        updateScatterPlotContent();
     }
 
-    public void updateScatterPlot (ArrayList<Variable> v){
+    public void colorChanged(Color color){
+        getScatterPlotContent().setColor(color);
+    }
+
+
+
+    /*public ScatterPlotPanel(ArrayList<Variable> v) {
+
         for (int index = 1; index < v.size(); index++)
         {
             ArrayList<Float> x = v.get(index-1).getData();
@@ -42,13 +46,29 @@ public class ScatterPlotPanel extends JPanel {
             for (Float f : x) if (f.compareTo(maxX) == 1) maxX = f;
             Float maxY = (float)0.0;
             for (Float f : y) if (f.compareTo(maxY) == 1) maxY = f;
+            Float minX = (float)0.0;
+            for (Float f : x) if (f.compareTo(minX) == -1) minX = f;
             Float minY = (float)0.0;
-            for (Float f : y) if (f.compareTo(minY) == 1) minY = f;
+            for (Float f : y) if (f.compareTo(minY) == -1) minY = f;
 
 
-            ScatterPlotContent scatterPanel = new ScatterPlotContent(x,y,maxX,maxY,minY);
+            ScatterPlotContent scatterPanel = new ScatterPlotContent(x,y,maxX,maxY,minY,minX);
             setLayout(new BorderLayout());
             add(scatterPanel);
         }
+    }*/
+
+    public ScatterPlotContent getScatterPlotContent(){
+        return scatterPlotContent;
+    }
+
+    private void updateScatterPlotContent(){
+        ArrayList<Float> index1Values = dataModel.getVariableList().get(selectedVariableIndex1).getData();
+        ArrayList<Float> index2Values = dataModel.getVariableList().get(selectedVariableIndex2).getData();
+        scatterValuesIndex1.setScatterValuesX(index1Values);
+        scatterValuesIndex2.setScatterValuesY(index2Values);
+        scatterPlotContent.setScatterPlotContent(scatterValuesIndex1.getMinX(),scatterValuesIndex1.getMaxX(),
+                scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values);
+
     }
 }

@@ -20,7 +20,6 @@ public class DrawHisto extends JPanel{
     }
 
     public DrawHisto(ArrayList<Float> binRelativQuantity) {
-
         this.k = binRelativQuantity.size();
         this.relQuantity = binRelativQuantity;
 

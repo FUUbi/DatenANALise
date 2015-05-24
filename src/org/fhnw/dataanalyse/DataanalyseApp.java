@@ -26,8 +26,6 @@ public class DataanalyseApp {
     DataModel dataModel;
     GuiApp gA;
 
-    ScatterPlotPanel splot;
-
     T1_Configuration tb;
     T2sp_Configuration tb2;
 
@@ -42,6 +40,8 @@ public class DataanalyseApp {
         variableArrayList = dataModel.getVariableList();
 
         HistogramManager histogramManager = new HistogramManager(dataModel);
+
+        ScatterPlotPanel scatterPlotPanel = new ScatterPlotPanel(dataModel);
 
 
         // Ausso lise dini Gui Klass und ihri unterkalsse wend irgendwie wüsse was mini so für
@@ -62,16 +62,10 @@ public class DataanalyseApp {
          */
 
 
-        gA = new GuiApp(dataModel, histogramManager);
+        gA = new GuiApp(dataModel, histogramManager, scatterPlotPanel);
 
 
         JPanel toolbar2Plot = gA.getToolbar2Left();
-
-
-        splot = new ScatterPlotPanel(variableArrayList);
-        gA.getPlot().add(splot);
-
-
 
         gA.repaint();
 

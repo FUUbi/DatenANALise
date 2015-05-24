@@ -1,8 +1,8 @@
 package org.fhnw.dataanalyse.gui;
 
 import org.fhnw.dataanalyse.datamodell.DataModel;
-import org.fhnw.dataanalyse.gui.histogram.DrawHisto;
 import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
 import org.fhnw.dataanalyse.gui.toolbar.T2h_Configuration;
 import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
@@ -30,13 +30,13 @@ public class GuiApp extends JFrame{
     JPanel toolbar2 = new JPanel(new GridLayout(0,2));
     JPanel toolbar2_left = new JPanel();
     JPanel toolbar2_right = new JPanel();
-    JPanel plot = new JPanel(new BorderLayout());
+    JPanel splot = new JPanel(new BorderLayout());
     JPanel histo = new JPanel(new BorderLayout());
 
     T1_Configuration tb1content;
     T2sp_Configuration tb2LeftContent;
 
-    public GuiApp(DataModel dataModel, HistogramManager histogramManager){
+    public GuiApp(DataModel dataModel, HistogramManager histogramManager, ScatterPlotPanel scatterPlotPanel){
 
     /* Frame Initialisaton*/
         setTitle("Dataanalyse");
@@ -67,7 +67,7 @@ public class GuiApp extends JFrame{
         toolbar2.setBackground(Color.darkGray);
 
         toolbar2_left = new T2sp_Configuration(dataModel);
-        toolbar2_right = new T2h_Configuration(histogramManager);
+        toolbar2_right = new T2h_Configuration(histogramManager,scatterPlotPanel);
         toolbar2.add(toolbar2_left);
         toolbar2.add(toolbar2_right);
 
@@ -76,10 +76,11 @@ public class GuiApp extends JFrame{
         /*PlotingArea layout*/
 
         /*ScatterPlot Layout*/
+        splot = scatterPlotPanel.getScatterPlotContent();
         c = setConstraintParameters(0,2,1,100,"SOUTH",1,1);
-        distributor.setConstraints(plot, c);
-        surface.add(plot);
-        plot.setBackground(Color.orange);
+        distributor.setConstraints(splot, c);
+        surface.add(splot);
+        //splot.setBackground(Color.orange);
 
         /*histogramm Layout*/
         histo = histogramManager.getDrawHisto1();
@@ -150,13 +151,11 @@ public class GuiApp extends JFrame{
         return toolbar2_left;
     }
 
-    public JPanel getPlot()
-    {
-        return plot;
+    public JPanel getPlot() {
+        return splot;
     }
 
-    public JPanel getHisto()
-    {
+    public JPanel getHisto() {
         return  histo;
     }
 

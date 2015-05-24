@@ -32,7 +32,7 @@ public class ActionLoadFile  implements ActionListener{
 
 
 
-        splot.updateScatterPlot(dataModel.getVariableList());
+        splot.getScatterPlotContent();
 
     }
 }
