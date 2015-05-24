@@ -42,19 +42,15 @@ public class ScatterValues {
     }
 
     public float getMinX(){
-        System.out.println(minX);
         return minX;
     }
     public float getMaxX(){
-        System.out.println(maxX);
         return maxX;
     }
     public float getMinY(){
-        System.out.println(minY);
         return minY;
     }
     public float getMaxY(){
-        System.out.println(maxY);
         return maxY;
     }
 

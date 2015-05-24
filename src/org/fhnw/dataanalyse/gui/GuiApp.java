@@ -66,7 +66,7 @@ public class GuiApp extends JFrame{
         surface.add(toolbar2);
         toolbar2.setBackground(Color.darkGray);
 
-        toolbar2_left = new T2sp_Configuration(dataModel);
+        toolbar2_left = new T2sp_Configuration(dataModel,scatterPlotPanel);
         toolbar2_right = new T2h_Configuration(histogramManager,scatterPlotPanel);
         toolbar2.add(toolbar2_left);
         toolbar2.add(toolbar2_right);
@@ -77,7 +77,7 @@ public class GuiApp extends JFrame{
 
         /*ScatterPlot Layout*/
         splot = scatterPlotPanel.getScatterPlotContent();
-        c = setConstraintParameters(0,2,1,100,"SOUTH",1,1);
+        c = setConstraintParameters(0,2,1,100,"CENTER",1,1);
         distributor.setConstraints(splot, c);
         surface.add(splot);
         //splot.setBackground(Color.orange);

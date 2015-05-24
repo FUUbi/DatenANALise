@@ -17,6 +17,7 @@ public class T1_Configuration extends JPanel {
     JComboBox choiceList1 = new JComboBox();
     JLabel versusLabel = new JLabel("versus");
     JComboBox choiceList2 = new JComboBox();
+    JComboBox choiceList3 = new JComboBox();
     String[] dropDownBox;
     ArrayList<String> dropDownList = new ArrayList<String>();
     //choiceList1.setMaximumSize
@@ -56,10 +57,22 @@ public class T1_Configuration extends JPanel {
         }
 
 
+        if (n == 0) {
+            for (String s : dropDownBox) {
+                choiceList3.addItem(s);
+            }
+        } else {
+            for (String s : dropDownList) {
+                choiceList3.addItem(s);
+            }
+        }
+
+
         add(Box.createHorizontalGlue());
         add(choiceList1);
         add(versusLabel);
         add(choiceList2);
+        add(choiceList3);
         add(Box.createHorizontalGlue());
 
 
@@ -80,6 +93,14 @@ public class T1_Configuration extends JPanel {
                 histogramManager.actionPreformtUpdate("cbx2Changte");
                 scatterPlotPanel.setSelectedVariableIndex2(choiceList2.getSelectedIndex());
                 scatterPlotPanel.actionPerformedUpdate("cbx2Change");
+            }
+        });
+
+        choiceList3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                scatterPlotPanel.setSelectedVariableIndex3(choiceList3.getSelectedIndex());
+                scatterPlotPanel.actionPerformedUpdate("cbx3Change");
             }
         });
 

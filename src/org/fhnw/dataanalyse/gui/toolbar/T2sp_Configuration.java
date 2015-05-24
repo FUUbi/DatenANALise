@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse.gui.toolbar;
 import javafx.scene.control.ColorPicker;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -24,7 +25,7 @@ public class T2sp_Configuration extends JPanel {
     JCheckBox linieCB;
 
 
-    public T2sp_Configuration(DataModel dataModel){
+    public T2sp_Configuration(DataModel dataModel, final ScatterPlotPanel scatterPlotPanel){
         //Dimension dimension =  Frame.getFrames()[0].getSize();
         //dimension.getWidth();
 
@@ -62,7 +63,25 @@ public class T2sp_Configuration extends JPanel {
             @Override
             public void actionPerformed(ActionEvent
                                                 e) {
+            }
+        });
 
+        linieCB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                boolean isSelected = linieCB.isSelected();
+
+                if (isSelected){
+                    linieCB.setSelected(true);
+                    scatterPlotPanel.setLineDrawingChecked(linieCB.isSelected());
+                    scatterPlotPanel.actionPerformedUpdate("drawChecked");
+                }
+                else{
+                    linieCB.setSelected(false);
+                    scatterPlotPanel.setLineDrawingChecked(linieCB.isSelected());
+                    scatterPlotPanel.actionPerformedUpdate("drawUnChecked");
+                }
             }
         });
 

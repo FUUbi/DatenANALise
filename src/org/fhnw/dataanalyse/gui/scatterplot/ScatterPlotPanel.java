@@ -17,12 +17,15 @@ public class ScatterPlotPanel extends JPanel {
 
     int selectedVariableIndex1;
     int selectedVariableIndex2;
+    private int selectedVariableIndex3;
+    private boolean isSelected;
 
     ScatterValues scatterValuesIndex1 = new ScatterValues();
     ScatterValues scatterValuesIndex2 = new ScatterValues();
 
 
     ScatterPlotContent scatterPlotContent = new ScatterPlotContent();
+
 
     public ScatterPlotPanel(DataModel dataModel){
         this.dataModel = dataModel;
@@ -40,6 +43,15 @@ public class ScatterPlotPanel extends JPanel {
         else if (action.equals("cbx2Change")){
             updateScatterPlotContent();
         }
+        else if (action.equals("cbx3Change")){
+            updateScatterPlotContent();
+        }
+        else if (action.equals("drawChecked")){
+            updateScatterPlotContent();
+        }
+        else if (action.equals("drawUnChecked")){
+            updateScatterPlotContent();
+        }
     }
 
     public void setSelectedVariableIndex1(int selectedVariableIndex1) {
@@ -48,6 +60,31 @@ public class ScatterPlotPanel extends JPanel {
 
     public void setSelectedVariableIndex2(int selectedVariableIndex2) {
         this.selectedVariableIndex2 = selectedVariableIndex2;
+    }
+
+    public void setSelectedVariableIndex3(int selectedVariableIndex3){
+        this.selectedVariableIndex3 = selectedVariableIndex3;
+    }
+
+    public void setLineDrawingChecked(boolean isSelected){
+        this.isSelected = isSelected;
+    }
+
+
+    public ScatterPlotContent getScatterPlotContent(){
+        return scatterPlotContent;
+    }
+
+    private void updateScatterPlotContent(){
+        ArrayList<Float> index1Values = dataModel.getVariableList().get(selectedVariableIndex1).getData();
+        ArrayList<Float> index2Values = dataModel.getVariableList().get(selectedVariableIndex2).getData();
+        ArrayList<Float> index3Values = dataModel.getVariableList().get(selectedVariableIndex3).getData();
+        scatterValuesIndex1.setScatterValuesX(index1Values);
+        scatterValuesIndex2.setScatterValuesY(index2Values);
+        boolean checked = isSelected;
+        scatterPlotContent.setScatterPlotContent(scatterValuesIndex1.getMinX(),scatterValuesIndex1.getMaxX(),
+                scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values,index3Values,checked);
+
     }
 
 
@@ -73,18 +110,4 @@ public class ScatterPlotPanel extends JPanel {
             add(scatterPanel);
         }
     }*/
-
-    public ScatterPlotContent getScatterPlotContent(){
-        return scatterPlotContent;
-    }
-
-    private void updateScatterPlotContent(){
-        ArrayList<Float> index1Values = dataModel.getVariableList().get(selectedVariableIndex1).getData();
-        ArrayList<Float> index2Values = dataModel.getVariableList().get(selectedVariableIndex2).getData();
-        scatterValuesIndex1.setScatterValuesX(index1Values);
-        scatterValuesIndex2.setScatterValuesY(index2Values);
-        scatterPlotContent.setScatterPlotContent(scatterValuesIndex1.getMinX(),scatterValuesIndex1.getMaxX(),
-                scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values);
-
-    }
 }
