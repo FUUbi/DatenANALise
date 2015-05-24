@@ -33,6 +33,22 @@ public class ScatterPlotPanel extends JPanel {
         getScatterPlotContent().setColor(color);
     }
 
+    public void actionPerformedUpdate(String action){
+        if(action.equals("cbx1Changte")){
+            updateScatterPlotContent();
+        }
+        else if (action.equals("cbx2Change")){
+            updateScatterPlotContent();
+        }
+    }
+
+    public void setSelectedVariableIndex1(int selectedVariableIndex1) {
+        this.selectedVariableIndex1 = selectedVariableIndex1;
+    }
+
+    public void setSelectedVariableIndex2(int selectedVariableIndex2) {
+        this.selectedVariableIndex2 = selectedVariableIndex2;
+    }
 
 
     /*public ScatterPlotPanel(ArrayList<Variable> v) {

@@ -2,6 +2,7 @@ package org.fhnw.dataanalyse.gui.toolbar;
 
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,7 +25,7 @@ public class T1_Configuration extends JPanel {
     int yAxisIndex;
 
 
-    public T1_Configuration(DataModel dataModel, final HistogramManager histogramManager) {
+    public T1_Configuration(DataModel dataModel, final HistogramManager histogramManager, final ScatterPlotPanel scatterPlotPanel) {
 
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
@@ -67,6 +68,8 @@ public class T1_Configuration extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 histogramManager.setSelectedVariableIndex1(choiceList1.getSelectedIndex());
                 histogramManager.actionPreformtUpdate("cbx1Changte");
+                scatterPlotPanel.setSelectedVariableIndex1(choiceList1.getSelectedIndex());
+                scatterPlotPanel.actionPerformedUpdate("cbx1Change");
             }
         });
 
@@ -75,6 +78,8 @@ public class T1_Configuration extends JPanel {
             public void actionPerformed(ActionEvent e) {
 
                 histogramManager.actionPreformtUpdate("cbx2Changte");
+                scatterPlotPanel.setSelectedVariableIndex2(choiceList2.getSelectedIndex());
+                scatterPlotPanel.actionPerformedUpdate("cbx2Change");
             }
         });
 

@@ -54,7 +54,7 @@ public class GuiApp extends JFrame{
 
 
         /*toolbar1 layout */
-        JPanel toolbar1 =  new T1_Configuration(dataModel, histogramManager);
+        JPanel toolbar1 =  new T1_Configuration(dataModel, histogramManager, scatterPlotPanel);
         c = setConstraintParameters(0,0,2,1,"NORTH",1,0);
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
