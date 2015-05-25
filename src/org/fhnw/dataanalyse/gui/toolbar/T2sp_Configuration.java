@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse.gui.toolbar;
 import javafx.scene.control.ColorPicker;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -17,26 +18,31 @@ import java.awt.event.KeyEvent;
  */
 public class T2sp_Configuration extends JPanel {
 
-    JPanel panel2;
-    JButton selectColor;
-    JSlider slider;
-    JLabel label;
-    JCheckBox linieCB;
-
-
-    public T2sp_Configuration(DataModel dataModel){
+    public T2sp_Configuration(DataModel dataModel, final ScatterPlotPanel scatterPlotPanel){
         //Dimension dimension =  Frame.getFrames()[0].getSize();
         //dimension.getWidth();
 
-
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+        setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
 
-        label = new JLabel();
-        linieCB = new JCheckBox("Linie");
-        linieCB.setMnemonic(KeyEvent.VK_L);
 
-        selectColor = new JButton("Select Color");
-        slider = new JSlider();
+        JButton selectColor = new JButton("Change Color");
+        selectColor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Color color = JColorChooser.showDialog(
+                        T2sp_Configuration.this,
+                        "Change Scatterplot Color",
+                        Color.blue);
+
+                scatterPlotPanel.colorChanged(color);
+
+            }
+        });
+
+
+        final Label accVal = new Label();
+        final JSlider slider = new JSlider();
 
         slider.setMinimum(0);
         slider.setMaximum(80);
@@ -44,42 +50,50 @@ public class T2sp_Configuration extends JPanel {
         slider.setMajorTickSpacing(10);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
+        slider.setSnapToTicks(true);
         slider.setValue(0);
+
+        slider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent event) {
+                accVal.setText("actual Value : " + ((JSlider) event.getSource()).getValue());
+                slider.getValue(); //<-- din wert G
+            }
+        });
+
+
+        final JCheckBox linieCB = new JCheckBox("Draw Linie");
+        linieCB.setMnemonic(KeyEvent.VK_L);
+        linieCB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                linieCB.isSelected(); // git true / false <-- G methonde
+            }
+        });
+
+
+
+        final JCheckBox relSizeCB = new JCheckBox("Relativ Size");
+        relSizeCB.setMnemonic(KeyEvent.VK_L);
+        relSizeCB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               if (relSizeCB.isSelected()) slider.setEnabled(false);
+                else slider.setEnabled(true);
+
+                // dini methode G
+            }
+        });
+
 
         add(selectColor);
         add(Box.createHorizontalGlue());
         add(slider);
-        add(label);
+        add(relSizeCB);
         add(Box.createHorizontalGlue());
         add(linieCB);
 
-       final JColorChooser colorChooser1 = new JColorChooser();
-        colorChooser1.getColor();
-
-        Color color;
-
-        selectColor.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent
-                                                e) {
-
-            }
-        });
-
-        slider.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent event) {
-                label.setText("actual Value : " + ((JSlider) event.getSource()).getValue());
-            }
-        });
-
-
-
-
     }
 
-    public JPanel getPanel2(){
-        return panel2;
-    }
 
 
 

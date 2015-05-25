@@ -1,5 +1,6 @@
 package org.fhnw.dataanalyse.gui.toolbar;
 
+import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 
@@ -16,30 +17,61 @@ import java.util.Random;
  * Created by Vallat on 20.05.2015.
  */
 
-public class T2h_Configuration extends JPanel{
+public class T2h_Configuration extends JPanel {
+    JCheckBox hsito1CheckB = new JCheckBox();
+    JCheckBox hsito2CheckB = new JCheckBox();
+    DataModel dataModel;
 
-    public T2h_Configuration(final HistogramManager histogramManager, final ScatterPlotPanel scatterPlotPanel){
-        Button changeColorBtn = new Button("drück mich");
+    private int selectedVariableIndex1;
+    private int selectedVariableIndex2;
 
-        add(changeColorBtn);
-        setVisible(true);
+    public T2h_Configuration(DataModel dataModel, final HistogramManager histogramManager) {
+        setBorder(BorderFactory.createTitledBorder("Histogram"));
 
-        changeColorBtn.addActionListener(new ActionListener() {
+
+        this.dataModel = dataModel;
+
+
+        hsito1CheckB.setMnemonic(KeyEvent.VK_L);
+        hsito1CheckB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Random rand = new Random();
-                int r = rand.nextInt(255);
-                int g = rand.nextInt(255);
-                int b = rand.nextInt(255);
-                Color randomColor = new Color(r, g, b);
-
-                histogramManager.colorChanged(randomColor);
-                scatterPlotPanel.colorChanged(randomColor);
+                hsito1CheckB.isSelected();
             }
         });
 
+        hsito2CheckB.setMnemonic(KeyEvent.VK_L);
+        hsito2CheckB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hsito2CheckB.isSelected();
+            }
+        });
+
+        add(hsito2CheckB);
+        add(hsito1CheckB);
+
+        updateHisto1(0);
+        updateHisto2(0);
+
+        setVisible(true);
+
+
+    }
+
+    public void updateHisto1(int selectedVariableIndex1){
+        String histo1Text =  dataModel.getVariableList().get(selectedVariableIndex1).getName();
+        hsito1CheckB.setText(histo1Text);
+    }
+
+    public void updateHisto2(int selectedVariableIndex2){
+        String histo2Text =  dataModel.getVariableList().get(selectedVariableIndex2).getName();
+        hsito2CheckB.setText(histo2Text);
     }
 
 
-}
+    public JPanel getPanel(){
+        return this;
+    }
 
+}
