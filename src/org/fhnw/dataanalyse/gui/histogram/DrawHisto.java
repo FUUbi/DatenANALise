@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class DrawHisto extends JPanel{
     int k;
     ArrayList<Float> relQuantity;
-    Color  color = Color.ORANGE;
+    boolean state = true;
 
     public DrawHisto(){
 
@@ -33,29 +33,21 @@ public class DrawHisto extends JPanel{
 
     }
 
-    public void setColor(Color color){
-        this.color = color;
-        repaint();
-    }
 
-
-        @Override
+    @Override
     public void paintComponent(Graphics g) {
+            int barWidth = getWidth() / k;
+            for (int i = 0; i < k; i++) {
 
-        int barWidth = getWidth() / k;
-        for (int i = 0; i < k; i++) {
+                int barHeight = (int) (relQuantity.get(i) * getHeight());
 
-            int barHeight = (int) (relQuantity.get(i) * getHeight());
+                int x = i * barWidth;
+                int y = getHeight() - barHeight;
 
-            int x = i * barWidth;
-            int y = getHeight() - barHeight;
-
-            g.setColor(color);
-            g.fillRect(x, y, barWidth, barHeight);
-            g.setColor(Color.YELLOW);
-            g.drawRect(x, y, barWidth, barHeight);
-
-
+                g.setColor(Color.BLUE);
+                g.fillRect(x, y, barWidth, barHeight);
+                g.setColor(Color.YELLOW);
+                g.drawRect(x, y, barWidth, barHeight);
 
         }
     }

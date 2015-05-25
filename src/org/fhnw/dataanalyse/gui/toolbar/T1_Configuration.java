@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 /**
@@ -16,14 +18,9 @@ import java.util.ArrayList;
  */
 public class T1_Configuration extends JPanel {
 
-    JComboBox choiceList1 = new JComboBox();
-    JLabel versusLabel = new JLabel("versus");
-    JComboBox choiceList2 = new JComboBox();
-    JComboBox choiceList3 = new JComboBox();
-    String[] dropDownBox;
     int xAxisIndex;
     int yAxisIndex;
-
+    int comboxLastIndex = 0;
 
     public T1_Configuration(DataModel dataModel,
                             final HistogramManager histogramManager,
@@ -47,33 +44,21 @@ public class T1_Configuration extends JPanel {
         }
 
         if (n == 0) {
-            for (String s : dropDownBox) {
-                choiceList1.addItem(s);
+                choiceList1.addItem("-");
             }
-        } else {
+         else {
             for (String s : dropDownList) {
                 choiceList1.addItem(s);
             }
         }
 
         if (n == 0) {
-            for (String s : dropDownBox) {
-                choiceList2.addItem(s);
+
+                choiceList2.addItem("-");
             }
-        } else {
+         else {
             for (String s : dropDownList) {
                 choiceList2.addItem(s);
-            }
-        }
-
-
-        if (n == 0) {
-            for (String s : dropDownBox) {
-                choiceList3.addItem(s);
-            }
-        } else {
-            for (String s : dropDownList) {
-                choiceList3.addItem(s);
             }
         }
 
@@ -84,47 +69,49 @@ public class T1_Configuration extends JPanel {
         add(Box.createHorizontalGlue());
         add(new Label("Y-Axis"));
         add(choiceList2);
-        add(choiceList3);
         add(Box.createHorizontalGlue());
 
         choiceList1.setActionCommand("ComboBox1");
         choiceList2.setActionCommand("ComboBox2");
 
-        choiceList1.addActionListener(new ActionListener() {
+        choiceList1.addItemListener(new ItemListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                xAxisIndex = choiceList1.getSelectedIndex();
+            public void itemStateChanged(ItemEvent e) {
+                if((e.getStateChange() == ItemEvent.SELECTED)){
+                    xAxisIndex = choiceList1.getSelectedIndex();
 
-                histogramManager.setSelectedVariableIndex1(choiceList1.getSelectedIndex());
-                histogramManager.actionPreformtUpdate("cbx1Changte");
+                    guiApp.getHistogramManager().setSelectedVariableIndex0(xAxisIndex);
+                    guiApp.getHistogramManager().updateHisto0();
 
-                scatterPlotPanel.setSelectedVariableIndex1(choiceList1.getSelectedIndex());
-                scatterPlotPanel.actionPerformedUpdate("cbx1Change");
-                System.out.println(choiceList1.getSelectedIndex());
-       //         t2h_configuration.setSelectedVariableIndex1(choiceList1.getSelectedIndex());
-         //       t2h_configuration.actionPreformt();
-                guiApp.actionPerformed(e);
+                    guiApp.getScatterPlotPanel().setSelectedVariableIndex1(xAxisIndex);
+                    guiApp.getScatterPlotPanel().actionPerformedUpdate("cbx1Change");
+
+                    guiApp.getT2h_configuration().setHisto1CheckBoxText();
+                    revalidate();
+                    guiApp.repaint();
+                }
             }
         });
 
+
         choiceList2.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 yAxisIndex = choiceList2.getSelectedIndex();
-                guiApp.actionPerformed(e);
-                histogramManager.actionPreformtUpdate("cbx2Changte");
+                histogramManager.setSelectedVariableIndex1(yAxisIndex);
+                histogramManager.updateHisto1();
+
                 scatterPlotPanel.setSelectedVariableIndex2(choiceList1.getSelectedIndex());
                 scatterPlotPanel.actionPerformedUpdate("cbx2Change");
+                guiApp.getT2h_configuration().setHisto2CheckboxText();
+
+                revalidate();
+                guiApp.repaint();
             }
+
         });
 
-        choiceList3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                scatterPlotPanel.setSelectedVariableIndex3(choiceList3.getSelectedIndex());
-                scatterPlotPanel.actionPerformedUpdate("cbx3Change");
-            }
-        });
 
     }
 

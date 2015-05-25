@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse.gui.scatterplot;
 import org.fhnw.dataanalyse.scatterplotdata.ScatterValues;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.List;
 import java.util.*;
@@ -25,6 +26,7 @@ public class ScatterPlotContent extends JPanel {
 
 
     public ScatterPlotContent() {
+        setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
     }
 
     public void setScatterPlotContent(float minX, float maxX, float minY, float maxY,
@@ -37,7 +39,7 @@ public class ScatterPlotContent extends JPanel {
         this.y = index2Values;
         this.diameterValues = index3Values;
         this.drawLine = checked;
-
+        revalidate();
         repaint();
     }
 

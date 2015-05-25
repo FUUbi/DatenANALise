@@ -8,28 +8,33 @@ import org.fhnw.dataanalyse.gui.toolbar.T2h_Configuration;
 import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 import java.awt.*;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicOptionPaneUI;
 
 /**
  * Created by Vallat on 14.05.2015.
  *
  */
-public class GuiApp extends JFrame{
 
-public class GuiApp extends JFrame implements ActionListener{
+public class GuiApp extends JFrame {
     private T2h_Configuration t2h_configuration;
     private T1_Configuration t1_configuration;
+    private HistogramManager histogramManager;
+    private ScatterPlotPanel scatterPlotPanel;
+    private String fileName;
 
     /*Panels initialisation*/
 
     public GuiApp(DataModel dataModel, HistogramManager histogramManager, ScatterPlotPanel scatterPlotPanel, String fileName) {
+        this.histogramManager = histogramManager;
+        this.scatterPlotPanel = scatterPlotPanel;
+        this.fileName = fileName;
+
         /*Get Dimension of the Desktop*/
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
@@ -48,7 +53,7 @@ public class GuiApp extends JFrame implements ActionListener{
         surface.setLayout(distributor);
 
         /*toolbar1 layout */
-        t1_configuration = new T1_Configuration(dataModel, histogramManager, scatterPlotPanel, fileName,this);
+        t1_configuration = new T1_Configuration(dataModel, histogramManager, scatterPlotPanel, fileName, this);
         JPanel toolbar1 = t1_configuration.getPanel();
         c = setConstraintParameters(0, 0, 2, 1, "NORTH", 1, 0);
         distributor.setConstraints(toolbar1, c);
@@ -60,32 +65,30 @@ public class GuiApp extends JFrame implements ActionListener{
         distributor.setConstraints(toolbar2, c);
         surface.add(toolbar2);
 
-        t2h_configuration = new T2h_Configuration(dataModel, histogramManager);
+        t2h_configuration = new T2h_Configuration(dataModel, this);
 
-        JPanel toolbar2_left = new T2sp_Configuration(dataModel, scatterPlotPanel);
+        JPanel toolbar2_left = new T2sp_Configuration(dataModel, this);
         JPanel toolbar2_right = t2h_configuration.getPanel();
         toolbar2.add(toolbar2_left);
         toolbar2.add(toolbar2_right);
 
-        /*ScatterPlot */
-        JPanel  splot = scatterPlotPanel.getScatterPlotContent();
-        c = setConstraintParameters(0, 2, 1, 100, "SOUTH", 1, 1);
-        distributor.setConstraints(splot, c);
-        surface.add(splot);
-        //splot.setBackground(Color.orange);
 
-        /*histogramm Layout*/
-        JPanel histo = histogramManager.getDrawHisto1();
-        c = setConstraintParameters(1, 2, 1, 100, "SOUTH", 1, 1);
-        distributor.setConstraints(histo, c);
-        surface.add(histo);
+        JPanel  plotArea = new JPanel(new BorderLayout());
+        c = setConstraintParameters(0, 2, 2, 100, "SOUTH", 1, 1);
+        distributor.setConstraints(plotArea, c);
+        surface.add(plotArea);
 
+
+        JPanel plotContent = new JPanel();
+        plotContent.setLayout(new BoxLayout(plotContent,BoxLayout.X_AXIS));
+
+        plotContent.add(scatterPlotPanel.getScatterPlotContent());
+        plotContent.add(histogramManager);
+
+        plotArea.add(plotContent);
 
         setVisible(true);
-
-        while (true) {
-            repaint();
-        }
+        repaint();
 
     }
 
@@ -126,16 +129,27 @@ public class GuiApp extends JFrame implements ActionListener{
         return c;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("ComboBox1")){
-            int index = t1_configuration.getxAxisIndex();
-            t2h_configuration.updateHisto1(index);
-        }
 
-        if(e.getActionCommand().equals("ComboBox2")){
-            int index = t1_configuration.getyAxisIndex();
-            t2h_configuration.updateHisto2(index);
-        }
+    public T1_Configuration getT1_configuration() {
+        return t1_configuration;
     }
+
+    public T2h_Configuration getT2h_configuration() {
+        return t2h_configuration;
+    }
+
+    public HistogramManager getHistogramManager() {
+        return histogramManager;
+    }
+
+    public ScatterPlotPanel getScatterPlotPanel() {
+        return scatterPlotPanel;
+    }
+
+
+    public String getFileName() {
+        return fileName;
+    }
+
 }
+

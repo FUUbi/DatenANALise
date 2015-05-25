@@ -3,21 +3,21 @@ package org.fhnw.dataanalyse.gui.toolbar;
 import javafx.scene.control.ColorPicker;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
+import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * Created by Vallat on 19.05.2015.
  */
 public class T2sp_Configuration extends JPanel {
 
-    public T2sp_Configuration(DataModel dataModel, final ScatterPlotPanel scatterPlotPanel){
+    public T2sp_Configuration(DataModel dataModel, final GuiApp guiApp){
         //Dimension dimension =  Frame.getFrames()[0].getSize();
         //dimension.getWidth();
 
@@ -33,9 +33,9 @@ public class T2sp_Configuration extends JPanel {
                         T2sp_Configuration.this,
                         "Change Scatterplot Color",
                         Color.blue);
-
-                scatterPlotPanel.colorChanged(color);
-
+                guiApp.getScatterPlotPanel().colorChanged(color);
+                revalidate();
+                guiApp.repaint();
             }
         });
 
@@ -56,23 +56,56 @@ public class T2sp_Configuration extends JPanel {
             public void stateChanged(ChangeEvent event) {
                 accVal.setText("actual Value : " + ((JSlider) event.getSource()).getValue());
                 slider.getValue(); //<-- din wert G
+
+                revalidate();
+                guiApp.repaint();
             }
         });
 
-       final JColorChooser colorChooser1 = new JColorChooser();
-        colorChooser1.getColor();
+        ArrayList<String> dropDownList = new ArrayList<String>();
+        int n = dataModel.getVariableList().size();
+        for (int i = 0; i < n; i++) {
+            dropDownList.add(dataModel.getVariableList().get(i).getName());
+        }
+
+        final JComboBox relativSizeValuesComB = new JComboBox();
+        if (n == 0)  relativSizeValuesComB.addItem("-");
+
+        else for (String s : dropDownList)
+            relativSizeValuesComB.addItem(s);
+
+        relativSizeValuesComB.setEnabled(false);
+
+        relativSizeValuesComB.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if ((e.getStateChange() == ItemEvent.SELECTED)) {
+                    // dini methode G
+                }
+            }
+        });
+
+        final JCheckBox relSizeCB = new JCheckBox("Relativ Size");
+        relSizeCB.setMnemonic(KeyEvent.VK_L);
+        relSizeCB.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (relSizeCB.isSelected()){
+                    slider.setEnabled(false);
+                    relativSizeValuesComB.setEnabled(true);}
+
+                else {
+                    slider.setEnabled(true);
+                    relativSizeValuesComB.setEnabled(false);
+                }
+
+                // dini methode G
+            }
+        });
+
 
         final JCheckBox linieCB = new JCheckBox("Draw Linie");
         linieCB.setMnemonic(KeyEvent.VK_L);
-        linieCB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                linieCB.isSelected(); // git true / false <-- G methonde
-            public void actionPerformed(ActionEvent
-                                                e) {
-            }
-        });
-
         linieCB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,28 +114,18 @@ public class T2sp_Configuration extends JPanel {
 
                 if (isSelected){
                     linieCB.setSelected(true);
-                    scatterPlotPanel.setLineDrawingChecked(linieCB.isSelected());
-                    scatterPlotPanel.actionPerformedUpdate("drawChecked");
+
+                    guiApp.getScatterPlotPanel().setLineDrawingChecked(linieCB.isSelected());
+                    guiApp.getScatterPlotPanel().actionPerformedUpdate("drawChecked");
                 }
                 else{
                     linieCB.setSelected(false);
-                    scatterPlotPanel.setLineDrawingChecked(linieCB.isSelected());
-                    scatterPlotPanel.actionPerformedUpdate("drawUnChecked");
+                    guiApp.getScatterPlotPanel().setLineDrawingChecked(linieCB.isSelected());
+                    guiApp.getScatterPlotPanel().actionPerformedUpdate("drawUnChecked");
                 }
-            }
-        });
 
-
-
-        final JCheckBox relSizeCB = new JCheckBox("Relativ Size");
-        relSizeCB.setMnemonic(KeyEvent.VK_L);
-        relSizeCB.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               if (relSizeCB.isSelected()) slider.setEnabled(false);
-                else slider.setEnabled(true);
-
-                // dini methode G
+                revalidate();
+                guiApp.repaint();
             }
         });
 
@@ -111,6 +134,7 @@ public class T2sp_Configuration extends JPanel {
         add(Box.createHorizontalGlue());
         add(slider);
         add(relSizeCB);
+        add(relativSizeValuesComB);
         add(Box.createHorizontalGlue());
         add(linieCB);
 
