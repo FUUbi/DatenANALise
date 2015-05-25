@@ -18,26 +18,31 @@ public class ScatterPlotContent extends JPanel {
     private float maxY;
     private ArrayList<Float> x;
     private ArrayList<Float> y;
+    private ArrayList<Float> diameterValues;
+    boolean drawLine;
     Color  color = Color.ORANGE;
+
 
 
     public ScatterPlotContent() {
     }
 
     public void setScatterPlotContent(float minX, float maxX, float minY, float maxY,
-                                      ArrayList<Float> index1Values, ArrayList<Float> index2Values) {
+                                      ArrayList<Float> index1Values, ArrayList<Float> index2Values, ArrayList<Float> index3Values, boolean checked) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
         this.maxY = maxY;
         this.x = index1Values;
         this.y = index2Values;
+        this.diameterValues = index3Values;
+        this.drawLine = checked;
 
         repaint();
     }
 
 
-    boolean drawLine = true;
+
 
     public void setColor(Color color) {
         this.color = color;
@@ -53,34 +58,31 @@ public class ScatterPlotContent extends JPanel {
             double valueY1 = y.get(i-1);
             double valueX2 = x.get(i);
             double valueY2 = y.get(i);
+            double diameterVal = diameterValues.get(i);
+            int diameter = (int) diameterVal/100;
 
             /*Initialiserung der Koordinatenwerte*/
             int a = (int) ((valueX1-minX)/(maxX-minX)*getWidth());
-            a -= 20;
+            a -= 50;
             /*int a = (int) ((valueX1/maxX)*getWidth()/1.25);*/
             int b = (int) ((valueY1-minY)/(maxY-minY)*getHeight());
             /*int b = (int) ((valueY1/maxY)*getHeight()/1.25);*/
             b = (getHeight() - b);
             //int c = (int) ((valueX2/maxX)*getWidth()/1.25);
             int c = (int) ((valueX2-minX)/(maxX-minX)*getWidth());
-            c -= 20;
+            c -= 50;
             int d = (int) ((valueY2-minY)/(maxY-minY)*getHeight());
             d = (getHeight() - d);
-
-            //de wert muess verändert werde, wenn me e slider für d grössi vo de pünkt macht
-            int diameter = 10;
 
             g.setColor(color);
             g.fillOval(a, b, diameter, diameter);
 
-            if(i==x.size()-1)
-            {
+            if(i==x.size()-1) {
                 g.setColor(color);
-                g.fillOval(c,d,diameter,diameter);
+                g.fillOval(c, d, diameter, diameter);
             }
 
-            if (drawLine)
-            {
+            if (drawLine) {
                 g.setColor(Color.black);
                 g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
             }

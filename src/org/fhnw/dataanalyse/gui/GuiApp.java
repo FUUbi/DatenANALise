@@ -8,6 +8,7 @@ import org.fhnw.dataanalyse.gui.toolbar.T2h_Configuration;
 import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
 
 import java.awt.*;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -20,11 +21,13 @@ import javax.swing.JPanel;
  * Created by Vallat on 14.05.2015.
  *
  */
+public class GuiApp extends JFrame{
 
 public class GuiApp extends JFrame implements ActionListener{
     private T2h_Configuration t2h_configuration;
     private T1_Configuration t1_configuration;
 
+    /*Panels initialisation*/
 
     public GuiApp(DataModel dataModel, HistogramManager histogramManager, ScatterPlotPanel scatterPlotPanel, String fileName) {
         /*Get Dimension of the Desktop*/
@@ -76,6 +79,7 @@ public class GuiApp extends JFrame implements ActionListener{
         c = setConstraintParameters(1, 2, 1, 100, "SOUTH", 1, 1);
         distributor.setConstraints(histo, c);
         surface.add(histo);
+
 
         setVisible(true);
 
