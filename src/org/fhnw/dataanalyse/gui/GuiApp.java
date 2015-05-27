@@ -73,19 +73,16 @@ public class GuiApp extends JFrame {
 
 
         /*plotingArea Layout*/
-        JPanel  plotArea = new JPanel(new BorderLayout());
+        JPanel  plotArea = new JPanel();
+        plotArea.setLayout(new BoxLayout(plotArea,BoxLayout.X_AXIS));
         c = setConstraintParameters(0, 2, 2, 100, "SOUTH", 1, 1);
         distributor.setConstraints(plotArea, c);
         surface.add(plotArea);
 
 
-        JPanel plotContent = new JPanel();
-        plotContent.setLayout(new BoxLayout(plotContent,BoxLayout.X_AXIS));
+        plotArea.add(scatterPlotPanel.getScatterPlotContent());
+        plotArea.add(histogramManager);
 
-        plotContent.add(scatterPlotPanel.getScatterPlotContent());
-        plotContent.add(histogramManager);
-
-        plotArea.add(plotContent);
 
         setVisible(true);
         repaint();
