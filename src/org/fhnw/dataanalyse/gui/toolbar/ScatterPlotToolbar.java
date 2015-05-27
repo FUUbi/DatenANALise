@@ -18,7 +18,6 @@ public class ScatterPlotToolbar extends JPanel {
     int dimensionData;
     boolean relativeSize = false;
 
-    public T2sp_Configuration(DataModel dataModel, final GuiApp guiApp){
     public ScatterPlotToolbar(DataModel dataModel, final GuiApp guiApp){
         //Dimension dimension =  Frame.getFrames()[0].getSize();
         //dimension.getWidth();
