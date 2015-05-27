@@ -2,7 +2,6 @@ package org.fhnw.dataanalyse.gui.toolbar;
 
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
-import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +12,7 @@ import java.awt.event.KeyEvent;
  * Created by Vallat on 20.05.2015.
  */
 
-public class T2h_Configuration extends JPanel {
+public class HistoToolbar extends JPanel {
     JCheckBox hsito1CheckB = new JCheckBox();
     JCheckBox hsito2CheckB = new JCheckBox();
     DataModel dataModel;
@@ -22,7 +21,7 @@ public class T2h_Configuration extends JPanel {
     private int selectedVariableIndex1;
     private int selectedVariableIndex2;
 
-    public T2h_Configuration(DataModel dataModel, final GuiApp guiApp) {
+    public HistoToolbar(DataModel dataModel, final GuiApp guiApp) {
 
         setBorder(BorderFactory.createTitledBorder("Histogram"));
 
@@ -63,13 +62,13 @@ public class T2h_Configuration extends JPanel {
     }
 
     public void setHisto1CheckBoxText(){
-        int index =   guiApp.getT1_configuration().getxAxisIndex();
+        int index =   guiApp.getMenuToolbar().getxAxisIndex();
         String histo1Text =  dataModel.getVariableList().get(index).getName();
         hsito1CheckB.setText(histo1Text);
     }
 
     public void setHisto2CheckboxText(){
-        int index = guiApp.getT1_configuration().getyAxisIndex();
+        int index = guiApp.getMenuToolbar().getyAxisIndex();
         String histo2Text =  dataModel.getVariableList().get(index).getName();
         hsito2CheckB.setText(histo2Text);
         System.out.println(histo2Text);
