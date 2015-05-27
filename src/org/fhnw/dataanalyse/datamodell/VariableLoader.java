@@ -51,7 +51,7 @@ public class VariableLoader {
             return new ColumnVariableLoader();
         }
 
-        // Check line one for an integer
+        //         Check line one for an integer
         // (row formated files got an Integer on the first line)
         try{Integer.parseInt(lineOne);
             in.close();

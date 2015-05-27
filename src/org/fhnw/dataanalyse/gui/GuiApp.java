@@ -3,32 +3,30 @@ package org.fhnw.dataanalyse.gui;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
-import org.fhnw.dataanalyse.gui.toolbar.T1_Configuration;
-import org.fhnw.dataanalyse.gui.toolbar.T2h_Configuration;
-import org.fhnw.dataanalyse.gui.toolbar.T2sp_Configuration;
+import org.fhnw.dataanalyse.gui.toolbar.MenuToolbar;
+import org.fhnw.dataanalyse.gui.toolbar.HistoToolbar;
+import org.fhnw.dataanalyse.gui.toolbar.ScatterPlotToolbar;
 
 import java.awt.*;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
+
 
 /**
- * Created by Vallat on 14.05.2015.
+ * GuiApp defines the main frame for the Programm's GUI
+ * blabla --- i wart jez uf euch 2 ! =P
  *
  */
 
 public class GuiApp extends JFrame {
-    private T2h_Configuration t2h_configuration;
-    private T1_Configuration t1_configuration;
+    private HistoToolbar histoToolbar;
+    private MenuToolbar menuToolbar;
     private HistogramManager histogramManager;
     private ScatterPlotPanel scatterPlotPanel;
     private String fileName;
 
-    /*Panels initialisation*/
 
     public GuiApp(DataModel dataModel, HistogramManager histogramManager, ScatterPlotPanel scatterPlotPanel, String fileName) {
         this.histogramManager = histogramManager;
@@ -46,33 +44,35 @@ public class GuiApp extends JFrame {
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-         /*Layout*/
+        /*Layout*/
         GridBagLayout distributor = new GridBagLayout();
         GridBagConstraints c;
         Container surface = getContentPane();
         surface.setLayout(distributor);
 
-        /*toolbar1 layout */
-        t1_configuration = new T1_Configuration(dataModel, histogramManager, scatterPlotPanel, fileName, this);
-        JPanel toolbar1 = t1_configuration.getPanel();
+        /*menuToolbar Layout */
+        menuToolbar = new MenuToolbar(dataModel, histogramManager, scatterPlotPanel, fileName, this);
+        JPanel toolbar1 = menuToolbar.getPanel();
         c = setConstraintParameters(0, 0, 2, 1, "NORTH", 1, 0);
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
 
-        /*toolbar2 */
+
+        /*plotingToolbar Layout */
         JPanel toolbar2 = new JPanel(new GridLayout(0, 2));
         c = setConstraintParameters(0, 1, 2, 1, "NORTH", 1, 0);
         distributor.setConstraints(toolbar2, c);
         surface.add(toolbar2);
 
-        t2h_configuration = new T2h_Configuration(dataModel, this);
 
-        JPanel toolbar2_left = new T2sp_Configuration(dataModel, this);
-        JPanel toolbar2_right = t2h_configuration.getPanel();
+        JPanel toolbar2_left = new ScatterPlotToolbar(dataModel, this);
+        histoToolbar = new HistoToolbar(dataModel, this);
+        JPanel toolbar2_right = histoToolbar.getPanel();
         toolbar2.add(toolbar2_left);
         toolbar2.add(toolbar2_right);
 
 
+        /*plotingArea Layout*/
         JPanel  plotArea = new JPanel(new BorderLayout());
         c = setConstraintParameters(0, 2, 2, 100, "SOUTH", 1, 1);
         distributor.setConstraints(plotArea, c);
@@ -94,6 +94,8 @@ public class GuiApp extends JFrame {
 
 
     /**
+     *
+     *
      * return Constraints Parameters
      */
     public GridBagConstraints setConstraintParameters(int gridx, int gridy, int gridwidth, int gridheight, String position, int weigthx, int weighty) {
@@ -113,6 +115,7 @@ public class GuiApp extends JFrame {
 
         c.fill = GridBagConstraints.BOTH;
 
+/*                                                                                <------------ //ok be vllt blöd abr ich schaff ke switch wege dene equals scheiss...*/
         if (position.equals("NORTH") || position.equals("north")) {
             c.anchor = GridBagConstraints.NORTH;
         } else if (position.equals("SOUTH") || position.equals("south")) {
@@ -130,12 +133,12 @@ public class GuiApp extends JFrame {
     }
 
 
-    public T1_Configuration getT1_configuration() {
-        return t1_configuration;
+    public MenuToolbar getMenuToolbar() {
+        return menuToolbar;
     }
 
-    public T2h_Configuration getT2h_configuration() {
-        return t2h_configuration;
+    public HistoToolbar getHistoToolbar() {
+        return histoToolbar;
     }
 
     public HistogramManager getHistogramManager() {
@@ -146,10 +149,6 @@ public class GuiApp extends JFrame {
         return scatterPlotPanel;
     }
 
-
-    public String getFileName() {
-        return fileName;
-    }
 
 }
 

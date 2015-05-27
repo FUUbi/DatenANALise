@@ -1,9 +1,7 @@
 package org.fhnw.dataanalyse.gui.toolbar;
 
-import javafx.scene.control.ColorPicker;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
-import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -15,9 +13,9 @@ import java.util.ArrayList;
 /**
  * Created by Vallat on 19.05.2015.
  */
-public class T2sp_Configuration extends JPanel {
+public class ScatterPlotToolbar extends JPanel {
 
-    public T2sp_Configuration(DataModel dataModel, final GuiApp guiApp){
+    public ScatterPlotToolbar(DataModel dataModel, final GuiApp guiApp){
         //Dimension dimension =  Frame.getFrames()[0].getSize();
         //dimension.getWidth();
 
@@ -30,7 +28,7 @@ public class T2sp_Configuration extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Color color = JColorChooser.showDialog(
-                        T2sp_Configuration.this,
+                        ScatterPlotToolbar.this,
                         "Change Scatterplot Color",
                         Color.blue);
                 guiApp.getScatterPlotPanel().colorChanged(color);

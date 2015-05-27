@@ -16,17 +16,17 @@ import java.util.ArrayList;
 /**
  * Created by Fabrizio on 19.05.2015.
  */
-public class T1_Configuration extends JPanel {
+public class MenuToolbar extends JPanel {
 
     int xAxisIndex;
     int yAxisIndex;
     int comboxLastIndex = 0;
 
-    public T1_Configuration(DataModel dataModel,
-                            final HistogramManager histogramManager,
-                            final ScatterPlotPanel scatterPlotPanel,
-                            String fileName,
-                            final GuiApp guiApp) {
+    public MenuToolbar(DataModel dataModel,
+                       final HistogramManager histogramManager,
+                       final ScatterPlotPanel scatterPlotPanel,
+                       String fileName,
+                       final GuiApp guiApp) {
 
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
         setBorder(BorderFactory.createTitledBorder(fileName.substring(0,fileName.indexOf("."))));
@@ -86,7 +86,7 @@ public class T1_Configuration extends JPanel {
                     guiApp.getScatterPlotPanel().setSelectedVariableIndex1(xAxisIndex);
                     guiApp.getScatterPlotPanel().actionPerformedUpdate("cbx1Change");
 
-                    guiApp.getT2h_configuration().setHisto1CheckBoxText();
+                    guiApp.getHistoToolbar().setHisto1CheckBoxText();
                     revalidate();
                     guiApp.repaint();
                 }
@@ -104,7 +104,7 @@ public class T1_Configuration extends JPanel {
 
                 scatterPlotPanel.setSelectedVariableIndex2(choiceList1.getSelectedIndex());
                 scatterPlotPanel.actionPerformedUpdate("cbx2Change");
-                guiApp.getT2h_configuration().setHisto2CheckboxText();
+                guiApp.getHistoToolbar().setHisto2CheckboxText();
 
                 revalidate();
                 guiApp.repaint();
