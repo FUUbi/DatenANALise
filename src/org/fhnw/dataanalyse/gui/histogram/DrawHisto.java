@@ -12,23 +12,23 @@ import java.util.ArrayList;
  */
 public class DrawHisto extends JPanel{
     int k;
-    ArrayList<Float> relQuantity;
+    ArrayList<Integer> Quantity;
     boolean state = true;
 
     public DrawHisto(){
 
     }
 
-    public DrawHisto(ArrayList<Float> binRelativQuantity) {
-        this.k = binRelativQuantity.size();
-        this.relQuantity = binRelativQuantity;
+    public DrawHisto(ArrayList<Integer> binQuantity) {
+        this.k = binQuantity.size();
+        this.Quantity = binQuantity;
 
     }
 
     //vileich währe besser wenn set genant
-    public void updateHistoValues(ArrayList<Float> binRelativQuantity) {
+    public void updateHistoValues(ArrayList<Integer> binRelativQuantity) {
         this.k = binRelativQuantity.size();
-        this.relQuantity = binRelativQuantity;
+        this.Quantity = binRelativQuantity;
         repaint();
 
     }
@@ -36,18 +36,24 @@ public class DrawHisto extends JPanel{
 
     @Override
     public void paintComponent(Graphics g) {
-            int barWidth = getWidth() / k;
-            for (int i = 0; i < k; i++) {
 
-                int barHeight = (int) (relQuantity.get(i) * getHeight());
+        int barWidth = getWidth() / k;
 
-                int x = i * barWidth;
-                int y = getHeight() - barHeight;
+        int max = 0;
+        for (Integer i : Quantity) if (i > max) max = i;
 
-                g.setColor(Color.BLUE);
-                g.fillRect(x, y, barWidth, barHeight);
-                g.setColor(Color.YELLOW);
-                g.drawRect(x, y, barWidth, barHeight);
+
+        for (int i = 0; i < k; i++) {
+
+            int barHeight = (int) ((float)Quantity.get(i) / max * getHeight());
+
+            int x = i * barWidth;
+            int y = getHeight() - barHeight;
+
+            g.setColor(Color.BLUE);
+            g.fillRect(x, y, barWidth, barHeight);
+            g.setColor(Color.YELLOW);
+            g.drawRect(x, y, barWidth, barHeight);
 
         }
     }

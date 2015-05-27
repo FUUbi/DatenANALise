@@ -52,7 +52,7 @@ public class HistogramManager extends JPanel{
             ArrayList<Float> variableValues = dataModel.getVariableList().get(selectedVariableIndex0).getData();
             binRanges0.setbinRanges(variableValues);
             bins0.setBinQuantity(variableValues, binRanges0.getBinRanges());
-            drawHisto0.updateHistoValues(bins0.getBinRelativQuantity());
+            drawHisto0.updateHistoValues(bins0.getBinAbsolteQuantity());
 
             String title = dataModel.getVariableList().get(selectedVariableIndex0).getName();
             drawHisto0.setBorder(BorderFactory.createTitledBorder(title));
@@ -65,7 +65,7 @@ public class HistogramManager extends JPanel{
             ArrayList<Float> variableValues = dataModel.getVariableList().get(selectedVariableIndex1).getData();
             binRanges1.setbinRanges(variableValues);
             bins1.setBinQuantity(variableValues, binRanges1.getBinRanges());
-            drawHisto1.updateHistoValues(bins1.getBinRelativQuantity());
+            drawHisto1.updateHistoValues(bins1.getBinAbsolteQuantity());
 
             String title = dataModel.getVariableList().get(selectedVariableIndex1).getName();
             drawHisto1.setBorder(BorderFactory.createTitledBorder(title));
