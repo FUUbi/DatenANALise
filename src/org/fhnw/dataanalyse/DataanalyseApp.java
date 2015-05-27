@@ -27,7 +27,7 @@ public class DataanalyseApp {
 
 
         File file = new FileChooser().getNewFile();
-        IVariableLoader loader = new VariableLoader(file).loadVariables();
+        IVariableLoader loader = new VariableLoaderChooser(file).getLoader();
         DataModel dataModel =  loader.loadVariable(file);
 
         String  fileName = file.getName();
