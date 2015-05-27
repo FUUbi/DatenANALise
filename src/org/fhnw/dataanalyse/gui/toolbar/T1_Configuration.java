@@ -99,10 +99,11 @@ public class T1_Configuration extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 yAxisIndex = choiceList2.getSelectedIndex();
+
                 histogramManager.setSelectedVariableIndex1(yAxisIndex);
                 histogramManager.updateHisto1();
 
-                scatterPlotPanel.setSelectedVariableIndex2(choiceList1.getSelectedIndex());
+                scatterPlotPanel.setSelectedVariableIndex2(yAxisIndex);
                 scatterPlotPanel.actionPerformedUpdate("cbx2Change");
                 guiApp.getT2h_configuration().setHisto2CheckboxText();
 

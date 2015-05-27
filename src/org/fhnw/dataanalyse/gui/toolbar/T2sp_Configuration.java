@@ -17,6 +17,9 @@ import java.util.ArrayList;
  */
 public class T2sp_Configuration extends JPanel {
 
+    int dimensionData;
+    boolean relativeSize = false;
+
     public T2sp_Configuration(DataModel dataModel, final GuiApp guiApp){
         //Dimension dimension =  Frame.getFrames()[0].getSize();
         //dimension.getWidth();
@@ -55,7 +58,10 @@ public class T2sp_Configuration extends JPanel {
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent event) {
                 accVal.setText("actual Value : " + ((JSlider) event.getSource()).getValue());
-                slider.getValue(); //<-- din wert G
+                dimensionData = slider.getValue(); //<-- din wert G
+                relativeSize = false;
+                guiApp.getScatterPlotPanel().setDiameter(dimensionData,relativeSize);
+                guiApp.getScatterPlotPanel().actionPerformedUpdate("sliderValue");
 
                 revalidate();
                 guiApp.repaint();
@@ -79,9 +85,15 @@ public class T2sp_Configuration extends JPanel {
         relativSizeValuesComB.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
+
+                dimensionData = relativSizeValuesComB.getSelectedIndex();
                 if ((e.getStateChange() == ItemEvent.SELECTED)) {
-                    // dini methode G
+                    relativeSize = true;
+                    guiApp.getScatterPlotPanel().setSelectedVariableIndex3(dimensionData,relativeSize);
+                    guiApp.getScatterPlotPanel().actionPerformedUpdate("cbx3Change");
                 }
+                revalidate();
+                guiApp.repaint();
             }
         });
 
@@ -92,14 +104,17 @@ public class T2sp_Configuration extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (relSizeCB.isSelected()){
                     slider.setEnabled(false);
-                    relativSizeValuesComB.setEnabled(true);}
+                    relativSizeValuesComB.setEnabled(true);
+                }
 
                 else {
                     slider.setEnabled(true);
                     relativSizeValuesComB.setEnabled(false);
                 }
+                revalidate();
+                guiApp.repaint();
 
-                // dini methode G
+
             }
         });
 
