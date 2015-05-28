@@ -5,10 +5,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 
 /**
- * Created by Fabrizio on 20.05.2015.
+ * FileChooser contains the getNewFile() method
  */
 public class FileChooser {
 
+    /**
+     * getNewFile provides a Chooser which select the desired file
+     * the file has to ended with .txt
+     * @return the selected file
+     */
     public File getNewFile(){
 
         JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
@@ -19,5 +24,4 @@ public class FileChooser {
         return chooser.getSelectedFile();
 
     }
-
 }

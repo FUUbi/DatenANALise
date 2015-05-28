@@ -2,7 +2,7 @@
  * Projekt: Dataanalyse, Programmieren II
  * $Header: $
  * Authors: F.Parrillo, S.Schneider, L.Vallat
- * Customers: R.Luethy, D.Brodbeck
+ * Customers/Dozenten: R.Luethy, D.Brodbeck
  */
 
 package org.fhnw.dataanalyse;
@@ -19,17 +19,15 @@ import java.io.File;
 public class DataanalyseApp {
 
     /**
-     * Documentation of the main Class....ICH WART DO NO... =P
-     * @param args pippo
-     *
+     * the main Class provide a new File and the selected variables in it
+     * Histogramm and ScatterPlot are created
+     * the GUI is created and take all the necessary parameters created in the main
      */
     public static void main(String[] args){
-
 
         File file = new FileChooser().getNewFile();
         IVariableLoader loader = new VariableLoaderChooser(file).getLoader();
         DataModel dataModel =  loader.loadVariable(file);
-
         String  fileName = file.getName();
 
         HistogramManager histogramManager = new HistogramManager(dataModel);

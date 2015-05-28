@@ -3,7 +3,7 @@ package org.fhnw.dataanalyse.datamodell;
 import java.io.File;
 
 /**
- * Created by Fabrizio on 13.05.2015.
+ * IVariableLoader is an Interface which
  *
  */
 public interface IVariableLoader {
