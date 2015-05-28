@@ -26,12 +26,20 @@ public class VariableLoaderChooser {
             in = new Scanner(file);
         } catch (FileNotFoundException e) {/*Notification*/}
 
-        String lineOne = in.nextLine();
+        String lineOne = null;
+        if (in != null) {
+            lineOne = in.nextLine();
+        }
 
         /* Check line one for Tab separated format */
-        int tabs = lineOne.length()-lineOne.replace("\t", "").length();
+        int tabs = 0;
+        if (lineOne != null) {
+            tabs = lineOne.length()-lineOne.replace("\t", "").length();
+        }
         if (tabs >= 1) {
-            in.close();
+            if (in != null) {
+                in.close();
+            }
             loader = new ColumnVariableLoader();
         }
 

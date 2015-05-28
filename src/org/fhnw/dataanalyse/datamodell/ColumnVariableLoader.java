@@ -11,7 +11,7 @@ public class ColumnVariableLoader implements IVariableLoader {
     @Override
     public DataModel loadVariable(File lineFormatedFile) {
 
-        Scanner in = null;
+        Scanner in;
         try {
             in = new Scanner(lineFormatedFile);
         } catch (FileNotFoundException e) {
@@ -31,7 +31,7 @@ public class ColumnVariableLoader implements IVariableLoader {
         Integer row = 0;
         while (in.hasNextLine()){
 
-            List<Float> values = getValue(in.nextLine(),row);
+            List<Double> values = getValue(in.nextLine(),row);
 
             for (int i = 0; i < variables.size(); i++){
 
@@ -56,20 +56,20 @@ public class ColumnVariableLoader implements IVariableLoader {
     }
 
 
-    private ArrayList<Float> getValue(String str, Integer row){
+    private ArrayList<Double> getValue(String str, Integer row){
         /**
          * converts the values found in the acctual line and returns them as float
          * if a value can not be parsed to a Float, the User gets a message in
          * witch collumn and row and that the value 0 (null) has been imported
          */
-        ArrayList<Float> values = new ArrayList<Float>();
+        ArrayList<Double> values = new ArrayList<Double>();
 
         Integer coulum = 0;
         for (String v : str.split("\t")){
             coulum++;
 
             try {
-                values.add(Float.parseFloat(v));
+                values.add(Double.parseDouble(v));
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null,
                         "Der Wert " + v + " in Zeile " + row.toString() + " Spalte " + coulum.toString() + "\n" +

@@ -82,9 +82,9 @@ public class ScatterPlotPanel extends JPanel {
     }
 
     private void updateScatterPlotContent(){
-        ArrayList<Float> index1Values = dataModel.getVariableList().get(selectedVariableIndex1).getData();
-        ArrayList<Float> index2Values = dataModel.getVariableList().get(selectedVariableIndex2).getData();
-        ArrayList<Float> index3Values = dataModel.getVariableList().get(selectedVariableIndex3).getData();
+        ArrayList<Double> index1Values = dataModel.getVariableList().get(selectedVariableIndex1).getData();
+        ArrayList<Double> index2Values = dataModel.getVariableList().get(selectedVariableIndex2).getData();
+        ArrayList<Double> index3Values = dataModel.getVariableList().get(selectedVariableIndex3).getData();
         scatterValuesIndex1.setScatterValuesX(index1Values);
         scatterValuesIndex2.setScatterValuesY(index2Values);
         boolean checked = isSelected;

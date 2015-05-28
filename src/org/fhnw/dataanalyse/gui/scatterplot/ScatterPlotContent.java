@@ -9,13 +9,13 @@ import java.util.*;
  */
 public class ScatterPlotContent extends JPanel {
 
-    private float minX;
-    private float maxX;
-    private float minY;
-    private float maxY;
-    private ArrayList<Float> x;
-    private ArrayList<Float> y;
-    private ArrayList<Float> diameterValues;
+    private double minX;
+    private double maxX;
+    private double minY;
+    private double maxY;
+    private ArrayList<Double> x;
+    private ArrayList<Double> y;
+    private ArrayList<Double> diameterValues;
     boolean drawLine;
     Color  color = Color.ORANGE;
     private int sliderDiameter;
@@ -26,9 +26,9 @@ public class ScatterPlotContent extends JPanel {
         setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
     }
 
-    public void setScatterPlotContent(float minX, float maxX, float minY, float maxY,
-                                      ArrayList<Float> index1Values, ArrayList<Float> index2Values,
-                                      ArrayList<Float> index3Values, boolean checked, int sliderValue, boolean relativeSize) {
+    public void setScatterPlotContent(double minX, double maxX, double minY, double maxY,
+                                      ArrayList<Double> index1Values, ArrayList<Double> index2Values,
+                                      ArrayList<Double> index3Values, boolean checked, int sliderValue, boolean relativeSize) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;

@@ -13,18 +13,18 @@ public class Variable {
      *  and the values are stored in the Array data
      */
     private String name;
-    private ArrayList<Float> data;
+    private ArrayList<Double> data;
 
     public Variable(String name){
         this.name = name;
-        this.data = new ArrayList<Float>();
+        this.data = new ArrayList<Double>();
     }
 
     public String getName(){
         return name;
     }
 
-    public ArrayList<Float> getData(){
+    public ArrayList<Double> getData(){
         return data;
     }
 }

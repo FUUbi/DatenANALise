@@ -9,7 +9,7 @@ public class RowVariableLoader implements IVariableLoader {
     @Override
     public DataModel loadVariable(File rowFormatedFile) {
 
-        Scanner in = null;
+        Scanner in;
         try {
             in = new Scanner(rowFormatedFile);
         } catch (FileNotFoundException e) {
@@ -38,7 +38,7 @@ public class RowVariableLoader implements IVariableLoader {
                 String[] values = variableValues.split(separator);
 
                 for (String v: values){
-                  variables.get(n).getData().add(Float.parseFloat(v));
+                  variables.get(n).getData().add(Double.parseDouble(v));
                 }
 
             }

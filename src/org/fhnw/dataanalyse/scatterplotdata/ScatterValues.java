@@ -8,43 +8,46 @@ import java.util.ArrayList;
 
 public class ScatterValues {
 
-    private float minX = (float)0.0;
-    private float minY = (float)0.0;
-    private float maxX = (float)0.0;
-    private float maxY = (float)0.0;
-    private ArrayList<Float> scatterValuesX = new ArrayList<Float>();
-    private ArrayList<Float> scatterValuesY = new ArrayList<Float>();
+    private double minX = 0.d;
+    private double minY = 0.d;
+    private double maxX = 0.d;
+    private double maxY = 0.d;
+    private ArrayList<Double> scatterValuesX = new ArrayList<Double>();
+    private ArrayList<Double> scatterValuesY = new ArrayList<Double>();
 
-    public void setScatterValuesX(ArrayList<Float> data) {
+    public void setScatterValuesX(ArrayList<Double> data) {
 
         scatterValuesX.clear();
-        minX = (float)0.0;
-        for (Float f : data) if (f.compareTo(minX) == -1) minX = f;
-        maxX = (float)0.0;
-        for (Float f : data) if (f.compareTo(maxX) == 1) maxX = f;
+        minX = 0.d;
+        for (Double f : data) if (f.compareTo(minX) == -1) minX = f;
+
+        maxX = 0.d;
+        for (Double f : data) if (f.compareTo(maxX) == 1) maxX = f;
 
         }
 
-    public void setScatterValuesY(ArrayList<Float> data) {
+    public void setScatterValuesY(ArrayList<Double> data) {
+
 
         scatterValuesY.clear();
-        minY = (float)0.0;
-        for (Float f : data) if (f.compareTo(minY) == -1) minY = f;
-        maxY = (float)0.0;
-        for (Float f : data) if (f.compareTo(maxY) == 1) maxY = f;
+        minY = 0.d;
+        for (Double f : data) if (f.compareTo(minY) == -1) minY = f;
+
+        maxY = 0.d;
+        for (Double f : data) if (f.compareTo(maxY) == 1) maxY = f;
 
     }
 
-    public float getMinX(){
+    public double getMinX(){
         return minX;
     }
-    public float getMaxX(){
+    public double getMaxX(){
         return maxX;
     }
-    public float getMinY(){
+    public double getMinY(){
         return minY;
     }
-    public float getMaxY(){
+    public double getMaxY(){
         return maxY;
     }
 

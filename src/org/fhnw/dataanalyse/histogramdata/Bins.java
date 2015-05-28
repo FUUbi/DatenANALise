@@ -10,32 +10,29 @@ import java.util.List;
 public class Bins {
     ArrayList<Integer> binAbsolteQuantity;
 
-    public void setBinQuantity(ArrayList<Float> data, List<Float> binRanges){
+    public void setBinQuantity(ArrayList<Double> data, List<Double> binRanges){
 
         binAbsolteQuantity = new ArrayList<Integer>();
-        for (float f: binRanges) binAbsolteQuantity.add(0);
+        for (double f: binRanges) binAbsolteQuantity.add(0);
 
-            for (Float value : data) {
-                boolean foundBin = false;
+        for (Double value : data) {
+            boolean foundBin = false;
 
-                int n = 0;
-                while (!foundBin && n < binRanges.size()-1) {
+            int n = 0;
+            while (!foundBin && n < binRanges.size()-1) {
 
-                    if ((value.compareTo(binRanges.get(n)) == 0 || value.compareTo(binRanges.get(n)) == 1) &&
-                            (value.compareTo(binRanges.get(n + 1)) == -1)) {
-                        foundBin = true;
-                    }
-
-                    n++;
-
+                if ((value.compareTo(binRanges.get(n)) == 0 || value.compareTo(binRanges.get(n)) == 1) &&
+                        (value.compareTo(binRanges.get(n + 1)) == -1)) {
+                    foundBin = true;
                 }
-
-                int tempQuantity = binAbsolteQuantity.get(n);
-                tempQuantity++;
-
-                binAbsolteQuantity.set(n, tempQuantity);
+                n++;
             }
 
+            int tempQuantity = binAbsolteQuantity.get(n);
+            tempQuantity++;
+
+            binAbsolteQuantity.set(n, tempQuantity);
+        }
 
     }
 

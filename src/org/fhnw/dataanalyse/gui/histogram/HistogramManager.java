@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse.gui.histogram;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.histogramdata.BinRanges;
 import org.fhnw.dataanalyse.histogramdata.Bins;
+import sun.text.resources.FormatData_de_LU;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +50,7 @@ public class HistogramManager extends JPanel{
 
     public void updateHisto0(){
         if (histo0State) {
-            ArrayList<Float> variableValues = dataModel.getVariableList().get(selectedVariableIndex0).getData();
+            ArrayList<Double> variableValues = dataModel.getVariableList().get(selectedVariableIndex0).getData();
             binRanges0.setbinRanges(variableValues);
             bins0.setBinQuantity(variableValues, binRanges0.getBinRanges());
             drawHisto0.updateHistoValues(bins0.getBinAbsolteQuantity());
@@ -62,7 +63,7 @@ public class HistogramManager extends JPanel{
 
     public void updateHisto1(){
         if (histo1State) {
-            ArrayList<Float> variableValues = dataModel.getVariableList().get(selectedVariableIndex1).getData();
+            ArrayList<Double> variableValues = dataModel.getVariableList().get(selectedVariableIndex1).getData();
             binRanges1.setbinRanges(variableValues);
             bins1.setBinQuantity(variableValues, binRanges1.getBinRanges());
             drawHisto1.updateHistoValues(bins1.getBinAbsolteQuantity());
