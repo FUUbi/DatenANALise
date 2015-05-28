@@ -5,7 +5,8 @@ import java.awt.*;
 import java.util.*;
 
 /**
- *
+ * ScatterPlotContent provides a Panel which contains all Element too show a ScatterPlot
+ * ScatterPlotContent contains setScatterPlotContent Method, setColor Method and paintComponent Method
  */
 public class ScatterPlotContent extends JPanel {
 
@@ -17,10 +18,10 @@ public class ScatterPlotContent extends JPanel {
     private ArrayList<Double> y;
     private ArrayList<Double> diameterValues;
     boolean drawLine;
-    Color  color = Color.ORANGE;
     private int sliderDiameter;
     private boolean relativeSize;
 
+    Color  color = Color.ORANGE;
 
     public ScatterPlotContent() {
         setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
@@ -39,11 +40,9 @@ public class ScatterPlotContent extends JPanel {
         this.drawLine = checked;
         this.sliderDiameter = sliderValue;
         this.relativeSize = relativeSize;
-        revalidate();
+        revalidate();  /* ensures the dynamism of the ScatterPlot on the GUI */
         repaint();
     }
-
-
 
 
     public void setColor(Color color) {
@@ -51,10 +50,8 @@ public class ScatterPlotContent extends JPanel {
         repaint();
     }
 
-
     @Override
     protected void paintComponent(Graphics g) {
-    //int distance = getWidth()/x.size();
         for (int i = 1; i < x.size(); i++) {
             double valueX1 = x.get(i-1);
             double valueY1 = y.get(i-1);
@@ -66,21 +63,19 @@ public class ScatterPlotContent extends JPanel {
                 double diameterVal = diameterValues.get(i);
                 diameter = (int) diameterVal/100;
             }
-            else{
-                diameter = sliderDiameter;
-            }
+            else{diameter = sliderDiameter;}
 
-            /*Initialiserung der Koordinatenwerte*/
+            /* Initialisation of values' coordinate */
             int a = (int) ((valueX1-minX)/(maxX-minX)*getWidth());
             a -= 50;
-            /*int a = (int) ((valueX1/maxX)*getWidth()/1.25);*/
+
             int b = (int) ((valueY1-minY)/(maxY-minY)*getHeight());
-            /*int b = (int) ((valueY1/maxY)*getHeight()/1.25);*/
             b = (getHeight() - b);
             b += 50;
-            //int c = (int) ((valueX2/maxX)*getWidth()/1.25);
+
             int c = (int) ((valueX2-minX)/(maxX-minX)*getWidth());
             c -= 50;
+
             int d = (int) ((valueY2-minY)/(maxY-minY)*getHeight());
             d = (getHeight() - d);
             d += 50;

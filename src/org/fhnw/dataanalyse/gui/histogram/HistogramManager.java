@@ -3,10 +3,9 @@ package org.fhnw.dataanalyse.gui.histogram;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.histogramdata.BinRanges;
 import org.fhnw.dataanalyse.histogramdata.Bins;
-import sun.text.resources.FormatData_de_LU;
+
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
