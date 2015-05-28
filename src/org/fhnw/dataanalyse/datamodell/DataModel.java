@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse.datamodell;
 import java.util.ArrayList;
 
 /**
+ * DataModel contains variableList and getVariableList
  *
  */
 
