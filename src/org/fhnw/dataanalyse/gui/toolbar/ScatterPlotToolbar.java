@@ -153,12 +153,5 @@ public class ScatterPlotToolbar extends JPanel {
 
     }
 
-
-
-
-
-
-
-
 }
 

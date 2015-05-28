@@ -1,15 +1,11 @@
 package org.fhnw.dataanalyse.gui.scatterplot;
 
-import org.fhnw.dataanalyse.scatterplotdata.ScatterValues;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.List;
 import java.util.*;
 
 /**
- * Created by Sven on 17.05.2015.
+ *
  */
 public class ScatterPlotContent extends JPanel {
 

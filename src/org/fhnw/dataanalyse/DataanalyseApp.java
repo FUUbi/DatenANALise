@@ -30,9 +30,9 @@ public class DataanalyseApp {
         DataModel dataModel =  loader.loadVariable(file);
         String  fileName = file.getName();
 
-        HistogramManager histogramManager = new HistogramManager(dataModel);
-
         ScatterPlotPanel scatterPlotPanel = new ScatterPlotPanel(dataModel);
+
+        HistogramManager histogramManager = new HistogramManager(dataModel);
 
         new GuiApp(dataModel, histogramManager, scatterPlotPanel, fileName);
     }
