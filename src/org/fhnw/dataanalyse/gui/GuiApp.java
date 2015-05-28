@@ -6,28 +6,34 @@ import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
 import org.fhnw.dataanalyse.gui.toolbar.MenuToolbar;
 import org.fhnw.dataanalyse.gui.toolbar.HistoToolbar;
 import org.fhnw.dataanalyse.gui.toolbar.ScatterPlotToolbar;
-
 import java.awt.*;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.*;
 
-
 /**
- * GuiApp defines the main frame for the Programm's GUI
- * blabla --- i wart jez uf euch 2 ! =P
- *
+ * GuiApp Class contains the GuiApp Method
+ * GuiApp Class conains also setGridBagConstraints,getMenuToolbar(), getHistoToolbar(),
+ * getHistogramManager(), getScatterPlotPanel()
  */
 
 public class GuiApp extends JFrame {
-    private HistoToolbar histoToolbar;
+
     private MenuToolbar menuToolbar;
+    private HistoToolbar histoToolbar;
     private HistogramManager histogramManager;
     private ScatterPlotPanel scatterPlotPanel;
     private String fileName;
 
-
+    /**
+     * GuiApp defines the main frame of the GUI and create all the required panels
+     * Each Panel receive its content which have been defined in another Class
+     * @param dataModel
+     * @param histogramManager
+     * @param scatterPlotPanel
+     * @param fileName
+     */
     public GuiApp(DataModel dataModel, HistogramManager histogramManager, ScatterPlotPanel scatterPlotPanel, String fileName) {
         this.histogramManager = histogramManager;
         this.scatterPlotPanel = scatterPlotPanel;
@@ -38,7 +44,7 @@ public class GuiApp extends JFrame {
         Dimension dim = toolkit.getScreenSize();
 
         /* Frame Initialisaton*/
-        setTitle("Dataanalyse File: ");
+        setTitle("Dataanalyse");
         int height = dim.height;
         int width = dim.width;
         setSize(width, height);
@@ -57,13 +63,11 @@ public class GuiApp extends JFrame {
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
 
-
         /*plotingToolbar Layout */
         JPanel toolbar2 = new JPanel(new GridLayout(0, 2));
         c = setConstraintParameters(0, 1, 2, 1, "NORTH", 1, 0);
         distributor.setConstraints(toolbar2, c);
         surface.add(toolbar2);
-
 
         JPanel toolbar2_left = new ScatterPlotToolbar(dataModel, this);
         histoToolbar = new HistoToolbar(dataModel, this);
@@ -79,7 +83,6 @@ public class GuiApp extends JFrame {
         distributor.setConstraints(plotArea, c);
         surface.add(plotArea);
 
-
         plotArea.add(scatterPlotPanel.getScatterPlotContent());
         plotArea.add(histogramManager);
 
@@ -89,30 +92,21 @@ public class GuiApp extends JFrame {
 
     }
 
-
-    /**
-     *
-     *
-     * return Constraints Parameters
-     */
     public GridBagConstraints setConstraintParameters(int gridx, int gridy, int gridwidth, int gridheight, String position, int weigthx, int weighty) {
 
-        GridBagConstraints c;
-
-        c = new GridBagConstraints();
+        GridBagConstraints c = new GridBagConstraints();
         c.gridx = gridx;
         c.gridy = gridy;
         c.gridwidth = gridwidth;
+
         if (gridheight == 100) {
             c.gridheight = GridBagConstraints.REMAINDER;
         } else {
             c.gridheight = gridheight;
         }
 
-
         c.fill = GridBagConstraints.BOTH;
 
-/*                                                                                <------------ //ok be vllt blöd abr ich schaff ke switch wege dene equals scheiss...*/
         if (position.equals("NORTH") || position.equals("north")) {
             c.anchor = GridBagConstraints.NORTH;
         } else if (position.equals("SOUTH") || position.equals("south")) {
@@ -129,7 +123,6 @@ public class GuiApp extends JFrame {
         return c;
     }
 
-
     public MenuToolbar getMenuToolbar() {
         return menuToolbar;
     }
@@ -145,7 +138,6 @@ public class GuiApp extends JFrame {
     public ScatterPlotPanel getScatterPlotPanel() {
         return scatterPlotPanel;
     }
-
 
 }
 

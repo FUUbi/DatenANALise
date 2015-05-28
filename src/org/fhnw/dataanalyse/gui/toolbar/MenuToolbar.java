@@ -4,7 +4,6 @@ import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
 import org.fhnw.dataanalyse.gui.histogram.HistogramManager;
 import org.fhnw.dataanalyse.gui.scatterplot.ScatterPlotPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,14 +13,24 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 /**
- * Created by Fabrizio on 19.05.2015.
+ * MenuToolbar Class contains the Method MenuToolbar
+ * MenuToolbar Class also contains getPanel(), getxAxisIndex(), getyAxisIndex()
  */
+
 public class MenuToolbar extends JPanel {
 
-    int xAxisIndex;
-    int yAxisIndex;
-    int comboxLastIndex = 0;
+    private int xAxisIndex;
+    private int yAxisIndex;
 
+    /**
+     * The method MenuToolbar provides the content of the first Toolbar in the GUI
+     * MenuToolbar contains the Menu to select the different variables to plot in the App
+     * @param dataModel
+     * @param histogramManager
+     * @param scatterPlotPanel
+     * @param fileName
+     * @param guiApp
+     */
     public MenuToolbar(DataModel dataModel,
                        final HistogramManager histogramManager,
                        final ScatterPlotPanel scatterPlotPanel,
@@ -32,8 +41,8 @@ public class MenuToolbar extends JPanel {
         setBorder(BorderFactory.createTitledBorder(fileName.substring(0,fileName.indexOf("."))));
 
 
-
-        ArrayList<String> dropDownList = new ArrayList<String>();
+        /* DropDownList for the variables to select and the corresponding ComboBoxes */
+        ArrayList<String> dropDownList = new ArrayList<>();
 
         final JComboBox choiceList1 = new JComboBox();
         final JComboBox choiceList2 = new JComboBox();
@@ -61,7 +70,6 @@ public class MenuToolbar extends JPanel {
                 choiceList2.addItem(s);
             }
         }
-
 
         add(Box.createHorizontalGlue());
         add(new Label("X-Axis"));
@@ -93,7 +101,6 @@ public class MenuToolbar extends JPanel {
             }
         });
 
-
         choiceList2.addActionListener(new ActionListener() {
 
             @Override
@@ -110,9 +117,7 @@ public class MenuToolbar extends JPanel {
                 revalidate();
                 guiApp.repaint();
             }
-
         });
-
 
     }
 

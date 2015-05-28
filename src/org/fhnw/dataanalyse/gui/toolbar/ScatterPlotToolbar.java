@@ -2,7 +2,6 @@ package org.fhnw.dataanalyse.gui.toolbar;
 
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -11,21 +10,27 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
- * Created by Vallat on 19.05.2015.
+ * ScatterPlotToolbar Class contains ScatterPlotToolbar Method which provides the content of toolbar2_left
+ * @see GuiApp
  */
+
 public class ScatterPlotToolbar extends JPanel {
 
-    int dimensionData;
-    boolean relativeSize = false;
+    private int dimensionData;
+    private boolean relativeSize = false;
 
+    /**
+     * ScatterPlotToolbar provides all elements required on this toolbar and them ActionListeners
+     * @param dataModel
+     * @param guiApp
+     */
     public ScatterPlotToolbar(DataModel dataModel, final GuiApp guiApp){
-        //Dimension dimension =  Frame.getFrames()[0].getSize();
-        //dimension.getWidth();
 
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
         setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
 
 
+        /*Change Color*/
         JButton selectColor = new JButton("Change Color");
         selectColor.addActionListener(new ActionListener() {
             @Override
@@ -41,6 +46,7 @@ public class ScatterPlotToolbar extends JPanel {
         });
 
 
+        /*Slider */
         final Label accVal = new Label();
         final JSlider slider = new JSlider();
 
@@ -56,7 +62,7 @@ public class ScatterPlotToolbar extends JPanel {
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent event) {
                 accVal.setText("actual Value : " + ((JSlider) event.getSource()).getValue());
-                dimensionData = slider.getValue(); //<-- din wert G
+                dimensionData = slider.getValue();
                 relativeSize = false;
                 guiApp.getScatterPlotPanel().setDiameter(dimensionData,relativeSize);
                 guiApp.getScatterPlotPanel().actionPerformedUpdate("sliderValue");
@@ -66,7 +72,9 @@ public class ScatterPlotToolbar extends JPanel {
             }
         });
 
-        ArrayList<String> dropDownList = new ArrayList<String>();
+
+        /* DropDownList containing variables for the ComboBox relativeSize */
+        ArrayList<String> dropDownList = new ArrayList<>();
         int n = dataModel.getVariableList().size();
         for (int i = 0; i < n; i++) {
             dropDownList.add(dataModel.getVariableList().get(i).getName());
@@ -74,12 +82,9 @@ public class ScatterPlotToolbar extends JPanel {
 
         final JComboBox relativSizeValuesComB = new JComboBox();
         if (n == 0)  relativSizeValuesComB.addItem("-");
-
         else for (String s : dropDownList)
             relativSizeValuesComB.addItem(s);
-
         relativSizeValuesComB.setEnabled(false);
-
         relativSizeValuesComB.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -95,6 +100,7 @@ public class ScatterPlotToolbar extends JPanel {
             }
         });
 
+        /*CheckBox Relativ Size in Relation with the ComboBox relativSizeValuesComB */
         final JCheckBox relSizeCB = new JCheckBox("Relativ Size");
         relSizeCB.setMnemonic(KeyEvent.VK_L);
         relSizeCB.addActionListener(new ActionListener() {
@@ -117,6 +123,7 @@ public class ScatterPlotToolbar extends JPanel {
         });
 
 
+        /*CheckBox Draw Line */
         final JCheckBox linieCB = new JCheckBox("Draw Linie");
         linieCB.setMnemonic(KeyEvent.VK_L);
         linieCB.addActionListener(new ActionListener() {
