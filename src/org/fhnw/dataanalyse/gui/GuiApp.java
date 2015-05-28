@@ -107,14 +107,22 @@ public class GuiApp extends JFrame {
 
         c.fill = GridBagConstraints.BOTH;
 
-        if (position.equals("NORTH") || position.equals("north")) {
-            c.anchor = GridBagConstraints.NORTH;
-        } else if (position.equals("SOUTH") || position.equals("south")) {
-            c.anchor = GridBagConstraints.SOUTH;
-        } else if (position.equals("WEST") || position.equals("west")) {
-            c.anchor = GridBagConstraints.WEST;
-        } else if (position.equals("EAST") || position.equals("east")) {
-            c.anchor = GridBagConstraints.EAST;
+        switch (c.anchor){
+            case 1: position.equals("NORTH");
+                c.anchor = GridBagConstraints.NORTH;
+                break;
+
+            case 2: position.equals("SOUTH");
+                c.anchor = GridBagConstraints.SOUTH;
+                break;
+
+            case 3: position.equals("WEST");
+                c.anchor = GridBagConstraints.WEST;
+                break;
+
+            case 4: position.equals("EAST");
+                c.anchor = GridBagConstraints.EAST;
+                break;
         }
 
         c.weightx = weigthx;

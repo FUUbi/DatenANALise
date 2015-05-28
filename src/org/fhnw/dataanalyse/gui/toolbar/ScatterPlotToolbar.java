@@ -57,7 +57,7 @@ public class ScatterPlotToolbar extends JPanel {
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setSnapToTicks(true);
-        slider.setValue(0);
+        slider.setValue(10);
 
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent event) {
@@ -72,9 +72,16 @@ public class ScatterPlotToolbar extends JPanel {
             }
         });
 
+        /* Plot data*/
+        dimensionData = slider.getValue();
+        relativeSize = false;
+        guiApp.getScatterPlotPanel().setDiameter(dimensionData,relativeSize);
+        guiApp.getScatterPlotPanel().actionPerformedUpdate("sliderValue");
+
+
 
         /* DropDownList containing variables for the ComboBox relativeSize */
-        ArrayList<String> dropDownList = new ArrayList<>();
+        ArrayList<String> dropDownList = new ArrayList<String>();
         int n = dataModel.getVariableList().size();
         for (int i = 0; i < n; i++) {
             dropDownList.add(dataModel.getVariableList().get(i).getName());

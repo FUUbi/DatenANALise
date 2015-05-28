@@ -1,5 +1,6 @@
 package org.fhnw.dataanalyse.datamodell;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -13,6 +14,10 @@ public class RowVariableLoader implements IVariableLoader {
         try {
             in = new Scanner(rowFormatedFile);
         } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Das Ausgewählte File kann nicht geöffnet werden",
+                    "Fehler",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         }
 

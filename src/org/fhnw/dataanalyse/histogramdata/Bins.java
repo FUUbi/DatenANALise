@@ -15,7 +15,7 @@ public class Bins {
 
     public void setBinQuantity(ArrayList<Double> data, List<Double> binRanges){
 
-        binAbsoluteQuantity = new ArrayList<>();
+        binAbsoluteQuantity = new ArrayList<Integer>();
 
         for (double f : binRanges) binAbsoluteQuantity.add(0);
 

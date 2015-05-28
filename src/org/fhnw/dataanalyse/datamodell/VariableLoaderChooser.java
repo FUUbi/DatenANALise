@@ -1,5 +1,6 @@
 package org.fhnw.dataanalyse.datamodell;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -24,7 +25,12 @@ public class VariableLoaderChooser {
         /* Check if there is a document */
         try {
             in = new Scanner(file);
-        } catch (FileNotFoundException e) {/*Notification*/}
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null,
+                    "Das Ausgewählte File kann nicht geöffnet werden",
+                    "Fehler",
+                    JOptionPane.ERROR_MESSAGE);
+        }
 
         String lineOne = null;
         if (in != null) {
@@ -36,19 +42,28 @@ public class VariableLoaderChooser {
         if (lineOne != null) {
             tabs = lineOne.length()-lineOne.replace("\t", "").length();
         }
+
         if (tabs >= 1) {
             if (in != null) {
                 in.close();
             }
+
             loader = new ColumnVariableLoader();
         }
 
+        else {
         /*  Check line one for an integer */
-        /* (row formated files got an Integer on the first line) */
-        try{Integer.parseInt(lineOne);
-            in.close();
-            loader = new RowVariableLoader();
-        }catch(Exception e){/*Notification*/}
+            try {
+                Integer.parseInt(lineOne);
+                in.close();
+                loader = new RowVariableLoader();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,
+                        "Das Format wird nicht unterstuezt",
+                        "Format Fehler",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     /**

@@ -15,6 +15,11 @@ public class ColumnVariableLoader implements IVariableLoader {
         try {
             in = new Scanner(lineFormatedFile);
         } catch (FileNotFoundException e) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Das Ausgewählte File kann nicht geöffnet werden",
+                    "Fehler",
+                    JOptionPane.ERROR_MESSAGE);
             return null;
         }
 

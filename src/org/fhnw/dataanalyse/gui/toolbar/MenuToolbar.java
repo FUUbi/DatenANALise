@@ -42,7 +42,7 @@ public class MenuToolbar extends JPanel {
 
 
         /* DropDownList for the variables to select and the corresponding ComboBoxes */
-        ArrayList<String> dropDownList = new ArrayList<>();
+        ArrayList<String> dropDownList = new ArrayList<String>();
 
         final JComboBox choiceList1 = new JComboBox();
         final JComboBox choiceList2 = new JComboBox();
