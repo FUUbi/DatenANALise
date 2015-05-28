@@ -1,47 +1,32 @@
 package org.fhnw.dataanalyse.gui.histogram;
 
-import org.fhnw.dataanalyse.datamodell.FileChooser;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Created by Fabrizio on 21.05.2015.
- *
+ * DrawHisto contains updateHistoValues Method which updates its content at each call
+ * DrawHisto contains also paintComponent Method
  */
 public class DrawHisto extends JPanel{
-    int k;
-    ArrayList<Integer> Quantity;
-    boolean state = true;
 
-    public DrawHisto(){
+    private int k;
+    private ArrayList<Integer> Quantity;
 
-    }
 
-    public DrawHisto(ArrayList<Integer> binQuantity) {
-        this.k = binQuantity.size();
-        this.Quantity = binQuantity;
-
-    }
-
-    //vileich währe besser wenn set genant
     public void updateHistoValues(ArrayList<Integer> binRelativQuantity) {
         this.k = binRelativQuantity.size();
         this.Quantity = binRelativQuantity;
         repaint();
-
     }
-
 
     @Override
     public void paintComponent(Graphics g) {
 
         int barWidth = getWidth() / k;
-
         int max = 0;
-        for (Integer i : Quantity) if (i > max) max = i;
 
+        for (Integer i : Quantity) if (i > max) max = i;
 
         for (int i = 0; i < k; i++) {
 

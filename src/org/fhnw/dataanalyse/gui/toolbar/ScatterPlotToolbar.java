@@ -34,7 +34,7 @@ public class ScatterPlotToolbar extends JPanel {
                         ScatterPlotToolbar.this,
                         "Change Scatterplot Color",
                         Color.blue);
-                guiApp.getScatterPlotPanel().colorChanged(color);
+                guiApp.getScatterPlotPanel().changeColor(color);
                 revalidate();
                 guiApp.repaint();
             }

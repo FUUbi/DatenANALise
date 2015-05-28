@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Fabrizio on 21.05.2015.
- *
+ * BinRanges contains setBinRanges() Method and getBinRanges()
  */
+
 public class BinRanges {
-    int k;
-    int n;
-    ArrayList<Double> binRanges = new ArrayList<Double>();
+
+    private int k;
+    private int n;
+    private ArrayList<Double> binRanges = new ArrayList<>();
 
 
-    public void setbinRanges(ArrayList<Double> data){
+    public void setBinRanges(ArrayList<Double> data){
+        
         binRanges.clear();
-
         n = data.size();
         k = (int) Math.sqrt(n);
 
@@ -25,15 +26,10 @@ public class BinRanges {
         double min = data.get(0);
         for (Double f : data) if (f.compareTo(min) == -1) min = f;
 
-
         double binWidth = (Math.abs(min) + Math.abs(max)) / k;
 
-        for (int i = 0; i <= k; i++) {
-            binRanges.add((min + i * binWidth));
-        }
-
+        for (int i = 0; i <= k; i++) {binRanges.add((min + i * binWidth));}
     }
-
 
     public List<Double> getBinRanges() {
         return binRanges;

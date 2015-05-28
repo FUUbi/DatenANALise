@@ -3,7 +3,8 @@ package org.fhnw.dataanalyse.scatterplotdata;
 import java.util.ArrayList;
 
 /**
- *
+ * ScatterValues contains setScatterValuesX (minX and maxX) and setScatterValuesY(minY and maxY)
+ * ScatterValues provides the differents method to access to the min and max values : getMinX(), getMaxX(), getMinY(), getMaxY()
  */
 
 public class ScatterValues {
@@ -28,7 +29,6 @@ public class ScatterValues {
 
     public void setScatterValuesY(ArrayList<Double> data) {
 
-
         scatterValuesY.clear();
         minY = 0.d;
         for (Double f : data) if (f.compareTo(minY) == -1) minY = f;
@@ -44,12 +44,11 @@ public class ScatterValues {
     public double getMaxX(){
         return maxX;
     }
+
     public double getMinY(){
         return minY;
     }
     public double getMaxY(){
         return maxY;
     }
-
-
 }

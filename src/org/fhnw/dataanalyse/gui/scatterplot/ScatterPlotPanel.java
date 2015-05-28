@@ -7,7 +7,10 @@ import java.awt.*;
 import java.util.*;
 
 /**
- *
+ * ScatterPlotPanel provides the Panel with its content and values
+ * @see ScatterValues
+ * @see ScatterPlotContent
+ * ScatterPlotPanel updates its content at each call
  */
 public class ScatterPlotPanel extends JPanel {
 
@@ -29,7 +32,7 @@ public class ScatterPlotPanel extends JPanel {
         updateScatterPlotContent();
     }
 
-    public void colorChanged(Color color){
+    public void changeColor(Color color){
         getScatterPlotContent().setColor(color);
     }
 
