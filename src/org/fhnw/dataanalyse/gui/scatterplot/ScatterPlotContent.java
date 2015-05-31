@@ -64,7 +64,12 @@ public class ScatterPlotContent extends JPanel {
 
             if(relativeSize){
                 double diameterVal = diameterValues.get(i);
-                diameter = (int) diameterVal/100;
+                double max = diameterValues.get(0);
+                for (double d :diameterValues) {
+                    if(d> max) max = d;
+                }
+
+                diameter = (int) (50 * diameterVal/max);
             }
             else{diameter = sliderDiameter;}
 
