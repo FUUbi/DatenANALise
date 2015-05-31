@@ -20,6 +20,9 @@ public class ScatterPlotPanel extends JPanel {
     private int diameter;
     private boolean isSelected;
     private boolean relativeSize;
+    private Color bgColor = Color.white;
+
+
 
     ScatterValues scatterValuesIndex1 = new ScatterValues();
     ScatterValues scatterValuesIndex2 = new ScatterValues();
@@ -30,6 +33,8 @@ public class ScatterPlotPanel extends JPanel {
     public ScatterPlotPanel(DataModel dataModel){
         this.dataModel = dataModel;
         updateScatterPlotContent();
+        setBackground(bgColor);
+
     }
 
     public void changeColor(Color color){

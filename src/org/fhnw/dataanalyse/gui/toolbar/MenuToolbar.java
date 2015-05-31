@@ -21,6 +21,8 @@ public class MenuToolbar extends JPanel {
 
     private int xAxisIndex;
     private int yAxisIndex;
+    private Color bgColor = Color.white;
+
 
     /**
      * The method MenuToolbar provides the content of the first Toolbar in the GUI
@@ -45,7 +47,9 @@ public class MenuToolbar extends JPanel {
         ArrayList<String> dropDownList = new ArrayList<String>();
 
         final JComboBox choiceList1 = new JComboBox();
+        choiceList1.setBackground(bgColor);
         final JComboBox choiceList2 = new JComboBox();
+        choiceList2.setBackground(bgColor);
 
         int n = dataModel.getVariableList().size();
         for (int i = 0; i < n; i++) {

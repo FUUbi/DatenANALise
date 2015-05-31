@@ -25,6 +25,7 @@ public class GuiApp extends JFrame {
     private HistogramManager histogramManager;
     private ScatterPlotPanel scatterPlotPanel;
     private String fileName;
+    private Color bgColor = Color.white;
 
     /**
      * GuiApp defines the main frame of the GUI and create all the required panels
@@ -49,6 +50,7 @@ public class GuiApp extends JFrame {
         int width = dim.width;
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(bgColor);
 
         /*Layout*/
         GridBagLayout distributor = new GridBagLayout();
@@ -59,17 +61,20 @@ public class GuiApp extends JFrame {
         /*menuToolbar Layout */
         menuToolbar = new MenuToolbar(dataModel, histogramManager, scatterPlotPanel, fileName, this);
         JPanel toolbar1 = menuToolbar.getPanel();
+        toolbar1.setBackground(bgColor);
         c = setConstraintParameters(0, 0, 2, 1, "NORTH", 1, 0);
         distributor.setConstraints(toolbar1, c);
         surface.add(toolbar1);
 
         /*plotingToolbar Layout */
         JPanel toolbar2 = new JPanel(new GridLayout(0, 2));
+        toolbar2.setBackground(bgColor);
         c = setConstraintParameters(0, 1, 2, 1, "NORTH", 1, 0);
         distributor.setConstraints(toolbar2, c);
         surface.add(toolbar2);
 
         JPanel toolbar2_left = new ScatterPlotToolbar(dataModel, this);
+        toolbar2_left.setBackground(bgColor);
         histoToolbar = new HistoToolbar(dataModel, this);
         JPanel toolbar2_right = histoToolbar.getPanel();
         toolbar2.add(toolbar2_left);
@@ -78,6 +83,7 @@ public class GuiApp extends JFrame {
 
         /*plotingArea Layout*/
         JPanel  plotArea = new JPanel();
+        plotArea.setBackground(bgColor);
         plotArea.setLayout(new BoxLayout(plotArea,BoxLayout.X_AXIS));
         c = setConstraintParameters(0, 2, 2, 100, "SOUTH", 1, 1);
         distributor.setConstraints(plotArea, c);

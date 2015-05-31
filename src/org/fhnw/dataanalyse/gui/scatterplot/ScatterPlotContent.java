@@ -20,11 +20,14 @@ public class ScatterPlotContent extends JPanel {
     boolean drawLine;
     private int sliderDiameter;
     private boolean relativeSize;
+    private Color bgColor = Color.white;
+
 
     Color  color = Color.ORANGE;
 
     public ScatterPlotContent() {
         setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
+        setBackground(bgColor);
     }
 
     public void setScatterPlotContent(double minX, double maxX, double minY, double maxY,

@@ -18,6 +18,8 @@ public class ScatterPlotToolbar extends JPanel {
 
     private int dimensionData;
     private boolean relativeSize = false;
+    private Color bgColor = Color.white;
+
 
     /**
      * ScatterPlotToolbar provides all elements required on this toolbar and them ActionListeners
@@ -32,6 +34,7 @@ public class ScatterPlotToolbar extends JPanel {
 
         /*Change Color*/
         JButton selectColor = new JButton("Change Color");
+        selectColor.setBackground(bgColor);
         selectColor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,7 +51,10 @@ public class ScatterPlotToolbar extends JPanel {
 
         /*Slider */
         final Label accVal = new Label();
+        accVal.setBackground(bgColor);
+
         final JSlider slider = new JSlider();
+        slider.setBackground(bgColor);
 
         slider.setMinimum(0);
         slider.setMaximum(80);
@@ -88,6 +94,8 @@ public class ScatterPlotToolbar extends JPanel {
         }
 
         final JComboBox relativSizeValuesComB = new JComboBox();
+        relativSizeValuesComB.setBackground(bgColor);
+
         if (n == 0)  relativSizeValuesComB.addItem("-");
         else for (String s : dropDownList)
             relativSizeValuesComB.addItem(s);
@@ -109,6 +117,7 @@ public class ScatterPlotToolbar extends JPanel {
 
         /*CheckBox Relativ Size in Relation with the ComboBox relativSizeValuesComB */
         final JCheckBox relSizeCB = new JCheckBox("Relativ Size");
+        relSizeCB.setBackground(bgColor);
         relSizeCB.setMnemonic(KeyEvent.VK_L);
         relSizeCB.addActionListener(new ActionListener() {
             @Override
@@ -132,6 +141,7 @@ public class ScatterPlotToolbar extends JPanel {
 
         /*CheckBox Draw Line */
         final JCheckBox linieCB = new JCheckBox("Draw Linie");
+        linieCB.setBackground(bgColor);
         linieCB.setMnemonic(KeyEvent.VK_L);
         linieCB.addActionListener(new ActionListener() {
             @Override
@@ -164,6 +174,7 @@ public class ScatterPlotToolbar extends JPanel {
         add(relativSizeValuesComB);
         add(Box.createHorizontalGlue());
         add(linieCB);
+
 
     }
 

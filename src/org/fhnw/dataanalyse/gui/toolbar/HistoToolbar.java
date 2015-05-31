@@ -3,6 +3,7 @@ package org.fhnw.dataanalyse.gui.toolbar;
 import org.fhnw.dataanalyse.datamodell.DataModel;
 import org.fhnw.dataanalyse.gui.GuiApp;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,6 +19,7 @@ public class HistoToolbar extends JPanel {
     private JCheckBox histo2CheckB = new JCheckBox();
     private DataModel dataModel;
     private GuiApp guiApp;
+    private Color bgColor = Color.white;
 
 
     /**
@@ -31,8 +33,10 @@ public class HistoToolbar extends JPanel {
         this.guiApp = guiApp;
 
         setBorder(BorderFactory.createTitledBorder("Histogram"));
+        setBackground(bgColor);
         /* CheckBox 1*/
         histo1CheckB.setMnemonic(KeyEvent.VK_L);
+        histo1CheckB.setBackground(bgColor);
         histo1CheckB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,6 +49,7 @@ public class HistoToolbar extends JPanel {
 
         /* CheckBox 2*/
         histo2CheckB.setMnemonic(KeyEvent.VK_L);
+        histo2CheckB.setBackground(bgColor);
         histo2CheckB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

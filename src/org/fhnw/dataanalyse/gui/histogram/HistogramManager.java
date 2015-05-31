@@ -5,6 +5,7 @@ import org.fhnw.dataanalyse.histogramdata.BinRanges;
 import org.fhnw.dataanalyse.histogramdata.Bins;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -30,11 +31,13 @@ public class HistogramManager extends JPanel{
 
     private DataModel dataModel;
 
+    private Color bgColor = Color.white;
+
 
     public HistogramManager(DataModel dataModel){
         this.dataModel = dataModel;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        setBackground(bgColor);
         }
 
     public void setSelectedVariableIndex0(int selectedVariableIndex0) {
@@ -56,9 +59,8 @@ public class HistogramManager extends JPanel{
             drawHisto0.updateHistoValues(bins0.getBinAbsoluteQuantity());
 
             String title = dataModel.getVariableList().get(selectedVariableIndex0).getName();
+            drawHisto0.setBorder(BorderFactory.createTitledBorder(title));
 
-
-            drawHisto0.setBorder(BorderFactory.createEmptyBorder(20,10,10,10));
 
         }
     }
@@ -72,7 +74,6 @@ public class HistogramManager extends JPanel{
 
             String title = dataModel.getVariableList().get(selectedVariableIndex1).getName();
             drawHisto1.setBorder(BorderFactory.createTitledBorder(title));
-            drawHisto1.setBorder(BorderFactory.createEmptyBorder(20,10,10,10));
         }
     }
 
