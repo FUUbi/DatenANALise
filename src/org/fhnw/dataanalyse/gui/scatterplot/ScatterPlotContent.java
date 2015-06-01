@@ -16,11 +16,11 @@ public class ScatterPlotContent extends JPanel {
     private double minY;
     private double maxY;
     private ArrayList<Double> xData;
-    private ArrayList<Integer> xCord = null;
+    private ArrayList<Integer> xCord = new ArrayList<Integer>();
     private ArrayList<Double> yData;
-    private ArrayList<Integer> yCord = null;
+    private ArrayList<Integer> yCord = new ArrayList<Integer>();
     private ArrayList<Double> diameterRaw;
-    private ArrayList<Integer> diameterValues;
+    private ArrayList<Integer> diameterValues = new ArrayList<Integer>();
     boolean drawLine;
     private int sliderDiameter;
     private boolean relativeSize;
@@ -47,6 +47,9 @@ public class ScatterPlotContent extends JPanel {
         this.drawLine = checked;
         this.sliderDiameter = sliderValue;
         this.relativeSize = relativeSize;
+
+        if(relativeSize) setDiameterValues();
+
         revalidate();  /* ensures the dynamism of the ScatterPlot on the GUI */
         repaint();
     }
@@ -61,16 +64,18 @@ public class ScatterPlotContent extends JPanel {
     protected void paintComponent(Graphics g) {
         setXCord();
         setYCord();
-        setDiameterValues();
+
         for (int i = 0; i < xCord.size(); i++) {
             int valueX1 = xCord.get(i);
             int valueY1 = yCord.get(i);
-            int diameter = diameterValues.get(i);
+            int diameter;
 
-            /*if(relativeSize){
+            if(relativeSize){
+                diameter = diameterValues.get(i);
 
             }
-            else{diameter = sliderDiameter;}*/
+
+            else{diameter = sliderDiameter;}
 
 
 
@@ -123,6 +128,7 @@ public class ScatterPlotContent extends JPanel {
     }
 
     public void setXCord() {
+        xCord.clear();
         for (int i = 0; i < xData.size(); i++) {
             double xVal = xData.get(i);
             int x = (int) ((xVal-minX)/(maxX-minX)*getWidth());
@@ -131,6 +137,7 @@ public class ScatterPlotContent extends JPanel {
     }
 
     public void setYCord(){
+        yCord.clear();
         for (int i = 0; i < yData.size(); i++) {
             double yVal = yData.get(i);
             int y = (int) ((yVal - minY) / (maxY - minY) * getWidth());
@@ -139,12 +146,12 @@ public class ScatterPlotContent extends JPanel {
     }
 
     public void setDiameterValues(){
-
         double max = diameterRaw.get(0);
         for (double d : diameterRaw) {
             if(d > max) max = d;
         }
-        for (double d : diameterValues) {
+        diameterValues.clear();
+        for (double d : diameterRaw) {
         diameterValues.add((int) (50 * d/max));
         }
     }
