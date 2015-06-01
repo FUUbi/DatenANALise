@@ -27,6 +27,8 @@ public class ScatterPlotContent extends JPanel {
     private Color bgColor = Color.white;
 
 
+
+
     Color  color = Color.ORANGE;
 
     public ScatterPlotContent() {
@@ -72,20 +74,18 @@ public class ScatterPlotContent extends JPanel {
 
             if(relativeSize){
                 diameter = diameterValues.get(i);
-
             }
-
             else{diameter = sliderDiameter;}
-
 
 
             /* Initialisation of values' coordinate */
             int a = valueX1;
-            a -= (diameter / 2);
+            a -= diameter/2;
+
 
             int b = valueY1;
+            b -= diameter/2;
             b = (getHeight() - b);
-            b += (diameter / 2);
 
 
             g.setColor(color);
@@ -98,29 +98,32 @@ public class ScatterPlotContent extends JPanel {
                 int valueY1 = yCord.get(i - 1);
                 int valueX2 = xCord.get(i);
                 int valueY2 = yCord.get(i);
-                int diameter = 5;
+                int diameter;
 
-            /*if(relativeSize){
-
-            }
-            else{diameter = sliderDiameter;}*/
+                if(relativeSize){
+                    diameter = diameterValues.get(i);
+                }
+                else{diameter = sliderDiameter;}
 
 
 
             /* Initialisation of values' coordinate */
                 int a = valueX1;
-                a -= (diameter / 2);
+                a -= diameter/2;
+
 
                 int b = valueY1;
+                b -= diameter/2;
                 b = (getHeight() - b);
-                b += (diameter / 2);
+
 
                 int c = valueX2;
-                c -= (diameter / 2);
+                c -= diameter/2;
 
                 int d = valueY2;
+                d -= diameter/2;
                 d = (getHeight() - d);
-                d += (diameter / 2);
+
                 g.setColor(Color.black);
                 g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
             }
@@ -131,7 +134,11 @@ public class ScatterPlotContent extends JPanel {
         xCord.clear();
         for (int i = 0; i < xData.size(); i++) {
             double xVal = xData.get(i);
-            int x = (int) ((xVal-minX)/(maxX-minX)*getWidth());
+            int width = getWidth()-(sliderDiameter/2);
+            if(relativeSize){
+                setDiameterValues();
+            }
+            int x = (int) ((xVal - minX)/(maxX - minX) * width);
             xCord.add(x);
         }
     }
@@ -140,7 +147,8 @@ public class ScatterPlotContent extends JPanel {
         yCord.clear();
         for (int i = 0; i < yData.size(); i++) {
             double yVal = yData.get(i);
-            int y = (int) ((yVal - minY) / (maxY - minY) * getWidth());
+            int height = getHeight()-(sliderDiameter/2);
+            int y = (int) ((yVal - minY) / (maxY - minY) * height);
             yCord.add(y);
         }
     }
