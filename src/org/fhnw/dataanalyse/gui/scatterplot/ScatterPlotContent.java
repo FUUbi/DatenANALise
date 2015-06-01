@@ -2,6 +2,7 @@ package org.fhnw.dataanalyse.gui.scatterplot;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Arc2D;
 import java.util.*;
 
 /**
@@ -14,9 +15,12 @@ public class ScatterPlotContent extends JPanel {
     private double maxX;
     private double minY;
     private double maxY;
-    private ArrayList<Double> x;
-    private ArrayList<Double> y;
-    private ArrayList<Double> diameterValues;
+    private ArrayList<Double> xData;
+    private ArrayList<Integer> xCord = null;
+    private ArrayList<Double> yData;
+    private ArrayList<Integer> yCord = null;
+    private ArrayList<Double> diameterRaw;
+    private ArrayList<Integer> diameterValues;
     boolean drawLine;
     private int sliderDiameter;
     private boolean relativeSize;
@@ -37,9 +41,9 @@ public class ScatterPlotContent extends JPanel {
         this.maxX = maxX;
         this.minY = minY;
         this.maxY = maxY;
-        this.x = index1Values;
-        this.y = index2Values;
-        this.diameterValues = index3Values;
+        this.xData = index1Values;
+        this.yData = index2Values;
+        this.diameterRaw = index3Values;
         this.drawLine = checked;
         this.sliderDiameter = sliderValue;
         this.relativeSize = relativeSize;
@@ -55,51 +59,93 @@ public class ScatterPlotContent extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        for (int i = 1; i < x.size(); i++) {
-            double valueX1 = x.get(i-1);
-            double valueY1 = y.get(i-1);
-            double valueX2 = x.get(i);
-            double valueY2 = y.get(i);
-            int diameter;
+        setXCord();
+        setYCord();
+        setDiameterValues();
+        for (int i = 0; i < xCord.size(); i++) {
+            int valueX1 = xCord.get(i);
+            int valueY1 = yCord.get(i);
+            int diameter = diameterValues.get(i);
 
-            if(relativeSize){
-                double diameterVal = diameterValues.get(i);
-                double max = diameterValues.get(0);
-                for (double d :diameterValues) {
-                    if(d> max) max = d;
-                }
+            /*if(relativeSize){
 
-                diameter = (int) (50 * diameterVal/max);
             }
-            else{diameter = sliderDiameter;}
+            else{diameter = sliderDiameter;}*/
+
+
 
             /* Initialisation of values' coordinate */
-            int a = (int) ((valueX1-minX)/(maxX-minX)*getWidth());
-            a -= 50;
+            int a = valueX1;
+            a -= (diameter / 2);
 
-            int b = (int) ((valueY1-minY)/(maxY-minY)*getHeight());
+            int b = valueY1;
             b = (getHeight() - b);
-            b += 50;
+            b += (diameter / 2);
 
-            int c = (int) ((valueX2-minX)/(maxX-minX)*getWidth());
-            c -= 50;
-
-            int d = (int) ((valueY2-minY)/(maxY-minY)*getHeight());
-            d = (getHeight() - d);
-            d += 50;
 
             g.setColor(color);
             g.fillOval(a, b, diameter, diameter);
 
-            if(i==x.size()-1) {
-                g.setColor(color);
-                g.fillOval(c, d, diameter, diameter);
-            }
-
+        }
+        for (int i = 1; i < xCord.size(); i++) {
             if (drawLine) {
+                int valueX1 = xCord.get(i - 1);
+                int valueY1 = yCord.get(i - 1);
+                int valueX2 = xCord.get(i);
+                int valueY2 = yCord.get(i);
+                int diameter = 5;
+
+            /*if(relativeSize){
+
+            }
+            else{diameter = sliderDiameter;}*/
+
+
+
+            /* Initialisation of values' coordinate */
+                int a = valueX1;
+                a -= (diameter / 2);
+
+                int b = valueY1;
+                b = (getHeight() - b);
+                b += (diameter / 2);
+
+                int c = valueX2;
+                c -= (diameter / 2);
+
+                int d = valueY2;
+                d = (getHeight() - d);
+                d += (diameter / 2);
                 g.setColor(Color.black);
                 g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
             }
+        }
+    }
+
+    public void setXCord() {
+        for (int i = 0; i < xData.size(); i++) {
+            double xVal = xData.get(i);
+            int x = (int) ((xVal-minX)/(maxX-minX)*getWidth());
+            xCord.add(x);
+        }
+    }
+
+    public void setYCord(){
+        for (int i = 0; i < yData.size(); i++) {
+            double yVal = yData.get(i);
+            int y = (int) ((yVal - minY) / (maxY - minY) * getWidth());
+            yCord.add(y);
+        }
+    }
+
+    public void setDiameterValues(){
+
+        double max = diameterRaw.get(0);
+        for (double d : diameterRaw) {
+            if(d > max) max = d;
+        }
+        for (double d : diameterValues) {
+        diameterValues.add((int) (50 * d/max));
         }
     }
 }

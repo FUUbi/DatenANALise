@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * ScatterValues contains setScatterValuesX (minX and maxX) and setScatterValuesY(minY and maxY)
- * ScatterValues provides the differents method to access to the min and max values : getMinX(), getMaxX(), getMinY(), getMaxY()
+ * ScatterValues provides the different methods to access to the min and max values : getMinX(), getMaxX(), getMinY(), getMaxY()
  */
 
 public class ScatterValues {
@@ -19,22 +19,22 @@ public class ScatterValues {
     public void setScatterValuesX(ArrayList<Double> data) {
 
         scatterValuesX.clear();
-        minX = 0.d;
-        for (Double f : data) if (f.compareTo(minX) == -1) minX = f;
+        minX = data.get(0);
+        for (Double d : data) if (d.compareTo(minX) == -1) minX = d;
 
-        maxX = 0.d;
-        for (Double f : data) if (f.compareTo(maxX) == 1) maxX = f;
+        maxX = data.get(0);
+        for (Double d : data) if (d.compareTo(maxX) == 1) maxX = d;
 
         }
 
     public void setScatterValuesY(ArrayList<Double> data) {
 
         scatterValuesY.clear();
-        minY = 0.d;
-        for (Double f : data) if (f.compareTo(minY) == -1) minY = f;
+        minY = data.get(0);
+        for (Double d : data) if (d.compareTo(minY) == -1) minY = d;
 
-        maxY = 0.d;
-        for (Double f : data) if (f.compareTo(maxY) == 1) maxY = f;
+        maxY = data.get(0);
+        for (Double d : data) if (d.compareTo(maxY) == 1) maxY = d;
 
     }
 
