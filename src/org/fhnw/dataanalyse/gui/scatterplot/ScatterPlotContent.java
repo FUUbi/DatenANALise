@@ -24,6 +24,7 @@ public class ScatterPlotContent extends JPanel {
     boolean drawLine;
     private int sliderDiameter;
     private boolean relativeSize;
+    private int border = 100;
     private Color bgColor = Color.white;
 
 
@@ -80,11 +81,11 @@ public class ScatterPlotContent extends JPanel {
 
             /* Initialisation of values' coordinate */
             int a = valueX1;
-            a -= diameter/2;
+            //a += diameter/2;
 
 
             int b = valueY1;
-            b -= diameter/2;
+            b += diameter/2;
             b = (getHeight() - b);
 
 
@@ -109,7 +110,7 @@ public class ScatterPlotContent extends JPanel {
 
             /* Initialisation of values' coordinate */
                 int a = valueX1;
-                a -= diameter/2;
+                a += diameter/2;
 
 
                 int b = valueY1;
@@ -118,7 +119,7 @@ public class ScatterPlotContent extends JPanel {
 
 
                 int c = valueX2;
-                c -= diameter/2;
+                c += diameter/2;
 
                 int d = valueY2;
                 d -= diameter/2;
@@ -132,13 +133,25 @@ public class ScatterPlotContent extends JPanel {
 
     public void setXCord() {
         xCord.clear();
+        int diameter = 50;
+        if(!relativeSize) diameter = sliderDiameter;
+
         for (int i = 0; i < xData.size(); i++) {
             double xVal = xData.get(i);
-            int width = getWidth()-(sliderDiameter/2);
+            int width = getWidth() - diameter - border;
             if(relativeSize){
                 setDiameterValues();
             }
-            int x = (int) ((xVal - minX)/(maxX - minX) * width);
+            int x;
+
+            if(((Double)minX).compareTo(0.d) == -1){
+                x = (int) ((xVal + Math.abs(minX)) / (maxX - minX) * width);
+            }
+            else{
+                x = (int) ((xVal - minX)/(maxX - minX) * width);
+            }
+
+            x += (border/2);
             xCord.add(x);
         }
     }
@@ -147,7 +160,7 @@ public class ScatterPlotContent extends JPanel {
         yCord.clear();
         for (int i = 0; i < yData.size(); i++) {
             double yVal = yData.get(i);
-            int height = getHeight()-(sliderDiameter/2);
+            int height = getHeight()-(sliderDiameter/2)-border;
             int y = (int) ((yVal - minY) / (maxY - minY) * height);
             yCord.add(y);
         }
