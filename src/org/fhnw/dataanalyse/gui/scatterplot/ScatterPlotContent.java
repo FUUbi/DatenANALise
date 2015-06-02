@@ -110,7 +110,7 @@ public class ScatterPlotContent extends JPanel {
 
             /* Initialisation of values' coordinate */
                 int a = valueX1;
-                a += diameter/2;
+                a -= diameter/2;
 
 
                 int b = valueY1;
@@ -119,7 +119,7 @@ public class ScatterPlotContent extends JPanel {
 
 
                 int c = valueX2;
-                c += diameter/2;
+                c -= diameter/2;
 
                 int d = valueY2;
                 d -= diameter/2;
