@@ -46,7 +46,7 @@ public class ColumnVariableLoader implements IVariableLoader {
                 }catch (Exception e){
 
                     JOptionPane.showMessageDialog(null,
-                            "In der Zeile " + row.toString() + " fehlt ein wert\n" +
+                            "In der Zeile " + row.toString() + " fehlt ein Wert\n" +
                             "es wird 0.0 eingefuegt ",
                             "Fehler",
                             JOptionPane.WARNING_MESSAGE);

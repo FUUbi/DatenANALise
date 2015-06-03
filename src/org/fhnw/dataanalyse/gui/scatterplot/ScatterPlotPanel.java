@@ -98,8 +98,11 @@ public class ScatterPlotPanel extends JPanel {
         boolean checked = isSelected;
         int sliderValue = diameter;
         scatterPlotContent.setScatterPlotContent(scatterValuesIndex1.getMinX(),scatterValuesIndex1.getMaxX(),
-                scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values,index3Values,checked,sliderValue,relativeSize);
+                scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values,index3Values,
+                checked,sliderValue,relativeSize, selectedVariableIndex3);
 
     }
+
+
 
 }

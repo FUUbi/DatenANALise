@@ -21,10 +21,11 @@ public class ScatterPlotContent extends JPanel {
     private ArrayList<Integer> yCord = new ArrayList<Integer>();
     private ArrayList<Double> diameterRaw;
     private ArrayList<Integer> diameterValues = new ArrayList<Integer>();
+    private int lastVariableIndex3;
     boolean drawLine;
     private int sliderDiameter;
     private boolean relativeSize;
-    private int border = 100;
+    private int border = 200;
     private Color bgColor = Color.white;
 
 
@@ -39,7 +40,8 @@ public class ScatterPlotContent extends JPanel {
 
     public void setScatterPlotContent(double minX, double maxX, double minY, double maxY,
                                       ArrayList<Double> index1Values, ArrayList<Double> index2Values,
-                                      ArrayList<Double> index3Values, boolean checked, int sliderValue, boolean relativeSize) {
+                                      ArrayList<Double> index3Values, boolean checked, int sliderValue,
+                                      boolean relativeSize, int selectedVariableIndex3) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
@@ -51,7 +53,12 @@ public class ScatterPlotContent extends JPanel {
         this.sliderDiameter = sliderValue;
         this.relativeSize = relativeSize;
 
-        if(relativeSize) setDiameterValues();
+        if(relativeSize) {
+            if(!(lastVariableIndex3 == selectedVariableIndex3)){
+                setDiameterValues();
+                lastVariableIndex3 = selectedVariableIndex3;
+            }
+        }
 
         revalidate();  /* ensures the dynamism of the ScatterPlot on the GUI */
         repaint();
@@ -127,7 +134,11 @@ public class ScatterPlotContent extends JPanel {
 
                 g.setColor(Color.black);
                 g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
+
+
             }
+            g.setColor(Color.BLACK);
+            g.drawLine(border/2 - 10, getHeight() - border/2, getWidth() - border/2  + 10, getHeight() - border/2);
         }
     }
 
@@ -158,10 +169,25 @@ public class ScatterPlotContent extends JPanel {
 
     public void setYCord(){
         yCord.clear();
+        int diameter = 50;
+        if(!relativeSize) diameter = sliderDiameter;
+
         for (int i = 0; i < yData.size(); i++) {
             double yVal = yData.get(i);
-            int height = getHeight()-(sliderDiameter/2)-border;
-            int y = (int) ((yVal - minY) / (maxY - minY) * height);
+            int height = getHeight() - diameter - border;
+            if(relativeSize){
+                setDiameterValues();
+            }
+            int y;
+
+            if(((Double)minY).compareTo(0.d) == -1){
+                y = (int) ((yVal + Math.abs(minY)) / (maxY - minY) * height);
+            }
+            else{
+                y = (int) ((yVal - minY)/(maxY - minY) * height);
+            }
+
+            y += (border/2);
             yCord.add(y);
         }
     }
