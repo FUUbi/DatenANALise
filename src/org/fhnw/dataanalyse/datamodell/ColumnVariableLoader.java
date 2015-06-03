@@ -83,7 +83,7 @@ public class ColumnVariableLoader implements IVariableLoader {
                         "Fehler",
                         JOptionPane.WARNING_MESSAGE);
 
-                values.add(null);
+                values.add(0.d);
 
             }
         }

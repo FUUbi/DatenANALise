@@ -35,8 +35,21 @@ public class RowVariableLoader implements IVariableLoader {
 
                 String[] values = variableValues.split(separator);
 
+                int acctualValue = 0;
                 for (String v: values){
-                  variables.get(n).getData().add(Double.parseDouble(v));
+                    try {
+                        variables.get(n).getData().add(Double.parseDouble(v));
+                        acctualValue++;
+                    }catch (Exception e){
+                        JOptionPane.showMessageDialog(null,
+                                "Der "  + String.valueOf(acctualValue) +". Wert " + v + " der Variable" + String.valueOf(n) + "\n" +
+                                        "kann nicht in eine Fliesskommazahl umgewandelt werden \n" +
+                                        "es wird 0.0 eingefuegt ",
+                                "Fehler",
+                                JOptionPane.WARNING_MESSAGE);
+
+                        variables.get(n).getData().add(0.d);
+                    }
                 }
 
             }

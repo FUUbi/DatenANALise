@@ -57,6 +57,7 @@ public class ScatterPlotContent extends JPanel {
             if(!(lastVariableIndex3 == selectedVariableIndex3)){
                 setDiameterValues();
                 lastVariableIndex3 = selectedVariableIndex3;
+                System.out.println("kjsdklf");
             }
         }
 
