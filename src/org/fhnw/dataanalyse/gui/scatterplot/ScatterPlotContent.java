@@ -57,7 +57,6 @@ public class ScatterPlotContent extends JPanel {
             if(!(lastVariableIndex3 == selectedVariableIndex3)){
                 setDiameterValues();
                 lastVariableIndex3 = selectedVariableIndex3;
-                System.out.println("kjsdklf");
             }
         }
 
@@ -151,9 +150,7 @@ public class ScatterPlotContent extends JPanel {
         for (int i = 0; i < xData.size(); i++) {
             double xVal = xData.get(i);
             int width = getWidth() - diameter - border;
-            if(relativeSize){
-                setDiameterValues();
-            }
+
             int x;
 
             if(((Double)minX).compareTo(0.d) == -1){
@@ -176,9 +173,7 @@ public class ScatterPlotContent extends JPanel {
         for (int i = 0; i < yData.size(); i++) {
             double yVal = yData.get(i);
             int height = getHeight() - diameter - border;
-            if(relativeSize){
-                setDiameterValues();
-            }
+
             int y;
 
             if(((Double)minY).compareTo(0.d) == -1){
@@ -194,6 +189,7 @@ public class ScatterPlotContent extends JPanel {
     }
 
     public void setDiameterValues(){
+        diameterValues.clear();
         double max = diameterRaw.get(0);
         for (double d : diameterRaw) {
             if(d > max) max = d;
