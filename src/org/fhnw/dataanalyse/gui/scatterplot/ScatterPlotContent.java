@@ -2,7 +2,7 @@ package org.fhnw.dataanalyse.gui.scatterplot;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Arc2D;
+import java.awt.geom.AffineTransform;
 import java.util.*;
 
 /**
@@ -26,12 +26,12 @@ public class ScatterPlotContent extends JPanel {
     private int sliderDiameter;
     private boolean relativeSize;
     private int border = 200;
+    private String xName;
+    private String yName;
     private Color bgColor = Color.white;
-
-
-
-
     Color  color = Color.ORANGE;
+
+
 
     public ScatterPlotContent() {
         setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
@@ -41,7 +41,7 @@ public class ScatterPlotContent extends JPanel {
     public void setScatterPlotContent(double minX, double maxX, double minY, double maxY,
                                       ArrayList<Double> index1Values, ArrayList<Double> index2Values,
                                       ArrayList<Double> index3Values, boolean checked, int sliderValue,
-                                      boolean relativeSize, int selectedVariableIndex3) {
+                                      boolean relativeSize, int selectedVariableIndex3, String xName, String yName) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
@@ -52,6 +52,8 @@ public class ScatterPlotContent extends JPanel {
         this.drawLine = checked;
         this.sliderDiameter = sliderValue;
         this.relativeSize = relativeSize;
+        this.xName = xName;
+        this.yName = yName ;
 
         if(relativeSize) {
             if(!(lastVariableIndex3 == selectedVariableIndex3)){
@@ -72,6 +74,7 @@ public class ScatterPlotContent extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
         setXCord();
         setYCord();
 
@@ -83,18 +86,16 @@ public class ScatterPlotContent extends JPanel {
             if(relativeSize){
                 diameter = diameterValues.get(i);
             }
-            else{diameter = sliderDiameter;}
+            else{
+                diameter = sliderDiameter;}
 
 
             /* Initialisation of values' coordinate */
             int a = valueX1;
-            //a += diameter/2;
-
 
             int b = valueY1;
             b += diameter/2;
             b = (getHeight() - b);
-
 
             g.setColor(color);
             g.fillOval(a, b, diameter, diameter);
@@ -111,34 +112,36 @@ public class ScatterPlotContent extends JPanel {
                 if(relativeSize){
                     diameter = diameterValues.get(i);
                 }
-                else{diameter = sliderDiameter;}
+                else{
+                    diameter = sliderDiameter;}
 
-
-
-            /* Initialisation of values' coordinate */
+                /* Initialisation of values' coordinate */
                 int a = valueX1;
-                a -= diameter/2;
+                a += diameter/2;
 
 
                 int b = valueY1;
-                b -= diameter/2;
                 b = (getHeight() - b);
 
 
                 int c = valueX2;
-                c -= diameter/2;
+                c += diameter/2;
+
 
                 int d = valueY2;
-                d -= diameter/2;
                 d = (getHeight() - d);
 
                 g.setColor(Color.black);
-                g.drawLine(a + diameter / 2, b + diameter / 2, c + diameter / 2, d + diameter / 2);
-
-
+                g.drawLine(a, b, c, d);
             }
             g.setColor(Color.BLACK);
-            g.drawLine(border/2 - 10, getHeight() - border/2, getWidth() - border/2  + 10, getHeight() - border/2);
+            g.drawString("X-Axis: " + xName, getWidth() / 2, getHeight() - border / 10);
+            AffineTransform orig = g2.getTransform();
+            AffineTransform at = new AffineTransform();
+            at.rotate(Math.toRadians(-90), border/6, getHeight()/2);
+            g2.setTransform(at);
+            g2.drawString("Y-Axis: " + yName, -getWidth()/10, getHeight()/2);
+            g2.setTransform(orig);
         }
     }
 

@@ -60,6 +60,9 @@ public class ScatterPlotPanel extends JPanel {
         else if (action.equals("sliderValue")){
             updateScatterPlotContent();
         }
+        else if (action.equals("relativeValue")){
+            updateScatterPlotContent();
+        }
     }
 
     public void setSelectedVariableIndex1(int selectedVariableIndex1) {
@@ -79,10 +82,16 @@ public class ScatterPlotPanel extends JPanel {
         this.isSelected = isSelected;
     }
 
-    public void setDiameter(int diameter, boolean relativeSize){
+    public void setRelativeDiameter(int diameter, boolean relativeSize){
         this.diameter = diameter;
         this.relativeSize = relativeSize;
     }
+
+    public void setSliderDiameter(boolean relativeSize){
+        this.relativeSize = relativeSize;
+    }
+
+
 
 
     public ScatterPlotContent getScatterPlotContent(){
@@ -97,9 +106,11 @@ public class ScatterPlotPanel extends JPanel {
         scatterValuesIndex2.setScatterValuesY(index2Values);
         boolean checked = isSelected;
         int sliderValue = diameter;
+        String xName = dataModel.getVariableList().get(selectedVariableIndex1).getName();
+        String yName = dataModel.getVariableList().get(selectedVariableIndex2).getName();
         scatterPlotContent.setScatterPlotContent(scatterValuesIndex1.getMinX(),scatterValuesIndex1.getMaxX(),
                 scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values,index3Values,
-                checked,sliderValue,relativeSize, selectedVariableIndex3);
+                checked,sliderValue,relativeSize, selectedVariableIndex3, xName, yName);
 
     }
 
