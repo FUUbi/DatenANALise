@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ScatterPlotToolbar extends JPanel {
 
-    private int dimensionData;
+    private int diameterSize;
     private boolean relativeSize = false;
     private Color bgColor = Color.white;
 
@@ -68,9 +68,9 @@ public class ScatterPlotToolbar extends JPanel {
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent event) {
                 accVal.setText("actual Value : " + ((JSlider) event.getSource()).getValue());
-                dimensionData = slider.getValue();
+                diameterSize = slider.getValue();
                 relativeSize = false;
-                guiApp.getScatterPlotPanel().setRelativeDiameter(dimensionData, relativeSize);
+                guiApp.getScatterPlotPanel().setRelativeDiameter(diameterSize, relativeSize);
                 guiApp.getScatterPlotPanel().actionPerformedUpdate("sliderValue");
 
                 revalidate();
@@ -79,9 +79,9 @@ public class ScatterPlotToolbar extends JPanel {
         });
 
         /* Plot data*/
-        dimensionData = slider.getValue();
+        diameterSize = slider.getValue();
         relativeSize = false;
-        guiApp.getScatterPlotPanel().setRelativeDiameter(dimensionData, relativeSize);
+        guiApp.getScatterPlotPanel().setRelativeDiameter(diameterSize, relativeSize);
         guiApp.getScatterPlotPanel().actionPerformedUpdate("sliderValue");
 
 
@@ -100,15 +100,19 @@ public class ScatterPlotToolbar extends JPanel {
         else for (String s : dropDownList)
             relativeSizeValuesComb.addItem(s);
         relativeSizeValuesComb.setEnabled(false);
+
+
         relativeSizeValuesComb.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
 
-                dimensionData = relativeSizeValuesComb.getSelectedIndex();
+                int index = relativeSizeValuesComb.getSelectedIndex();
                 if ((e.getStateChange() == ItemEvent.SELECTED)) {
                     relativeSize = true;
-                    guiApp.getScatterPlotPanel().setSelectedVariableIndex3(dimensionData, relativeSize);
+                    guiApp.getScatterPlotPanel().setSelectedVariableIndex3(index, relativeSize);
                     guiApp.getScatterPlotPanel().actionPerformedUpdate("cbx3Change");
+
+
                 }
                 revalidate();
                 guiApp.repaint();
@@ -126,8 +130,9 @@ public class ScatterPlotToolbar extends JPanel {
                     slider.setEnabled(false);
                     relativeSizeValuesComb.setEnabled(true);
                     relativeSize = true;
-                    guiApp.getScatterPlotPanel().setRelativeDiameter(dimensionData, relativeSize);
-                    guiApp.getScatterPlotPanel().actionPerformedUpdate("relativeSize");
+                    guiApp.getScatterPlotPanel().setSelectedVariableIndex3(relativeSizeValuesComb.getSelectedIndex(),relativeSize);
+                    guiApp.getScatterPlotPanel().actionPerformedUpdate("relativeValue");
+
                 }
 
                 else {
@@ -140,6 +145,7 @@ public class ScatterPlotToolbar extends JPanel {
                 }
                 revalidate();
                 guiApp.repaint();
+
 
 
             }

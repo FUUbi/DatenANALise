@@ -40,27 +40,20 @@ public class ScatterPlotContent extends JPanel {
 
     public void setScatterPlotContent(double minX, double maxX, double minY, double maxY,
                                       ArrayList<Double> index1Values, ArrayList<Double> index2Values,
-                                      ArrayList<Double> index3Values, boolean checked, int sliderValue,
-                                      boolean relativeSize, int selectedVariableIndex3, String xName, String yName) {
+                                      boolean checked, int sliderValue,
+                                      boolean relativeSize, String xName, String yName) {
         this.minX = minX;
         this.maxX = maxX;
         this.minY = minY;
         this.maxY = maxY;
         this.xData = index1Values;
         this.yData = index2Values;
-        this.diameterRaw = index3Values;
         this.drawLine = checked;
         this.sliderDiameter = sliderValue;
         this.relativeSize = relativeSize;
         this.xName = xName;
         this.yName = yName ;
 
-        if(relativeSize) {
-            if(!(lastVariableIndex3 == selectedVariableIndex3)){
-                setDiameterValues();
-                lastVariableIndex3 = selectedVariableIndex3;
-            }
-        }
 
         revalidate();  /* ensures the dynamism of the ScatterPlot on the GUI */
         repaint();
@@ -191,6 +184,11 @@ public class ScatterPlotContent extends JPanel {
         }
     }
 
+
+    public void setDiameterRaw(ArrayList<Double> diameterRawValues) {
+        this.diameterRaw = diameterRawValues;
+    }
+
     public void setDiameterValues(){
         diameterValues.clear();
         double max = diameterRaw.get(0);
@@ -201,5 +199,8 @@ public class ScatterPlotContent extends JPanel {
         for (double d : diameterRaw) {
         diameterValues.add((int) (50 * d/max));
         }
+
     }
+
+
 }

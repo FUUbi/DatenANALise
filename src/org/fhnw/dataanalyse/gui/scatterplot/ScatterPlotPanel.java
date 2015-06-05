@@ -48,9 +48,6 @@ public class ScatterPlotPanel extends JPanel {
         else if (action.equals("cbx2Change")){
             updateScatterPlotContent();
         }
-        else if (action.equals("cbx3Change")){
-            updateScatterPlotContent();
-        }
         else if (action.equals("drawChecked")){
             updateScatterPlotContent();
         }
@@ -60,7 +57,10 @@ public class ScatterPlotPanel extends JPanel {
         else if (action.equals("sliderValue")){
             updateScatterPlotContent();
         }
-        else if (action.equals("relativeValue")){
+        else if ((action.equals("relativeValue")) || (action.equals("cbx3Change"))){
+            ArrayList<Double> index3Values = dataModel.getVariableList().get(selectedVariableIndex3).getData();
+            scatterPlotContent.setDiameterRaw(index3Values);
+            scatterPlotContent.setDiameterValues();
             updateScatterPlotContent();
         }
     }
@@ -101,7 +101,7 @@ public class ScatterPlotPanel extends JPanel {
     private void updateScatterPlotContent(){
         ArrayList<Double> index1Values = dataModel.getVariableList().get(selectedVariableIndex1).getData();
         ArrayList<Double> index2Values = dataModel.getVariableList().get(selectedVariableIndex2).getData();
-        ArrayList<Double> index3Values = dataModel.getVariableList().get(selectedVariableIndex3).getData();
+
         scatterValuesIndex1.setScatterValuesX(index1Values);
         scatterValuesIndex2.setScatterValuesY(index2Values);
         boolean checked = isSelected;
@@ -109,8 +109,8 @@ public class ScatterPlotPanel extends JPanel {
         String xName = dataModel.getVariableList().get(selectedVariableIndex1).getName();
         String yName = dataModel.getVariableList().get(selectedVariableIndex2).getName();
         scatterPlotContent.setScatterPlotContent(scatterValuesIndex1.getMinX(),scatterValuesIndex1.getMaxX(),
-                scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values,index3Values,
-                checked,sliderValue,relativeSize, selectedVariableIndex3, xName, yName);
+                scatterValuesIndex2.getMinY(),scatterValuesIndex2.getMaxY(),index1Values,index2Values,
+                checked,sliderValue,relativeSize, xName, yName);
 
     }
 
