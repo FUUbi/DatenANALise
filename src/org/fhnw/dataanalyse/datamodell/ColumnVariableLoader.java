@@ -51,7 +51,7 @@ public class ColumnVariableLoader implements IVariableLoader {
                             "Fehler",
                             JOptionPane.WARNING_MESSAGE);
 
-                    variables.get(i).getData().add(null);
+                    variables.get(i).getData().add(0.d);
                 }
             }
         }
