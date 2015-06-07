@@ -78,7 +78,6 @@ public class HistoToolbar extends JPanel {
         int index = guiApp.getMenuToolbar().getyAxisIndex();
         String histo2Text =  dataModel.getVariableList().get(index).getName();
         histo2CheckB.setText(histo2Text);
-        System.out.println(histo2Text);
     }
 
     public JPanel getPanel(){

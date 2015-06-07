@@ -21,20 +21,19 @@ public class ScatterPlotContent extends JPanel {
     private ArrayList<Integer> yCord = new ArrayList<Integer>();
     private ArrayList<Double> diameterRaw;
     private ArrayList<Integer> diameterValues = new ArrayList<Integer>();
-    private int lastVariableIndex3;
     boolean drawLine;
     private int sliderDiameter;
     private boolean relativeSize;
     private int border = 200;
     private String xName;
     private String yName;
-    private Color bgColor = Color.white;
     Color  color = Color.ORANGE;
 
 
 
     public ScatterPlotContent() {
         setBorder(BorderFactory.createTitledBorder("Scatter Plot"));
+        Color bgColor = Color.white;
         setBackground(bgColor);
     }
 
