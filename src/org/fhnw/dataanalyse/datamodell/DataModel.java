@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 /**
  * DataModel contains variableList and getVariableList
- *
  */
 
 public class DataModel {
